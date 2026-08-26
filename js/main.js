@@ -4,10 +4,10 @@
 import * as THREE from './vendor/three.module.min.js';
 
 const CATEGORIES = {
-  ai:    { label: 'AI Commercial', platform: 'behance',   colorA: '#16233f', colorB: '#e8b84b' },
-  tvc:   { label: 'TVC Edit',      platform: 'vimeo',     colorA: '#0f1f2e', colorB: '#5eead4' },
-  reel:  { label: 'Social Reel',   platform: 'instagram', colorA: '#241634', colorB: '#c98be0' },
-  brand: { label: 'Brand Film',    platform: 'vimeo',     colorA: '#2a1c14', colorB: '#f2b56b' },
+  ai:    { label: 'AI Commercial', platform: 'behance',   colorA: '#24334c', colorB: '#e0af3b' },
+  tvc:   { label: 'TVC Edit',      platform: 'vimeo',     colorA: '#18160f', colorB: '#d3a46e' },
+  reel:  { label: 'Social Reel',   platform: 'instagram', colorA: '#24334c', colorB: '#d3a46e' },
+  brand: { label: 'Brand Film',    platform: 'vimeo',     colorA: '#18160f', colorB: '#e0af3b' },
 };
 
 const PLATFORM_URLS = {
@@ -83,10 +83,10 @@ function makeCardTexture(project) {
   const label = cfg.label.toUpperCase();
   const padX = 20;
   const textW = ctx.measureText(label).width;
-  ctx.fillStyle = 'rgba(7,11,20,0.55)';
+  ctx.fillStyle = 'rgba(24,22,17,0.6)';
   roundRect(ctx, 28, 28, textW + padX * 2, 44, 22);
   ctx.fill();
-  ctx.fillStyle = '#f2e8d5';
+  ctx.fillStyle = '#f8f5ee';
   ctx.textBaseline = 'middle';
   ctx.fillText(label, 28 + padX, 28 + 23);
 
@@ -109,7 +109,7 @@ function makeCardTexture(project) {
 
   // title
   ctx.font = '700 34px Orbitron, sans-serif';
-  ctx.fillStyle = '#f2e8d5';
+  ctx.fillStyle = '#f8f5ee';
   ctx.textBaseline = 'alphabetic';
   wrapText(ctx, project.title, 30, h - 40, w - 60, 38);
 
@@ -182,7 +182,7 @@ class PortfolioUniverse {
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x070b14, 0.045);
+    this.scene.fog = new THREE.FogExp2(0x18160f, 0.045);
 
     this.camera = new THREE.PerspectiveCamera(55, 1, 0.1, 60);
     this.camera.position.set(0, 0, 6.5);
@@ -210,7 +210,7 @@ class PortfolioUniverse {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const mat = new THREE.PointsMaterial({
-      color: 0xe8b84b, size: 0.028, transparent: true, opacity: 0.55,
+      color: 0xe0af3b, size: 0.028, transparent: true, opacity: 0.55,
       blending: THREE.AdditiveBlending, depthWrite: false,
     });
     this.stars = new THREE.Points(geo, mat);
