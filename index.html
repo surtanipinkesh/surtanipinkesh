@@ -46,15 +46,16 @@
   </div>
 </header>
 
-<!-- ============ 3D PORTFOLIO UNIVERSE ============ -->
-<section class="universe" id="universe">
-  <div class="universe-canvas-wrap">
-    <canvas id="universeCanvas" aria-hidden="true"></canvas>
+<!-- ============ HERO SHOWREEL ============ -->
+<section class="hero" id="top">
+  <div class="hero-video-wrap" aria-hidden="true">
+    <iframe id="heroReelFrame"
+      src="https://player.vimeo.com/video/810803119?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
+      frameborder="0" allow="autoplay; fullscreen" title="Papad Pixels showreel (background)"></iframe>
   </div>
-  <div class="universe-vignette" aria-hidden="true"></div>
-  <div class="universe-copy-scrim" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
 
-  <div class="universe-overlay" id="top">
+  <div class="hero-overlay">
     <p class="eyebrow reveal"><span class="dot"></span>AI VIDEO ADS · TVCs · COMMERCIAL EDITING</p>
     <h1 class="universe-title reveal">
       <span class="glitch" data-text="AI ADS &amp; TVCS,">AI ADS &amp; TVCS,</span>
@@ -62,24 +63,44 @@
     </h1>
     <p class="universe-desc reveal">
       Papad Pixels is Pinkesh Surtani's studio for AI-generated commercials, broadcast TVC edits
-      and social video — 11+ years of editing craft fused with generative AI. Every card floating
-      around you is a real project. Move your mouse to look around, click one to watch it.
+      and social video — 11+ years of editing craft fused with generative AI. That's the full
+      showreel playing behind me, on mute — scroll down and every other project floats in its
+      own 3D space.
     </p>
     <div class="universe-actions reveal">
       <a href="#contact" class="btn btn-primary"><span>Start a Project</span></a>
-      <a href="#platforms" class="btn btn-outline"><span>Browse Full Reel</span></a>
+      <button type="button" class="btn btn-outline" id="heroWatchReel"><span>Watch Reel with Sound</span></button>
     </div>
+  </div>
+
+  <a href="#universe" class="hero-scroll-cue reveal" aria-label="Scroll to explore the portfolio">
+    <span>SCROLL TO EXPLORE</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+  </a>
+</section>
+
+<!-- ============ 3D PORTFOLIO UNIVERSE ============ -->
+<section class="universe" id="universe">
+  <div class="universe-canvas-wrap">
+    <canvas id="universeCanvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="universe-vignette" aria-hidden="true"></div>
+
+  <div class="universe-overlay">
+    <p class="section-tag reveal">SELECTED WORK</p>
+    <h2 class="universe-heading reveal">Every card is a real project — <span class="accent">move to look around</span></h2>
   </div>
 
   <div class="universe-filters reveal" id="universeFilters">
     <button class="filter-btn active" data-filter="all">All Work</button>
-    <button class="filter-btn" data-filter="ai">AI Commercials</button>
-    <button class="filter-btn" data-filter="tvc">TVC Edits</button>
-    <button class="filter-btn" data-filter="reel">Social Reels</button>
-    <button class="filter-btn" data-filter="brand">Brand Films</button>
+    <button class="filter-btn" data-filter="ai">AI Video Ads</button>
+    <button class="filter-btn" data-filter="tvc">TV Commercials</button>
+    <button class="filter-btn" data-filter="social">Social Media Videos</button>
   </div>
 
-  <p class="universe-hint" id="universeHint">MOVE MOUSE TO LOOK AROUND · CLICK A CARD TO OPEN</p>
+  <p class="universe-empty" id="universeEmpty">More landing here soon — see everything already live on <a href="https://www.vimeo.com/surtanipinkesh" target="_blank" rel="noopener">Vimeo</a>.</p>
+
+  <p class="universe-hint" id="universeHint">MOVE MOUSE TO LOOK AROUND · CLICK A CARD TO WATCH IT</p>
 
   <div class="card-tooltip" id="cardTooltip" aria-hidden="true">
     <span class="card-tooltip-cat" id="cardTooltipCat"></span>
@@ -92,10 +113,14 @@
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
-    <span class="card-modal-cat" id="modalCat">AI Commercial</span>
-    <h3 id="modalTitle">Project Title</h3>
-    <p id="modalDesc">Full project lives on the platform below — this card is a placeholder slot ready for the real cut.</p>
-    <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="modalLink"><span>Watch on Vimeo</span></a>
+    <div class="modal-video">
+      <iframe id="modalVideoFrame" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Project video"></iframe>
+    </div>
+    <div class="modal-body">
+      <span class="card-modal-cat" id="modalCat">AI Video Ads</span>
+      <h3 id="modalTitle">Project Title</h3>
+      <a href="#" target="_blank" rel="noopener" class="btn btn-outline modal-external" id="modalLink"><span>Open on Vimeo / YouTube ↗</span></a>
+    </div>
   </div>
 </div>
 
