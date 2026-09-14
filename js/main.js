@@ -4,42 +4,45 @@
 import * as THREE from './vendor/three.module.min.js';
 
 const CATEGORIES = {
-  ai:    { label: 'AI Commercial', platform: 'behance',   colorA: '#24334c', colorB: '#e0af3b' },
-  tvc:   { label: 'TVC Edit',      platform: 'vimeo',     colorA: '#18160f', colorB: '#d3a46e' },
-  reel:  { label: 'Social Reel',   platform: 'instagram', colorA: '#24334c', colorB: '#d3a46e' },
-  brand: { label: 'Brand Film',    platform: 'vimeo',     colorA: '#18160f', colorB: '#e0af3b' },
+  ai:     { label: 'AI Video Ads',        colorA: '#24334c', colorB: '#e0af3b' },
+  tvc:    { label: 'TV Commercials',      colorA: '#18160f', colorB: '#d3a46e' },
+  social: { label: 'Social Media Videos', colorA: '#24334c', colorB: '#d3a46e' },
+  // Not a filter tab — used only for the hero showreel's modal label.
+  reel:   { label: 'Showreel',            colorA: '#18160f', colorB: '#e0af3b' },
 };
 
-const PLATFORM_URLS = {
-  behance:   'https://www.behance.net/surtanipinkesh',
-  vimeo:     'https://www.vimeo.com/surtanipinkesh',
-  instagram: 'https://www.instagram.com/davinciresolvecraftsman',
-};
+// Turns a { type, id } source into a playable embed URL. No API calls —
+// these are just Vimeo/YouTube's public embed/player URL patterns.
+function embedUrl(source) {
+  switch (source.type) {
+    case 'vimeo-video':      return `https://player.vimeo.com/video/${source.id}?autoplay=1&title=0&byline=0&portrait=0`;
+    case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}/embed`;
+    case 'youtube-video':    return `https://www.youtube.com/embed/${source.id}?autoplay=1&rel=0`;
+    case 'youtube-playlist': return `https://www.youtube.com/embed/videoseries?list=${source.id}&autoplay=1`;
+    default: return '';
+  }
+}
 
-const PLATFORM_LABELS = {
-  behance:   'Watch on Behance',
-  vimeo:     'Watch on Vimeo',
-  instagram: 'Watch on Instagram',
-};
+// Where "Open on Vimeo / YouTube" should point when a viewer wants the
+// native player instead of the inline embed.
+function canonicalUrl(source) {
+  switch (source.type) {
+    case 'vimeo-video':      return `https://vimeo.com/${source.id}`;
+    case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}`;
+    case 'youtube-video':    return `https://www.youtube.com/watch?v=${source.id}`;
+    case 'youtube-playlist': return `https://www.youtube.com/playlist?list=${source.id}`;
+    default: return '#';
+  }
+}
 
-// Weighted toward AI commercials + TVCs per the brief.
+// Real work only — no placeholder titles. AI Video Ads and TV Commercials
+// grow as individual clip links come in; Social Media Videos is wired to
+// the three live Vimeo showcases.
 const PROJECTS = [
-  { cat: 'ai',    title: 'AI Commercial — Concept Reel' },
-  { cat: 'ai',    title: 'Generative Product Ad' },
-  { cat: 'ai',    title: 'AI Commercial — Brand Spot' },
-  { cat: 'ai',    title: 'Synthetic Actor Campaign' },
-  { cat: 'ai',    title: 'AI Commercial — Launch Film' },
-  { cat: 'ai',    title: 'Generative VFX Spot' },
-  { cat: 'tvc',   title: 'TVC Edit — Broadcast Cut' },
-  { cat: 'tvc',   title: 'TVC Edit — 30s Spot' },
-  { cat: 'tvc',   title: 'TVC Edit — Festive Campaign' },
-  { cat: 'tvc',   title: 'TVC Edit — Product Launch' },
-  { cat: 'tvc',   title: 'TVC Edit — Brand Spot' },
-  { cat: 'reel',  title: 'Social Reel — Campaign Cut' },
-  { cat: 'reel',  title: 'Instagram Reel Edit' },
-  { cat: 'reel',  title: 'Short-Form Ad Edit' },
-  { cat: 'brand', title: 'Brand Film — Hero Edit' },
-  { cat: 'brand', title: 'Brand Film — Docu Style' },
+  { cat: 'ai',     title: 'AI Video Ads — Full Playlist', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 01', source: { type: 'vimeo-showcase', id: '11113218' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 02', source: { type: 'vimeo-showcase', id: '10988503' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 03', source: { type: 'vimeo-showcase', id: '11113114' } },
 ];
 
 const isTouch = window.matchMedia('(pointer:coarse)').matches;
@@ -318,11 +321,26 @@ class PortfolioUniverse {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.activeFilter = btn.dataset.filter;
+        this.updateEmptyState();
       });
     });
 
     document.getElementById('cardModalClose').addEventListener('click', () => this.closeModal());
     document.getElementById('cardModalBackdrop').addEventListener('click', () => this.closeModal());
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') this.closeModal();
+    });
+
+    document.getElementById('heroWatchReel')?.addEventListener('click', () => {
+      this.openModal({ cat: 'reel', title: 'Papad Pixels — Full Showreel', source: { type: 'vimeo-video', id: '810803119' } });
+    });
+  }
+
+  updateEmptyState() {
+    const empty = document.getElementById('universeEmpty');
+    if (!empty) return;
+    const hasMatches = this.activeFilter === 'all' || PROJECTS.some(p => p.cat === this.activeFilter);
+    empty.style.opacity = hasMatches ? '0' : '1';
   }
 
   observeVisibility() {
@@ -358,9 +376,9 @@ class PortfolioUniverse {
     const cfg = CATEGORIES[project.cat];
     document.getElementById('modalCat').textContent = cfg.label;
     document.getElementById('modalTitle').textContent = project.title;
+    document.getElementById('modalVideoFrame').src = embedUrl(project.source);
     const link = document.getElementById('modalLink');
-    link.href = PLATFORM_URLS[cfg.platform];
-    link.querySelector('span').textContent = PLATFORM_LABELS[cfg.platform];
+    link.href = canonicalUrl(project.source);
     const modal = document.getElementById('cardModal');
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
@@ -370,6 +388,8 @@ class PortfolioUniverse {
     const modal = document.getElementById('cardModal');
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+    // Stop playback/audio the instant the modal closes.
+    document.getElementById('modalVideoFrame').src = '';
   }
 
   onResize() {
