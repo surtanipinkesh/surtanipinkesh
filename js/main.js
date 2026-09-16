@@ -19,6 +19,10 @@ function embedUrl(source) {
     case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}/embed`;
     case 'youtube-video':    return `https://www.youtube.com/embed/${source.id}?autoplay=1&rel=0`;
     case 'youtube-playlist': return `https://www.youtube.com/embed/videoseries?list=${source.id}&autoplay=1`;
+    // Interim fallback only — Google Drive isn't built for public video
+    // embedding (no adaptive streaming, easy to hit quota). Prefer
+    // Vimeo/YouTube; this exists so a Drive link still "just works" if used.
+    case 'drive-video':      return `https://drive.google.com/file/d/${source.id}/preview`;
     default: return '';
   }
 }
@@ -31,6 +35,7 @@ function canonicalUrl(source) {
     case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}`;
     case 'youtube-video':    return `https://www.youtube.com/watch?v=${source.id}`;
     case 'youtube-playlist': return `https://www.youtube.com/playlist?list=${source.id}`;
+    case 'drive-video':      return `https://drive.google.com/file/d/${source.id}/view`;
     default: return '#';
   }
 }
@@ -177,6 +182,7 @@ class PortfolioUniverse {
 
     this.initScene();
     this.buildStarfield();
+    this.buildHud();
     this.buildCards();
     this.bindEvents();
     this.onResize();
@@ -218,6 +224,50 @@ class PortfolioUniverse {
     });
     this.stars = new THREE.Points(geo, mat);
     this.scene.add(this.stars);
+  }
+
+  // Faint sci-fi HUD dressing behind the cards: a wireframe floor grid and
+  // a few slow-spinning orbit rings. Kept low-opacity on purpose — this is
+  // ambient texture, not the focal point.
+  buildHud() {
+    this.hud = new THREE.Group();
+
+    const grid = new THREE.GridHelper(28, 28, 0xe0af3b, 0x24334c);
+    grid.material.transparent = true;
+    grid.material.opacity = 0.07;
+    grid.position.set(0, -5.6, -7);
+    this.hud.add(grid);
+
+    this.rings = [3.6, 4.8, 6.1].map((r, i) => {
+      const ringGeo = new THREE.RingGeometry(r, r + 0.014, 96);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: i % 2 ? 0xd3a46e : 0xe0af3b,
+        transparent: true, opacity: 0.05 + i * 0.012,
+        side: THREE.DoubleSide, depthWrite: false,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2 + (Math.random() - 0.5) * 0.35;
+      ring.rotation.y = Math.random() * Math.PI;
+      ring.position.z = -6.5 - i * 0.5;
+      this.hud.add(ring);
+      return { mesh: ring, speed: 0.015 + i * 0.008, boost: 0 };
+    });
+
+    this.scene.add(this.hud);
+  }
+
+  // Briefly speeds up the HUD rings — the "simulation" cue that fires on
+  // every tab switch, on top of the scanline flash and card warp-in.
+  pulseHud() {
+    this.rings?.forEach(r => { r.boost = 0.4; });
+  }
+
+  triggerScanFlash() {
+    const el = document.getElementById('universe');
+    if (!el || reduceMotion) return;
+    el.classList.remove('scan-flash');
+    void el.offsetWidth;
+    el.classList.add('scan-flash');
   }
 
   buildCards() {
@@ -266,6 +316,7 @@ class PortfolioUniverse {
         targetScale: 1,
         targetOpacity: 1,
         hitTest: true,
+        spawnAt: 0,
       };
       mesh.userData.record = record;
       this.cards.push(record);
@@ -320,8 +371,22 @@ class PortfolioUniverse {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        this.activeFilter = btn.dataset.filter;
+
+        const prevFilter = this.activeFilter;
+        const nextFilter = btn.dataset.filter;
+        this.activeFilter = nextFilter;
+
+        // Cards that just became visible "warp in" instead of just fading —
+        // the reassembly effect that sells the tab switch as a simulation.
+        this.cards.forEach(c => {
+          const wasMatch = prevFilter === 'all' || c.project.cat === prevFilter;
+          const nowMatch = nextFilter === 'all' || c.project.cat === nextFilter;
+          if (nowMatch && !wasMatch) c.spawnAt = performance.now();
+        });
+
         this.updateEmptyState();
+        this.pulseHud();
+        this.triggerScanFlash();
       });
     });
 
@@ -448,6 +513,14 @@ class PortfolioUniverse {
 
       if (!reduceMotion) this.stars.rotation.y = t * 0.01;
 
+      if (!reduceMotion) {
+        this.rings.forEach(r => {
+          r.boost = THREE.MathUtils.lerp(r.boost, 0, 0.02);
+          r.mesh.rotation.z += r.speed + r.boost;
+        });
+      }
+
+      const now = performance.now();
       this.cards.forEach(c => {
         if (!reduceMotion) {
           c.mesh.position.y = c.basePos.y + Math.sin(t * c.floatSpeed + c.floatOffset) * c.floatAmp;
@@ -457,13 +530,21 @@ class PortfolioUniverse {
 
         const matches = this.activeFilter === 'all' || c.project.cat === this.activeFilter;
         const isHovered = this.hovered === c;
-        c.targetScale = isHovered ? 1.14 : (matches ? 1 : 0.82);
-        c.targetOpacity = matches ? (isHovered ? 1 : 0.92) : 0.12;
+        c.targetScale = isHovered ? 1.14 : (matches ? 1 : 0.6);
+        c.targetOpacity = matches ? (isHovered ? 1 : 0.92) : 0.08;
         c.hitTest = matches;
 
-        const s = THREE.MathUtils.lerp(c.mesh.scale.x, c.targetScale, 0.12);
+        const spawning = c.spawnAt && now - c.spawnAt < 550 && !reduceMotion;
+        let s;
+        if (spawning) {
+          const p = Math.min(1, (now - c.spawnAt) / 550);
+          const eased = 1 - Math.pow(1 - p, 3);
+          s = THREE.MathUtils.lerp(0.35, c.targetScale, eased);
+        } else {
+          s = THREE.MathUtils.lerp(c.mesh.scale.x, c.targetScale, 0.12);
+        }
         c.mesh.scale.setScalar(s);
-        c.mesh.material.opacity = THREE.MathUtils.lerp(c.mesh.material.opacity, c.targetOpacity, 0.12);
+        c.mesh.material.opacity = THREE.MathUtils.lerp(c.mesh.material.opacity, c.targetOpacity, spawning ? 0.3 : 0.12);
       });
 
       if (!isTouch) this.updateHover();
