@@ -127,4 +127,25 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  /* ---------- contact form (mailto — no backend yet) ---------- */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const type = contactForm.type.value;
+      const message = contactForm.message.value.trim();
+
+      const subject = `Project Inquiry — ${type} — ${name}`;
+      const body = `Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\n${message}`;
+      const mailto = `mailto:papadpixels@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailto;
+
+      const note = document.getElementById('formNote');
+      if (note) note.textContent = "Opening your email app to send this — if nothing happens, email papadpixels@gmail.com directly.";
+    });
+  }
+
 })();
