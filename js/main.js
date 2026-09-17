@@ -43,11 +43,13 @@ function canonicalUrl(source) {
 // Real work only — no placeholder titles. AI Video Ads and TV Commercials
 // grow as individual clip links come in; Social Media Videos is wired to
 // the three live Vimeo showcases.
+// orientation drives both the card's shape and its canvas aspect ratio —
+// 'landscape' for TV/YouTube-style 16:9, 'portrait' for vertical Reels/Shorts.
 const PROJECTS = [
-  { cat: 'ai',     title: 'AI Video Ads — Full Playlist', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 01', source: { type: 'vimeo-showcase', id: '11113218' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 02', source: { type: 'vimeo-showcase', id: '10988503' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 03', source: { type: 'vimeo-showcase', id: '11113114' } },
+  { cat: 'ai',     title: 'AI Video Ads — Full Playlist', orientation: 'landscape', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 01', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113218' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 02', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '10988503' } },
+  { cat: 'social', title: 'Social Media Videos — Showcase 03', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113114' } },
 ];
 
 const isTouch = window.matchMedia('(pointer:coarse)').matches;
@@ -57,7 +59,9 @@ const starCount = isTouch ? 350 : 900;
 
 function makeCardTexture(project) {
   const cfg = CATEGORIES[project.cat];
-  const w = 1024, h = 576;
+  const portrait = project.orientation === 'portrait';
+  const w = portrait ? 576 : 1024;
+  const h = portrait ? 1024 : 576;
   const canvas = document.createElement('canvas');
   canvas.width = w; canvas.height = h;
   const ctx = canvas.getContext('2d');
@@ -155,6 +159,37 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   lines.forEach((l, i) => ctx.fillText(l, x, startY + i * lineHeight));
 }
 
+function makeStarTexture() {
+  const s = 64;
+  const canvas = document.createElement('canvas');
+  canvas.width = s; canvas.height = s;
+  const ctx = canvas.getContext('2d');
+  const cx = s / 2, cy = s / 2;
+
+  const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, s / 2);
+  glow.addColorStop(0, 'rgba(255,255,255,1)');
+  glow.addColorStop(0.25, 'rgba(255,241,214,0.85)');
+  glow.addColorStop(1, 'rgba(255,241,214,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, s, s);
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.fillStyle = '#fff';
+  ctx.beginPath();
+  const spikes = 4, outerR = s * 0.46, innerR = s * 0.09;
+  for (let i = 0; i < spikes * 2; i++) {
+    const r = i % 2 === 0 ? outerR : innerR;
+    const a = (Math.PI / spikes) * i - Math.PI / 2;
+    ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  return new THREE.CanvasTexture(canvas);
+}
+
 function mix(hexA, hexB, t) {
   const a = hexToRgb(hexA), b = hexToRgb(hexB);
   const r = Math.round(a.r + (b.r - a.r) * t);
@@ -182,6 +217,7 @@ class PortfolioUniverse {
 
     this.initScene();
     this.buildStarfield();
+    this.buildStarlets();
     this.buildHud();
     this.buildCards();
     this.bindEvents();
@@ -224,6 +260,33 @@ class PortfolioUniverse {
     });
     this.stars = new THREE.Points(geo, mat);
     this.scene.add(this.stars);
+  }
+
+  // Bigger, brighter gold sparkle "starlets" layered over the fine
+  // starfield — split into a few groups that twinkle out of phase.
+  buildStarlets() {
+    const tex = makeStarTexture();
+    const groupCount = 3;
+    const perGroup = isTouch ? 26 : 60;
+    this.starlets = [];
+
+    for (let g = 0; g < groupCount; g++) {
+      const positions = new Float32Array(perGroup * 3);
+      for (let i = 0; i < perGroup; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 36;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 22;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 36 - 4;
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const mat = new THREE.PointsMaterial({
+        map: tex, color: 0xf0c568, size: 0.16 + g * 0.05, transparent: true,
+        opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+      });
+      const points = new THREE.Points(geo, mat);
+      this.scene.add(points);
+      this.starlets.push({ mesh: points, phase: g * 2.1, speed: 0.5 + g * 0.15 });
+    }
   }
 
   // Faint sci-fi HUD dressing behind the cards: a wireframe floor grid and
@@ -272,11 +335,15 @@ class PortfolioUniverse {
 
   buildCards() {
     this.cards = [];
-    const geo = new THREE.PlaneGeometry(2.3, 1.294);
+    const geoByOrientation = {
+      landscape: new THREE.PlaneGeometry(2.3, 1.294),
+      portrait: new THREE.PlaneGeometry(1.35, 2.4),
+    };
     const placed = [];
     const list = PROJECTS.slice(0, cardCount);
 
     list.forEach((project, i) => {
+      const geo = geoByOrientation[project.orientation === 'portrait' ? 'portrait' : 'landscape'];
       const texture = makeCardTexture(project);
       const material = new THREE.MeshBasicMaterial({
         map: texture, transparent: true, opacity: 1, side: THREE.DoubleSide,
@@ -299,7 +366,7 @@ class PortfolioUniverse {
           -1.5 - Math.random() * 9.5
         );
         tries++;
-      } while (tries < 40 && (inSafeZone(pos) || placed.some(p => p.distanceTo(pos) < 2.3)));
+      } while (tries < 40 && (inSafeZone(pos) || placed.some(p => p.distanceTo(pos) < 2.6)));
       placed.push(pos);
 
       mesh.position.copy(pos);
@@ -512,6 +579,13 @@ class PortfolioUniverse {
       this.camera.lookAt(lookX * 2.2, lookY * 1.4, -6);
 
       if (!reduceMotion) this.stars.rotation.y = t * 0.01;
+
+      if (!reduceMotion) {
+        this.starlets.forEach(s => {
+          s.mesh.material.opacity = 0.35 + Math.sin(t * s.speed + s.phase) * 0.28;
+          s.mesh.rotation.y = t * 0.008;
+        });
+      }
 
       if (!reduceMotion) {
         this.rings.forEach(r => {

@@ -52,13 +52,23 @@
 </header>
 
 <!-- ============ HERO SHOWREEL ============ -->
+<!-- Video plays alone first; the video stays pinned while you scroll and
+     the copy below rises into view over it, then the section hands off to
+     the gallery. -->
 <section class="hero" id="top">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <iframe id="heroReelFrame"
-      src="https://player.vimeo.com/video/810803119?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
-      frameborder="0" allow="autoplay; fullscreen" title="Papad Pixels showreel (background)"></iframe>
+  <div class="hero-pin">
+    <div class="hero-video-wrap" aria-hidden="true">
+      <iframe id="heroReelFrame"
+        src="https://player.vimeo.com/video/810803119?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
+        frameborder="0" allow="autoplay; fullscreen" title="Papad Pixels showreel (background)"></iframe>
+    </div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <a href="#universe" class="hero-scroll-cue reveal" aria-label="Scroll to explore the portfolio">
+      <span>SCROLL TO EXPLORE</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    </a>
   </div>
-  <div class="hero-vignette" aria-hidden="true"></div>
 
   <div class="hero-overlay">
     <p class="eyebrow reveal"><span class="dot"></span>AI VIDEO ADS · TVCs · COMMERCIAL EDITING</p>
@@ -77,11 +87,6 @@
       <button type="button" class="btn btn-outline" id="heroWatchReel"><span>Watch Reel with Sound</span></button>
     </div>
   </div>
-
-  <a href="#universe" class="hero-scroll-cue reveal" aria-label="Scroll to explore the portfolio">
-    <span>SCROLL TO EXPLORE</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
-  </a>
 </section>
 
 <!-- ============ 3D PORTFOLIO UNIVERSE ============ -->
@@ -142,6 +147,11 @@
       <span class="stack-chip">DaVinci Resolve</span>
       <span class="stack-chip">Premiere Pro</span>
       <span class="stack-chip">Generative AI Video</span>
+      <span class="stack-chip">Seedance 2.5</span>
+      <span class="stack-chip">Seedream</span>
+      <span class="stack-chip">Higgsfield</span>
+      <span class="stack-chip">Nano Banana Pro</span>
+      <span class="stack-chip">Google Omni</span>
       <span class="stack-chip">AI Voice &amp; Dubbing</span>
       <span class="stack-chip">AI VFX Compositing</span>
       <span class="stack-chip">Motion Design</span>
@@ -150,6 +160,11 @@
       <span class="stack-chip">DaVinci Resolve</span>
       <span class="stack-chip">Premiere Pro</span>
       <span class="stack-chip">Generative AI Video</span>
+      <span class="stack-chip">Seedance 2.5</span>
+      <span class="stack-chip">Seedream</span>
+      <span class="stack-chip">Higgsfield</span>
+      <span class="stack-chip">Nano Banana Pro</span>
+      <span class="stack-chip">Google Omni</span>
       <span class="stack-chip">AI Voice &amp; Dubbing</span>
       <span class="stack-chip">AI VFX Compositing</span>
       <span class="stack-chip">Motion Design</span>
@@ -209,8 +224,8 @@
         <span class="stat-label">Years of Experience</span>
       </div>
       <div class="stat-card">
-        <span class="stat-num" data-count="2" data-suffix="">0</span>
-        <span class="stat-label">NLEs Mastered<br><small>DaVinci Resolve &amp; Premiere Pro</small></span>
+        <span class="stat-num" data-count="10" data-suffix="+">0</span>
+        <span class="stat-label">AI Models &amp; Tools<br><small>Seedance, Higgsfield, Nano Banana &amp; more</small></span>
       </div>
       <div class="stat-card">
         <span class="stat-num" data-count="100" data-suffix="%">0</span>
