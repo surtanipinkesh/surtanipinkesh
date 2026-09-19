@@ -159,12 +159,16 @@ a{ color:inherit; text-decoration:none; }
 }
 .hero-pin{
   position:sticky; top:0; height:100vh; min-height:640px; overflow:hidden;
+  background:radial-gradient(ellipse at 50% 30%, #24334c 0%, #18160f 75%);
 }
-.hero-video-wrap{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-.hero-video-wrap iframe{
-  position:absolute; top:50%; left:50%;
-  width:100vw; height:56.25vw; min-height:100vh; min-width:177.78vh;
-  transform:translate(-50%,-50%); pointer-events:none; border:0;
+.hero-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.hero-image{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-image img{
+  width:min(320px, 42vw); height:auto;
+  filter:drop-shadow(0 24px 60px rgba(0,0,0,.55));
 }
 .hero-vignette{
   position:absolute; inset:0; z-index:2; pointer-events:none;

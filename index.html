@@ -51,16 +51,23 @@
   </div>
 </header>
 
-<!-- ============ HERO SHOWREEL ============ -->
-<!-- Video plays alone first; the video stays pinned while you scroll and
-     the copy below rises into view over it, then the section hands off to
-     the gallery. -->
+<!-- ============ HERO ============ -->
+<!-- Placeholder image plays alone first (video pulled out temporarily —
+     swap .hero-image back to a video/iframe once new reels are ready);
+     it stays pinned while you scroll and the copy below rises into view
+     over it, then the section hands off to the gallery. -->
 <section class="hero" id="top">
   <div class="hero-pin">
-    <div class="hero-video-wrap" aria-hidden="true">
-      <iframe id="heroReelFrame"
-        src="https://player.vimeo.com/video/810803119?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
-        frameborder="0" allow="autoplay; fullscreen" title="Papad Pixels showreel (background)"></iframe>
+    <div class="hero-bg" aria-hidden="true">
+      <span class="bg-orb bg-orb-1"></span>
+      <span class="bg-orb bg-orb-2"></span>
+      <span class="bg-grid"></span>
+    </div>
+    <div class="hero-image" aria-hidden="true">
+      <picture>
+        <source srcset="assets/logo.webp" type="image/webp">
+        <img src="assets/logo.png" alt="">
+      </picture>
     </div>
     <div class="hero-vignette" aria-hidden="true"></div>
 
@@ -104,7 +111,7 @@
   <div class="universe-filters reveal" id="universeFilters">
     <button class="filter-btn active" data-filter="all">All Work</button>
     <button class="filter-btn" data-filter="ai">AI Video Ads</button>
-    <button class="filter-btn" data-filter="tvc">TV Commercials</button>
+    <button class="filter-btn" data-filter="tvc">AI UGC Videos</button>
     <button class="filter-btn" data-filter="social">Social Media Videos</button>
   </div>
 
@@ -436,7 +443,7 @@
         <label for="cfType">Project type</label>
         <select id="cfType" name="type">
           <option>AI Video Ad</option>
-          <option>TV Commercial</option>
+          <option>AI UGC Video</option>
           <option>Social Media Videos</option>
           <option>Something else</option>
         </select>

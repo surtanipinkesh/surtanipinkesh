@@ -5,7 +5,7 @@ import * as THREE from './vendor/three.module.min.js';
 
 const CATEGORIES = {
   ai:     { label: 'AI Video Ads',        colorA: '#24334c', colorB: '#e0af3b' },
-  tvc:    { label: 'TV Commercials',      colorA: '#18160f', colorB: '#d3a46e' },
+  tvc:    { label: 'AI UGC Videos',       colorA: '#18160f', colorB: '#d3a46e' },
   social: { label: 'Social Media Videos', colorA: '#24334c', colorB: '#d3a46e' },
   // Not a filter tab — used only for the hero showreel's modal label.
   reel:   { label: 'Showreel',            colorA: '#18160f', colorB: '#e0af3b' },
