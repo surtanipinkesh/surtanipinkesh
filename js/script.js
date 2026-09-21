@@ -143,8 +143,18 @@
 
       window.location.href = mailto;
 
-      const note = document.getElementById('formNote');
-      if (note) note.textContent = "Opening your email app to send this. If nothing happens, email create@papadpixels.com directly.";
+      const success = document.getElementById('formSuccess');
+      const successName = document.getElementById('formSuccessName');
+      if (successName) successName.textContent = name ? `, ${name}` : '';
+      if (success) success.hidden = false;
+      contactForm.hidden = true;
+    });
+
+    document.getElementById('formSuccessReset')?.addEventListener('click', () => {
+      contactForm.reset();
+      contactForm.hidden = false;
+      const success = document.getElementById('formSuccess');
+      if (success) success.hidden = true;
     });
   }
 
