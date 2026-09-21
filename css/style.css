@@ -159,16 +159,12 @@ a{ color:inherit; text-decoration:none; }
 }
 .hero-pin{
   position:sticky; top:0; height:100vh; min-height:640px; overflow:hidden;
-  background:radial-gradient(ellipse at 50% 30%, #24334c 0%, #18160f 75%);
 }
-.hero-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
-.hero-image{
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-  display:flex; align-items:center; justify-content:center;
-}
-.hero-image img{
-  width:min(320px, 42vw); height:auto;
-  filter:drop-shadow(0 24px 60px rgba(0,0,0,.55));
+.hero-video-wrap{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.hero-video-wrap iframe{
+  position:absolute; top:50%; left:50%;
+  width:100vw; height:56.25vw; min-height:100vh; min-width:177.78vh;
+  transform:translate(-50%,-50%); pointer-events:none; border:0;
 }
 .hero-vignette{
   position:absolute; inset:0; z-index:2; pointer-events:none;
@@ -540,8 +536,23 @@ a{ color:inherit; text-decoration:none; }
 .price-card:hover{ transform:translateY(-6px); border-color:var(--gold); }
 .price-card h3{ font-family:var(--font-display); font-size:19px; margin:0; }
 .price-who{ color:var(--text-dim); font-size:13.5px; line-height:1.5; margin:0; }
-.price-amount{ font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--text); }
-.price-amount span{ font-family:var(--font-body); font-size:13px; font-weight:500; color:var(--text-dim); }
+.price-amount{ font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--text); }
+.price-amount span{ font-family:var(--font-body); font-size:13px; font-weight:500; color:var(--text-dim); display:block; margin-top:4px; }
+
+.price-picker-label{
+  font-family:var(--font-pixel); font-size:8px; letter-spacing:1.5px; color:var(--text-dimmer);
+  margin:0 0 10px;
+}
+.price-lengths{ display:flex; gap:8px; }
+.price-length{
+  flex:1; text-align:center; border:1px solid var(--panel-border); border-radius:8px;
+  padding:10px 4px; display:flex; flex-direction:column; gap:4px;
+}
+.price-length .len{ font-size:11px; color:var(--text-dim); font-weight:600; }
+.price-length .amt{ font-family:var(--font-display); font-size:16px; font-weight:800; color:var(--text); }
+.price-card-featured .price-length{ border-color:rgba(224,175,59,.35); }
+.price-card-featured .price-length .amt{ color:var(--gold); }
+
 .price-feats{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; flex:1; }
 .price-feats li{
   font-size:13.5px; color:var(--text-dim); padding-left:22px; position:relative; line-height:1.4;

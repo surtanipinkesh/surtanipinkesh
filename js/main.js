@@ -46,10 +46,10 @@ function canonicalUrl(source) {
 // orientation drives both the card's shape and its canvas aspect ratio —
 // 'landscape' for TV/YouTube-style 16:9, 'portrait' for vertical Reels/Shorts.
 const PROJECTS = [
-  { cat: 'ai',     title: 'AI Video Ads — Full Playlist', orientation: 'landscape', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 01', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113218' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 02', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '10988503' } },
-  { cat: 'social', title: 'Social Media Videos — Showcase 03', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113114' } },
+  { cat: 'ai',     title: 'AI Video Ads Playlist', orientation: 'landscape', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
+  { cat: 'social', title: 'Social Media Videos, Showcase 01', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113218' } },
+  { cat: 'social', title: 'Social Media Videos, Showcase 02', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '10988503' } },
+  { cat: 'social', title: 'Social Media Videos, Showcase 03', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113114' } },
 ];
 
 const isTouch = window.matchMedia('(pointer:coarse)').matches;
@@ -464,7 +464,7 @@ class PortfolioUniverse {
     });
 
     document.getElementById('heroWatchReel')?.addEventListener('click', () => {
-      this.openModal({ cat: 'reel', title: 'Papad Pixels — Full Showreel', source: { type: 'vimeo-video', id: '810803119' } });
+      this.openModal({ cat: 'reel', title: 'Papad Pixels Full Showreel', source: { type: 'vimeo-video', id: '1228841347' } });
     });
   }
 
