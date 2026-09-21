@@ -137,14 +137,14 @@
       const type = contactForm.type.value;
       const message = contactForm.message.value.trim();
 
-      const subject = `Project Inquiry — ${type} — ${name}`;
+      const subject = `Project Inquiry: ${type} (${name})`;
       const body = `Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\n${message}`;
       const mailto = `mailto:papadpixels@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
       window.location.href = mailto;
 
       const note = document.getElementById('formNote');
-      if (note) note.textContent = "Opening your email app to send this — if nothing happens, email papadpixels@gmail.com directly.";
+      if (note) note.textContent = "Opening your email app to send this. If nothing happens, email papadpixels@gmail.com directly.";
     });
   }
 
