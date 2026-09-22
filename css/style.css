@@ -655,6 +655,11 @@ a{ color:inherit; text-decoration:none; }
   outline:none; border-color:var(--gold); background:rgba(255,255,255,.05);
 }
 .form-submit{ align-self:flex-start; }
+.form-error{
+  color:#e0736b; font-size:14px; line-height:1.6; margin:0;
+}
+.form-error[hidden]{ display:none; }
+.form-error a{ color:inherit; text-decoration:underline; }
 
 /* .contact-form/.form-success both set display:flex at equal specificity
    to the UA [hidden] rule, which loses the cascade to author styles — so

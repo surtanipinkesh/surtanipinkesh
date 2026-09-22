@@ -127,27 +127,42 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ---------- contact form (mailto — no backend yet) ---------- */
+  /* ---------- contact form (submits to Google Apps Script) ---------- */
+  const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyOW3W-wttVQkSp-0cG5DfclVr1GvgNJFPpGci1t6LExZRu2gmfzL18ZFeSYXnPbLRN/exec';
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    const submitBtn = contactForm.querySelector('.form-submit');
+    const submitLabel = submitBtn?.querySelector('span');
+    const errorEl = document.getElementById('formError');
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = contactForm.name.value.trim();
-      const email = contactForm.email.value.trim();
-      const type = contactForm.type.value;
-      const message = contactForm.message.value.trim();
 
-      const subject = `Project Inquiry: ${type} (${name})`;
-      const body = `Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\n${message}`;
-      const mailto = `mailto:create@papadpixels.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (errorEl) errorEl.hidden = true;
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Sending…';
 
-      window.location.href = mailto;
-
-      const success = document.getElementById('formSuccess');
-      const successName = document.getElementById('formSuccessName');
-      if (successName) successName.textContent = name ? `, ${name}` : '';
-      if (success) success.hidden = false;
-      contactForm.hidden = true;
+      fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(contactForm),
+      })
+        .then(() => {
+          const success = document.getElementById('formSuccess');
+          const successName = document.getElementById('formSuccessName');
+          if (successName) successName.textContent = name ? `, ${name}` : '';
+          if (success) success.hidden = false;
+          contactForm.hidden = true;
+        })
+        .catch(() => {
+          if (errorEl) errorEl.hidden = false;
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitLabel) submitLabel.textContent = 'Send Message';
+        });
     });
 
     document.getElementById('formSuccessReset')?.addEventListener('click', () => {
