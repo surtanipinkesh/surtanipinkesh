@@ -469,6 +469,7 @@
         <textarea id="cfMessage" name="message" rows="5" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary form-submit"><span>Send Message</span></button>
+      <p class="form-error" id="formError" hidden role="alert">Something went wrong sending your message. Please try again, or email <a href="mailto:create@papadpixels.com">create@papadpixels.com</a> directly.</p>
     </form>
 
     <div class="form-success" id="formSuccess" hidden aria-live="polite">
@@ -476,7 +477,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       <h3>Thank you<span id="formSuccessName"></span>!</h3>
-      <p>Your email app should be opening now with everything filled in. Just hit send there and I'll reply within a day.</p>
+      <p>Your message has been sent. I'll reply within a day.</p>
       <button type="button" class="btn btn-outline" id="formSuccessReset"><span>Send another message</span></button>
     </div>
 
