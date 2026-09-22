@@ -11,46 +11,125 @@ const CATEGORIES = {
   reel:   { label: 'Showreel',            colorA: '#18160f', colorB: '#e0af3b' },
 };
 
-// Turns a { type, id } source into a playable embed URL. No API calls —
-// these are just Vimeo/YouTube's public embed/player URL patterns.
+// Turns a { type, id } source into a playable embed URL for the modal —
+// full controls, but branding kept to a minimum (no title/byline/avatar).
 function embedUrl(source) {
   switch (source.type) {
-    case 'vimeo-video':      return `https://player.vimeo.com/video/${source.id}?autoplay=1&title=0&byline=0&portrait=0`;
-    case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}/embed`;
-    case 'youtube-video':    return `https://www.youtube.com/embed/${source.id}?autoplay=1&rel=0`;
-    case 'youtube-playlist': return `https://www.youtube.com/embed/videoseries?list=${source.id}&autoplay=1`;
-    // Interim fallback only — Google Drive isn't built for public video
-    // embedding (no adaptive streaming, easy to hit quota). Prefer
-    // Vimeo/YouTube; this exists so a Drive link still "just works" if used.
-    case 'drive-video':      return `https://drive.google.com/file/d/${source.id}/preview`;
+    case 'vimeo-video':   return `https://player.vimeo.com/video/${source.id}?autoplay=1&title=0&byline=0&portrait=0`;
+    case 'youtube-video': return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0&modestbranding=1`;
     default: return '';
   }
 }
 
-// Where "Open on Vimeo / YouTube" should point when a viewer wants the
-// native player instead of the inline embed.
-function canonicalUrl(source) {
+// Muted, looping, chromeless embed used for the live "floating" previews —
+// Vimeo's background=1 and YouTube's controls=0 both strip UI entirely.
+function previewEmbedUrl(source) {
   switch (source.type) {
-    case 'vimeo-video':      return `https://vimeo.com/${source.id}`;
-    case 'vimeo-showcase':   return `https://vimeo.com/showcase/${source.id}`;
-    case 'youtube-video':    return `https://www.youtube.com/watch?v=${source.id}`;
-    case 'youtube-playlist': return `https://www.youtube.com/playlist?list=${source.id}`;
-    case 'drive-video':      return `https://drive.google.com/file/d/${source.id}/view`;
-    default: return '#';
+    case 'vimeo-video':   return `https://player.vimeo.com/video/${source.id}?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0&portrait=0`;
+    case 'youtube-video': return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&mute=1&loop=1&playlist=${source.id}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1`;
+    default: return '';
   }
 }
 
-// Real work only — no placeholder titles. AI Video Ads and TV Commercials
-// grow as individual clip links come in; Social Media Videos is wired to
-// the three live Vimeo showcases.
-// orientation drives both the card's shape and its canvas aspect ratio —
-// 'landscape' for TV/YouTube-style 16:9, 'portrait' for vertical Reels/Shorts.
+// Individual clips only — each card is one video, grouped by service type.
+// orientation/title/thumbUrl are filled in at runtime from each provider's
+// oEmbed endpoint (fetchMeta), so cards always match the real video.
 const PROJECTS = [
-  { cat: 'ai',     title: 'AI Video Ads Playlist', orientation: 'landscape', source: { type: 'youtube-playlist', id: 'PLVF6xwMGmg-xeYr26UhVZ5Gg2B0g6z4Sh' } },
-  { cat: 'social', title: 'Social Media Videos, Showcase 01', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113218' } },
-  { cat: 'social', title: 'Social Media Videos, Showcase 02', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '10988503' } },
-  { cat: 'social', title: 'Social Media Videos, Showcase 03', orientation: 'portrait', source: { type: 'vimeo-showcase', id: '11113114' } },
+  // Social Media Videos
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229164404' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229164262' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229164263' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229164260' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229164261' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229163931' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229163463' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229162045' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229161749' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229158632' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229158480' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229158258' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229158154' } },
+  { cat: 'social', source: { type: 'vimeo-video', id: '1229158027' } },
+  // AI UGC Videos
+  { cat: 'tvc', source: { type: 'vimeo-video', id: '1229171047' } },
+  { cat: 'tvc', source: { type: 'vimeo-video', id: '1229171046' } },
+  { cat: 'tvc', source: { type: 'vimeo-video', id: '1229170904' } },
+  { cat: 'tvc', source: { type: 'vimeo-video', id: '1229170600' } },
+  { cat: 'tvc', source: { type: 'vimeo-video', id: '1229170527' } },
+  // AI Video Ads
+  { cat: 'ai', source: { type: 'youtube-video', id: 'mdaa5Q93FQ0' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'hNrWM6FdErA' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'eBBz6YTp-Tc' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'fdwz_iO9it8' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'rMncClDYaiI' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'KJANFtOF58w' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'e9_L8YMh7zM' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'a99QuBXwC1A' } },
 ];
+
+// Category defaults used until (or unless) oEmbed metadata resolves.
+const DEFAULT_ORIENTATION = { ai: 'landscape', tvc: 'portrait', social: 'portrait' };
+PROJECTS.forEach(p => {
+  p.orientation = DEFAULT_ORIENTATION[p.cat];
+  p.title = CATEGORIES[p.cat].label;
+});
+
+// Fetches the real title + thumbnail + aspect ratio for a project from the
+// hosting service's public oEmbed endpoint — runs client-side so nothing
+// about the source channel needs to be known or hardcoded ahead of time.
+async function fetchMeta(project) {
+  try {
+    const { type, id } = project.source;
+    const url = type === 'vimeo-video'
+      ? `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`https://vimeo.com/${id}`)}`
+      : type === 'youtube-video'
+        ? `https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(`https://www.youtube.com/watch?v=${id}`)}`
+        : null;
+    if (!url) return;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('oembed request failed');
+    const data = await res.json();
+    if (data.title) project.title = data.title;
+    project.thumbUrl = data.thumbnail_url || null;
+    const w = data.thumbnail_width || data.width;
+    const h = data.thumbnail_height || data.height;
+    if (w && h) project.orientation = h > w ? 'portrait' : 'landscape';
+  } catch (err) {
+    // Keep the category default title/orientation and no thumbnail —
+    // the card still renders fine with the placeholder art.
+  }
+}
+
+function loadImage(url) {
+  return new Promise((resolve) => {
+    if (!url) { resolve(null); return; }
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+}
+
+// Round-robins across categories so a touch-device card cap doesn't end up
+// showing only the first category in the list.
+function pickBalanced(list, count) {
+  if (list.length <= count) return list.slice();
+  const byCat = {};
+  list.forEach(p => { (byCat[p.cat] || (byCat[p.cat] = [])).push(p); });
+  const cats = Object.keys(byCat);
+  const out = [];
+  let i = 0;
+  while (out.length < count && cats.some(c => byCat[c].length)) {
+    const cat = cats[i % cats.length];
+    if (byCat[cat].length) out.push(byCat[cat].shift());
+    i++;
+  }
+  return out;
+}
 
 const isTouch = window.matchMedia('(pointer:coarse)').matches;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -66,17 +145,21 @@ function makeCardTexture(project) {
   canvas.width = w; canvas.height = h;
   const ctx = canvas.getContext('2d');
 
-  const grad = ctx.createLinearGradient(0, 0, w, h);
-  grad.addColorStop(0, cfg.colorA);
-  grad.addColorStop(1, mix(cfg.colorA, cfg.colorB, 0.35));
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, w, h);
+  if (project.thumbImg) {
+    drawImageCover(ctx, project.thumbImg, 0, 0, w, h);
+  } else {
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, cfg.colorA);
+    grad.addColorStop(1, mix(cfg.colorA, cfg.colorB, 0.35));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
 
-  // fine grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x < w; x += 32) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
-  for (let y = 0; y < h; y += 32) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    // fine grid — only drawn on the placeholder art, not over real thumbnails
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < w; x += 32) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 32) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+  }
 
   // vignette
   const vg = ctx.createRadialGradient(w/2, h/2, h*0.25, w/2, h/2, h*0.85);
@@ -129,6 +212,27 @@ function makeCardTexture(project) {
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
   return tex;
+}
+
+// Draws img into the x/y/w/h box with cover-fit cropping (like CSS
+// background-size: cover), so real thumbnails fill the card cleanly
+// regardless of their native aspect ratio.
+function drawImageCover(ctx, img, x, y, w, h) {
+  const imgRatio = img.width / img.height;
+  const boxRatio = w / h;
+  let sx, sy, sw, sh;
+  if (imgRatio > boxRatio) {
+    sh = img.height;
+    sw = sh * boxRatio;
+    sx = (img.width - sw) / 2;
+    sy = 0;
+  } else {
+    sw = img.width;
+    sh = sw / boxRatio;
+    sx = 0;
+    sy = (img.height - sh) / 2;
+  }
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
 }
 
 function roundRect(ctx, x, y, w, h, r) {
@@ -214,11 +318,14 @@ class PortfolioUniverse {
     this.dragging = false;
     this.dragLast = new THREE.Vector2();
     this.running = false;
+    this.cards = [];
+    this.raycaster = new THREE.Raycaster();
 
     this.initScene();
     this.buildStarfield();
     this.buildStarlets();
     this.buildHud();
+    this.buildPreviewPool();
     this.buildCards();
     this.bindEvents();
     this.onResize();
@@ -333,18 +440,38 @@ class PortfolioUniverse {
     el.classList.add('scan-flash');
   }
 
-  buildCards() {
-    this.cards = [];
+  // Async: resolves each project's real title/thumbnail/aspect ratio via
+  // oEmbed before building meshes, so cards always match their source video.
+  // Stars/HUD are already visible at this point — cards simply pop in once
+  // metadata resolves (well under a second on a normal connection).
+  async buildCards() {
     const geoByOrientation = {
       landscape: new THREE.PlaneGeometry(2.3, 1.294),
       portrait: new THREE.PlaneGeometry(1.35, 2.4),
     };
     const placed = [];
-    const list = PROJECTS.slice(0, cardCount);
+    const list = pickBalanced(PROJECTS, cardCount);
+
+    await Promise.all(list.map(async project => {
+      await fetchMeta(project);
+      project.thumbImg = await loadImage(project.thumbUrl);
+    }));
 
     list.forEach((project, i) => {
       const geo = geoByOrientation[project.orientation === 'portrait' ? 'portrait' : 'landscape'];
-      const texture = makeCardTexture(project);
+      let texture = makeCardTexture(project);
+      // Guard against a thumbnail CDN that doesn't send CORS headers —
+      // that taints the canvas and throws on GPU upload. Fall back to the
+      // placeholder art rather than breaking the whole scene.
+      if (this.renderer && project.thumbImg) {
+        try {
+          this.renderer.initTexture(texture);
+        } catch (err) {
+          project.thumbImg = null;
+          texture.dispose();
+          texture = makeCardTexture(project);
+        }
+      }
       const material = new THREE.MeshBasicMaterial({
         map: texture, transparent: true, opacity: 1, side: THREE.DoubleSide,
       });
@@ -390,7 +517,7 @@ class PortfolioUniverse {
       this.scene.add(mesh);
     });
 
-    this.raycaster = new THREE.Raycaster();
+    this.updateEmptyState();
   }
 
   bindEvents() {
@@ -486,6 +613,7 @@ class PortfolioUniverse {
           this.wrap.style.cursor = 'default';
           const tooltip = document.getElementById('cardTooltip');
           if (tooltip) tooltip.style.opacity = '0';
+          this.clearPreviews();
         }
       });
     }, { threshold: 0.05 });
@@ -509,8 +637,7 @@ class PortfolioUniverse {
     document.getElementById('modalCat').textContent = cfg.label;
     document.getElementById('modalTitle').textContent = project.title;
     document.getElementById('modalVideoFrame').src = embedUrl(project.source);
-    const link = document.getElementById('modalLink');
-    link.href = canonicalUrl(project.source);
+    document.querySelector('.modal-video')?.classList.toggle('is-portrait', project.orientation === 'portrait');
     const modal = document.getElementById('cardModal');
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
@@ -622,10 +749,97 @@ class PortfolioUniverse {
       });
 
       if (!isTouch) this.updateHover();
+      this.updatePreviews(now);
 
       this.renderer.render(this.scene, this.camera);
     };
     loop();
+  }
+
+  // A handful of chromeless, muted iframes overlaid on the canvas so the
+  // cards nearest the camera play live instead of showing a static
+  // thumbnail — matching them 1:1 for every card would be far too heavy
+  // (30 simultaneous video streams), so only the closest few play at once.
+  buildPreviewPool() {
+    this.previewCount = reduceMotion ? 0 : (isTouch ? 2 : 5);
+    this.previewPool = [];
+    for (let i = 0; i < this.previewCount; i++) {
+      const el = document.createElement('iframe');
+      el.className = 'card-preview-frame';
+      el.setAttribute('allow', 'autoplay');
+      el.setAttribute('tabindex', '-1');
+      el.setAttribute('aria-hidden', 'true');
+      el.style.display = 'none';
+      this.wrap.appendChild(el);
+      this.previewPool.push({ el, project: null, record: null });
+    }
+    this._lastPreviewPick = 0;
+  }
+
+  clearPreviews() {
+    this.previewPool?.forEach(slot => {
+      slot.project = null;
+      slot.record = null;
+      slot.el.src = '';
+      slot.el.style.display = 'none';
+    });
+  }
+
+  updatePreviews(now) {
+    if (!this.previewPool || !this.previewPool.length || !this.cards.length) return;
+
+    // Re-pick which cards get to play every ~800ms — recomputing every
+    // frame would reload the iframe (and restart the video) constantly.
+    if (now - this._lastPreviewPick > 800) {
+      this._lastPreviewPick = now;
+      const candidates = this.cards
+        .filter(c => c.hitTest && c.mesh.material.opacity > 0.5)
+        .map(c => ({ c, d: this.camera.position.distanceTo(c.mesh.position) }))
+        .sort((a, b) => a.d - b.d)
+        .slice(0, this.previewPool.length)
+        .map(x => x.c);
+
+      this.previewPool.forEach((slot, i) => {
+        const target = candidates[i] || null;
+        if (slot.record === target) return;
+        slot.record = target;
+        slot.project = target ? target.project : null;
+        if (target) {
+          slot.el.src = previewEmbedUrl(target.project.source);
+        } else {
+          slot.el.src = '';
+          slot.el.style.display = 'none';
+        }
+      });
+    }
+
+    const rect = this.wrap.getBoundingClientRect();
+    const vFov = THREE.MathUtils.degToRad(this.camera.fov);
+
+    this.previewPool.forEach(slot => {
+      const record = slot.record;
+      if (!record) return;
+      const ndc = record.mesh.position.clone().project(this.camera);
+      if (ndc.z > 1 || ndc.z < -1) { slot.el.style.display = 'none'; return; }
+
+      const dist = this.camera.position.distanceTo(record.mesh.position);
+      const pxPerWorldUnit = rect.height / (2 * dist * Math.tan(vFov / 2));
+      const baseW = record.project.orientation === 'portrait' ? 1.35 : 2.3;
+      const baseH = record.project.orientation === 'portrait' ? 2.4 : 1.294;
+      const scale = record.mesh.scale.x;
+      const pxW = baseW * scale * pxPerWorldUnit;
+      const pxH = baseH * scale * pxPerWorldUnit;
+
+      const sx = (ndc.x * 0.5 + 0.5) * rect.width;
+      const sy = (-ndc.y * 0.5 + 0.5) * rect.height;
+
+      slot.el.style.display = 'block';
+      slot.el.style.opacity = String(record.mesh.material.opacity);
+      slot.el.style.left = (sx - pxW / 2) + 'px';
+      slot.el.style.top = (sy - pxH / 2) + 'px';
+      slot.el.style.width = pxW + 'px';
+      slot.el.style.height = pxH + 'px';
+    });
   }
 }
 
