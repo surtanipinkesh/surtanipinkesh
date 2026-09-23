@@ -1,7 +1,7 @@
 // ============================================================
 // Papad Pixels — Portfolio grid page
 // ============================================================
-import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=5';
+import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=6';
 
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
 

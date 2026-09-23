@@ -54,17 +54,17 @@ export const PROJECTS = [
   { cat: 'tvc', source: { type: 'vimeo-video', id: '1229170600' } },
   { cat: 'tvc', source: { type: 'vimeo-video', id: '1229170527' } },
   // AI Video Ads
-  { cat: 'ai', source: { type: 'youtube-video', id: 'mdaa5Q93FQ0' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'hNrWM6FdErA' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'eBBz6YTp-Tc' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'fdwz_iO9it8' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'rMncClDYaiI' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'KJANFtOF58w' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
-  { cat: 'ai', source: { type: 'youtube-video', id: 'e9_L8YMh7zM' } },
   { cat: 'ai', source: { type: 'youtube-video', id: 'a99QuBXwC1A' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'e9_L8YMh7zM' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'KJANFtOF58w' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'rMncClDYaiI' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'fdwz_iO9it8' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'eBBz6YTp-Tc' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'hNrWM6FdErA' } },
+  { cat: 'ai', source: { type: 'youtube-video', id: 'mdaa5Q93FQ0' } },
 ];
 
 // Category defaults used until (or unless) oEmbed metadata resolves.

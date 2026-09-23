@@ -4,7 +4,7 @@
 import * as THREE from './vendor/three.module.min.js';
 import {
   CATEGORIES, PROJECTS, previewEmbedUrl, fetchMeta, loadImage, openVideoModal, bindVideoModal,
-} from './projects.js?v=5';
+} from './projects.js?v=6';
 
 // Round-robins across categories so a touch-device card cap doesn't end up
 // showing only the first category in the list.
@@ -341,14 +341,7 @@ class PortfolioUniverse {
       landscape: new THREE.PlaneGeometry(2.3, 1.294),
       portrait: new THREE.PlaneGeometry(1.35, 2.4),
     };
-    const placed = [];
     const list = pickBalanced(PROJECTS, cardCount);
-    // Scale the placement volume up with card count so 30 cards get as
-    // much breathing room as the original handful did.
-    const extra = Math.max(0, list.length - 12);
-    const spreadX = 13.5 + extra * 0.32;
-    const spreadY = 7.4 + extra * 0.16;
-    const spreadZ = 9.5 + extra * 0.32;
 
     await Promise.all(list.map(async project => {
       await fetchMeta(project);
@@ -375,42 +368,13 @@ class PortfolioUniverse {
       });
       const mesh = new THREE.Mesh(geo, material);
 
-      // Keep a clear "safe zone" free of near/central cards so the hero
-      // copy stays readable — cards frame the text instead of covering it.
-      const inSafeZone = (p) => {
-        const ex = (p.x / 4.2) ** 2 + (p.y / 2.9) ** 2;
-        return ex < 1 && p.z > -5;
-      };
 
-      // Sample up to 300 candidate spots and keep whichever is farthest
-      // from every already-placed card — far more reliable against
-      // overlap than accepting whatever the last random draw happened to
-      // be once a try budget runs out (the old behaviour with 30+ cards).
-      const minGap = 2.35;
-      let pos = null, bestPos = null, bestScore = -Infinity;
-      for (let tries = 0; tries < 300; tries++) {
-        const candidate = new THREE.Vector3(
-          (Math.random() - 0.5) * spreadX,
-          (Math.random() - 0.5) * spreadY,
-          -1.5 - Math.random() * spreadZ
-        );
-        if (inSafeZone(candidate)) continue;
-        const nearest = placed.length ? Math.min(...placed.map(p => p.distanceTo(candidate))) : Infinity;
-        if (nearest > bestScore) { bestScore = nearest; bestPos = candidate; }
-        if (nearest >= minGap) { pos = candidate; break; }
-      }
-      pos = pos || bestPos || new THREE.Vector3(
-        (Math.random() - 0.5) * spreadX, (Math.random() - 0.5) * spreadY, -1.5 - Math.random() * spreadZ
-      );
-      placed.push(pos);
-
-      mesh.position.copy(pos);
       mesh.rotation.y = (Math.random() - 0.5) * 0.5;
       mesh.rotation.x = (Math.random() - 0.5) * 0.15;
 
       const record = {
         mesh, project,
-        basePos: pos.clone(),
+        basePos: new THREE.Vector3(),
         baseRotY: mesh.rotation.y,
         floatOffset: Math.random() * Math.PI * 2,
         floatSpeed: 0.25 + Math.random() * 0.25,
@@ -425,7 +389,47 @@ class PortfolioUniverse {
       this.scene.add(mesh);
     });
 
+    this.layoutCards();
     this.updateEmptyState();
+  }
+
+  // Places cards in screen space rather than by 3D distance: two cards far
+  // apart in depth can still sit on top of each other from the camera's
+  // point of view. Each card samples depth + screen position and keeps the
+  // spot whose on-screen rect (padded for its float motion) overlaps the
+  // already-placed cards least — zero in practice for 30 cards.
+  layoutCards() {
+    const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+    const aspect = this.camera.aspect;
+    const camZ = this.camera.position.z;
+    const PAD = 0.1, D_MIN = 9, D_MAX = 22, EDGE = 1.1;
+    const placed = [];
+
+    this.cards.forEach(c => {
+      const portrait = c.project.orientation === 'portrait';
+      const w = portrait ? 1.35 : 2.3;
+      const h = portrait ? 2.4 : 1.294;
+      let best = null, bestCost = Infinity;
+      for (let t = 0; t < 600 && bestCost > 0; t++) {
+        const d = D_MIN + Math.random() * (D_MAX - D_MIN);
+        const hx = (w / 2 + c.floatAmp / 2 + PAD) / (d * tanH * aspect);
+        const hy = (h / 2 + c.floatAmp + PAD) / (d * tanH);
+        const nx = (Math.random() * 2 - 1) * (EDGE - hx * 0.3);
+        const ny = (Math.random() * 2 - 1) * (EDGE - hy * 0.3);
+        const r = { l: nx - hx, r: nx + hx, b: ny - hy, t: ny + hy };
+        let cost = 0;
+        for (const p of placed) {
+          const ox = Math.min(r.r, p.r) - Math.max(r.l, p.l);
+          const oy = Math.min(r.t, p.t) - Math.max(r.b, p.b);
+          if (ox > 0 && oy > 0) cost += ox * oy;
+        }
+        if (cost < bestCost) { bestCost = cost; best = { r, nx, ny, d }; }
+      }
+      placed.push(best.r);
+      c.basePos.set(best.nx * best.d * tanH * aspect, best.ny * best.d * tanH, camZ - best.d);
+      c.mesh.position.copy(c.basePos);
+    });
+    this.layoutAspect = aspect;
   }
 
   bindEvents() {
@@ -538,6 +542,9 @@ class PortfolioUniverse {
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     if (this.renderer) this.renderer.setSize(w, h, false);
+    // A big shape change (window resize, phone rotation) re-flows the cards
+    // so they neither overlap nor bunch up in the middle.
+    if (this.cards.length && Math.abs(this.camera.aspect / this.layoutAspect - 1) > 0.2) this.layoutCards();
   }
 
   updateHover() {
