@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -85,38 +85,24 @@
       <p class="section-tag reveal">PORTFOLIO</p>
       <h1 class="reveal">Selected <span class="accent">work</span></h1>
       <p class="portfolio-intro reveal">AI video ads, AI UGC videos and social media videos by Papad Pixels. Every video is AI-made and hand-finished. Click any video to watch it.</p>
-      <nav class="portfolio-jump reveal" aria-label="Portfolio categories">
-      <a class="filter-btn" href="#ai-video-ads">AI Video Ads</a>
-      <a class="filter-btn" href="#ai-ugc-videos">AI UGC Videos</a>
-      <a class="filter-btn" href="#social-media-videos">Social Media Videos</a>
-      </nav>
     </div>
   </section>
 
-  <section class="portfolio-section" id="ai-video-ads">
-    <div class="wrap">
-      <p class="section-tag">AI VIDEO ADS</p>
-      <h2 class="section-title">AI Video Ads</h2>
-      <p class="portfolio-section-desc">Cinematic, brand-grade commercials built shot by shot on locked character, environment and product references, then edited, graded and finished by hand.</p>
-      <div class="portfolio-grid" data-cat="ai"></div>
+  <section class="portfolio-browser" aria-label="Portfolio videos">
+    <div class="portfolio-tabs-bar">
+      <div class="wrap portfolio-tabs" role="group" aria-label="Filter videos by category">
+        <button type="button" class="filter-btn active" data-cat="all" data-slug="all" aria-pressed="true">All Videos</button>
+        <button type="button" class="filter-btn" data-cat="ai" data-slug="ai-video-ads" aria-pressed="false">AI Video Ads</button>
+        <button type="button" class="filter-btn" data-cat="tvc" data-slug="ai-ugc-videos" aria-pressed="false">AI UGC Videos</button>
+        <button type="button" class="filter-btn" data-cat="social" data-slug="social-media-videos" aria-pressed="false">Social Media Videos</button>
+      </div>
     </div>
-  </section>
-
-  <section class="portfolio-section" id="ai-ugc-videos">
     <div class="wrap">
-      <p class="section-tag">AI UGC VIDEOS</p>
-      <h2 class="section-title">AI UGC Videos</h2>
-      <p class="portfolio-section-desc">Creator-style product and testimonial videos made with AI, scripted and paced to feel native to TikTok, Instagram Reels and YouTube Shorts.</p>
-      <div class="portfolio-grid" data-cat="tvc"></div>
-    </div>
-  </section>
-
-  <section class="portfolio-section" id="social-media-videos">
-    <div class="wrap">
-      <p class="section-tag">SOCIAL MEDIA VIDEOS</p>
-      <h2 class="section-title">Social Media Videos</h2>
-      <p class="portfolio-section-desc">Scroll-stopping short-form content for Reels, TikTok and Shorts, edited to platform-native pacing.</p>
-      <div class="portfolio-grid" data-cat="social"></div>
+      <p class="portfolio-desc" data-cat="all">Every project across AI video ads, AI UGC videos and social media videos.</p>
+      <p class="portfolio-desc" data-cat="ai" hidden>Cinematic, brand-grade commercials built shot by shot on locked character, environment and product references, then edited, graded and finished by hand.</p>
+      <p class="portfolio-desc" data-cat="tvc" hidden>Creator-style product and testimonial videos made with AI, scripted and paced to feel native to TikTok, Instagram Reels and YouTube Shorts.</p>
+      <p class="portfolio-desc" data-cat="social" hidden>Scroll-stopping short-form content for Reels, TikTok and Shorts, edited to platform-native pacing.</p>
+      <div class="portfolio-grid" id="portfolioGrid" aria-live="polite"></div>
     </div>
   </section>
 
@@ -186,6 +172,6 @@
 </footer>
 
 <script src="js/script.js?v=4"></script>
-<script type="module" src="js/portfolio.js?v=5"></script>
+<script type="module" src="js/portfolio.js?v=6"></script>
 </body>
 </html>

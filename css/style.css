@@ -749,16 +749,24 @@ a.addon-chip small{ color:var(--gold); }
 /* ============================================================
    PORTFOLIO PAGE
    ============================================================ */
-.portfolio-hero{ padding:150px 0 30px; }
+.portfolio-hero{ padding:150px 0 34px; text-align:center; }
 .portfolio-hero h1{ font-family:var(--font-display); font-weight:900; font-size:clamp(34px, 6vw, 64px); line-height:1.1; margin:0 0 18px; }
-.portfolio-intro{ max-width:640px; color:var(--text-dim); font-size:16px; margin:0 0 30px; }
-.portfolio-jump{ display:flex; flex-wrap:wrap; gap:10px; }
-.portfolio-jump .filter-btn{ display:inline-flex; }
+.portfolio-intro{ max-width:640px; color:var(--text-dim); font-size:16px; margin:0 auto; }
 
-.portfolio-section{ padding:60px 0 20px; scroll-margin-top:80px; }
-.portfolio-section + .portfolio-section{ border-top:1px solid var(--panel-border); }
-.portfolio-section .section-title{ margin-bottom:12px; }
-.portfolio-section-desc{ max-width:680px; color:var(--text-dim); margin:0 0 34px; }
+/* Tab bar pins under the fixed header so the filter stays in reach while
+   scrolling a long grid. */
+.portfolio-tabs-bar{
+  position:sticky; top:63px; z-index:50; padding:14px 0;
+  background:rgba(24,22,17,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--panel-border);
+}
+.portfolio-tabs{ display:flex; justify-content:center; flex-wrap:wrap; gap:10px; }
+.portfolio-desc{ max-width:680px; margin:28px auto 34px; text-align:center; color:var(--text-dim); }
+.portfolio-desc[hidden]{ display:none; }
+.portfolio-desc{ scroll-margin-top:140px; }
+.work-card[hidden]{ display:none; }
+.portfolio-grid.is-switching .work-card{ animation:workIn .45s var(--ease) both; }
+@keyframes workIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
 
 /* Masonry-style columns so vertical and horizontal videos sit together
    without gaps; each card keeps its video's real aspect ratio. */
@@ -796,6 +804,9 @@ a.addon-chip small{ color:var(--gold); }
 
 @media (max-width:600px){
   .portfolio-hero{ padding-top:120px; }
+  .portfolio-tabs-bar{ padding:10px 0; }
+  .portfolio-tabs{ gap:8px; }
+  .portfolio-tabs .filter-btn{ padding:8px 13px; font-size:12px; white-space:nowrap; }
   .portfolio-grid{ columns:2 150px; column-gap:14px; }
   .portfolio-grid.is-landscape{ columns:1; }
   .work-play{ width:46px; height:46px; }
