@@ -12,8 +12,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Papad Pixels | AI Video Ads, TVCs &amp; Commercial Editing</title>
-<meta name="description" content="Papad Pixels is an AI-centric studio for AI video ads, TVCs and commercial editing. 11+ years of editing craft, now built around AI video generation, VFX and animation alongside traditional editing.">
+<title>Papad Pixels | AI Video Ads, AI UGC &amp; Social Media Videos</title>
+<meta name="description" content="Papad Pixels creates AI video ads, AI UGC videos and social media videos, backed by 11+ years of editing craft. See the portfolio, pricing and get a quote.">
 <link rel="canonical" href="https://papadpixels.com/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#18160f">
@@ -21,13 +21,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Papad Pixels">
 <meta property="og:url" content="https://papadpixels.com/">
-<meta property="og:title" content="Papad Pixels | AI Video Ads, TVCs &amp; Commercial Editing">
+<meta property="og:title" content="Papad Pixels | AI Video Ads, AI UGC &amp; Social Media Videos">
 <meta property="og:description" content="AI-first studio for AI video ads, AI UGC videos, TVC edits and social video, with 11+ years of editing craft.">
 <meta property="og:image" content="https://papadpixels.com/assets/logo.png">
 <meta property="og:image:width" content="944">
 <meta property="og:image:height" content="578">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Papad Pixels | AI Video Ads, TVCs &amp; Commercial Editing">
+<meta name="twitter:title" content="Papad Pixels | AI Video Ads, AI UGC &amp; Social Media Videos">
 <meta name="twitter:description" content="AI-first studio for AI video ads, AI UGC videos, TVC edits and social video, with 11+ years of editing craft.">
 <meta name="twitter:image" content="https://papadpixels.com/assets/logo.png">
 
@@ -81,6 +81,7 @@
 
     <nav class="main-nav" id="mainNav">
       <a href="#universe" class="nav-link" data-section="universe">Work</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
       <a href="#about" class="nav-link" data-section="about">About</a>
       <a href="#services" class="nav-link" data-section="services">Services</a>
       <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
@@ -129,13 +130,14 @@
     </p>
     <div class="universe-actions reveal">
       <a href="#contact" class="btn btn-primary"><span>Start a Project</span></a>
-      <button type="button" class="btn btn-outline" id="heroWatchReel"><span>Watch Reel with Sound</span></button>
+      <a href="portfolio.html" class="btn btn-outline"><span>View Portfolio</span></a>
     </div>
   </div>
 </section>
 
 <!-- ============ 3D PORTFOLIO UNIVERSE ============ -->
 <section class="universe" id="universe">
+  <h2 class="visually-hidden">Portfolio: AI video ads, AI UGC videos and social media videos</h2>
   <div class="universe-canvas-wrap">
     <canvas id="universeCanvas" aria-hidden="true"></canvas>
   </div>
@@ -151,6 +153,7 @@
     <button class="filter-btn" data-filter="ai">AI Video Ads</button>
     <button class="filter-btn" data-filter="tvc">AI UGC Videos</button>
     <button class="filter-btn" data-filter="social">Social Media Videos</button>
+    <a class="filter-btn filter-link" href="portfolio.html">Grid view &rarr;</a>
   </div>
 
   <p class="universe-empty" id="universeEmpty">More landing here soon. See everything already live on <a href="https://www.vimeo.com/surtanipinkesh" target="_blank" rel="noopener">Vimeo</a>.</p>
@@ -407,10 +410,10 @@
     <div class="price-addons reveal">
       <p class="price-addons-tag">ADD-ONS FOR ANY PACKAGE</p>
       <div class="price-addons-grid">
-        <div class="addon-chip"><span>Rush Delivery (48h)</span><small>+ [YOUR PRICE]</small></div>
-        <div class="addon-chip"><span>Extra Revision Round</span><small>+ [YOUR PRICE]</small></div>
-        <div class="addon-chip"><span>Extra Aspect-Ratio Cutdown</span><small>+ [YOUR PRICE]</small></div>
-        <div class="addon-chip"><span>Paid Ad Account Setup</span><small>+ [YOUR PRICE]</small></div>
+        <div class="addon-chip"><span>Rush Delivery (48h)</span><small>+40% of total project cost</small></div>
+        <div class="addon-chip"><span>Extra Revision Round</span><small>+15% of total project cost</small></div>
+        <div class="addon-chip"><span>Extra Aspect-Ratio Cutdown</span><small>+35% of total project cost</small></div>
+        <a class="addon-chip" href="#contact"><span>Paid Ad Account Setup</span><small>Contact me</small></a>
       </div>
     </div>
 
@@ -497,14 +500,20 @@
           <input type="email" id="cfEmail" name="email" autocomplete="email" required>
         </div>
       </div>
-      <div class="form-field">
-        <label for="cfType">Project type</label>
-        <select id="cfType" name="type">
-          <option>AI Video Ad</option>
-          <option>AI UGC Video</option>
-          <option>Social Media Videos</option>
-          <option>Something else</option>
-        </select>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="cfWhatsapp">WhatsApp number</label>
+          <input type="tel" id="cfWhatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" pattern="[0-9+\(\)\-\s]{7,20}" title="Include your country code, e.g. +91 98765 43210" required>
+        </div>
+        <div class="form-field">
+          <label for="cfType">Project type</label>
+          <select id="cfType" name="type">
+            <option>AI Video Ad</option>
+            <option>AI UGC Video</option>
+            <option>Social Media Videos</option>
+            <option>Something else</option>
+          </select>
+        </div>
       </div>
       <div class="form-field">
         <label for="cfMessage">Tell me about your project</label>
@@ -550,6 +559,7 @@
 
     <nav class="footer-nav">
       <a href="#universe">Work</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
@@ -576,7 +586,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=2"></script>
-<script type="module" src="js/main.js?v=4"></script>
+<script src="js/script.js?v=3"></script>
+<script type="module" src="js/main.js?v=5"></script>
 </body>
 </html>

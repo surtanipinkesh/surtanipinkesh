@@ -39,7 +39,7 @@
   });
 
   /* ---------- active nav link on scroll ---------- */
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
   const sections = Array.from(navLinks)
     .map(l => document.getElementById(l.dataset.section))
     .filter(Boolean);
@@ -144,10 +144,16 @@
       if (submitBtn) submitBtn.disabled = true;
       if (submitLabel) submitLabel.textContent = 'Sending…';
 
+      // The Apps Script only reads name/email/type/message, so the WhatsApp
+      // number rides at the top of the message to reach the email and sheet.
+      const data = new FormData(contactForm);
+      const whatsapp = (data.get('whatsapp') || '').trim();
+      if (whatsapp) data.set('message', `WhatsApp: ${whatsapp}\n\n${data.get('message')}`);
+
       fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
-        body: new FormData(contactForm),
+        body: data,
       })
         .then(() => {
           const success = document.getElementById('formSuccess');
