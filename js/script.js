@@ -38,6 +38,22 @@
     });
   });
 
+  /* ---------- services dropdown ---------- */
+  document.querySelectorAll('.has-dropdown').forEach(item => {
+    const toggle = item.querySelector('.nav-dropdown-toggle');
+    const setOpen = open => {
+      item.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', e => {
+      e.stopPropagation();
+      setOpen(!item.classList.contains('open'));
+    });
+    item.addEventListener('focusout', e => { if (!item.contains(e.relatedTarget)) setOpen(false); });
+    document.addEventListener('click', e => { if (!item.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  });
+
   /* ---------- active nav link on scroll ---------- */
   const navLinks = document.querySelectorAll('.nav-link[data-section]');
   const sections = Array.from(navLinks)
