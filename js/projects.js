@@ -75,7 +75,13 @@ PROJECTS.forEach(p => {
 // Looks up the Vimeo thumbnail via the public oEmbed endpoint. YouTube
 // thumbnails aren't used: they can carry the uploader's branding baked into
 // the image, which no embed parameter can strip.
-export async function fetchMeta(project) {
+// Memoized per project: a video can appear in more than one grid on a page.
+export function fetchMeta(project) {
+  if (!project.metaLoad) project.metaLoad = loadThumb(project);
+  return project.metaLoad;
+}
+
+async function loadThumb(project) {
   if (project.source.type !== 'vimeo-video') return;
   try {
     const url = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`https://vimeo.com/${project.source.id}`)}`;

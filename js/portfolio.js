@@ -1,7 +1,7 @@
 // ============================================================
 // Papad Pixels — Portfolio grid (portfolio page + service pages)
 // ============================================================
-import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=7';
+import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=8';
 
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
 
@@ -73,10 +73,29 @@ function mixedOrder(cards) {
   return out;
 }
 
+// Hand-picked grids (e.g. the industry groups on a service page) list their
+// videos by id in data-ids, in display order.
+function renderIdGrids() {
+  document.querySelectorAll('.portfolio-grid[data-ids]').forEach(grid => {
+    const projects = grid.dataset.ids.split(',')
+      .map(id => PROJECTS.find(p => p.source.id === id))
+      .filter(Boolean);
+    const landscape = projects.filter(p => p.orientation === 'landscape').length;
+    grid.classList.toggle('is-landscape', landscape > projects.length / 2);
+    projects.forEach(project => {
+      const { card, update } = buildCard(project);
+      grid.appendChild(card);
+      fetchMeta(project).then(update);
+    });
+  });
+}
+
 function boot() {
   bindVideoModal();
+  renderIdGrids();
 
   const grid = document.getElementById('portfolioGrid');
+  if (!grid) return;
   // Service pages pin the grid to one category with data-cat and have no tabs.
   const fixedCat = grid.dataset.cat || null;
   const tabs = [...document.querySelectorAll('.portfolio-tabs [data-cat]')];
