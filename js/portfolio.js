@@ -1,7 +1,7 @@
 // ============================================================
-// Papad Pixels — Portfolio grid page
+// Papad Pixels — Portfolio grid (portfolio page + service pages)
 // ============================================================
-import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=6';
+import { CATEGORIES, PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=7';
 
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
 
@@ -77,10 +77,12 @@ function boot() {
   bindVideoModal();
 
   const grid = document.getElementById('portfolioGrid');
+  // Service pages pin the grid to one category with data-cat and have no tabs.
+  const fixedCat = grid.dataset.cat || null;
   const tabs = [...document.querySelectorAll('.portfolio-tabs [data-cat]')];
   const descs = [...document.querySelectorAll('.portfolio-desc[data-cat]')];
   const cards = [];
-  let active = 'all';
+  let active = fixedCat || 'all';
 
   // Mostly-landscape selections get fewer, wider columns so 16:9 videos
   // aren't squeezed into portrait-width columns.
@@ -120,13 +122,18 @@ function boot() {
 
   tabs.forEach(t => t.addEventListener('click', () => select(t.dataset.cat, { scroll: true })));
 
-  const metaLoads = PROJECTS.map(project => {
+  const projects = fixedCat ? PROJECTS.filter(p => p.cat === fixedCat) : PROJECTS;
+  const metaLoads = projects.map(project => {
     const { card, update } = buildCard(project);
     cards.push(card);
     grid.appendChild(card);
     return fetchMeta(project).then(update);
   });
   Promise.all(metaLoads).then(setLayout);
+  if (!tabs.length) {
+    setLayout();
+    return;
+  }
 
   // Deep links like portfolio.html#ai-video-ads open on that tab.
   const selectFromHash = () => {

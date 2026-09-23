@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -65,7 +65,15 @@
       <a href="index.html#universe" class="nav-link">Work</a>
       <a href="portfolio.html" class="nav-link active" aria-current="page">Portfolio</a>
       <a href="index.html#about" class="nav-link">About</a>
-      <a href="index.html#services" class="nav-link">Services</a>
+      <div class="nav-item has-dropdown">
+        <a href="index.html#services" class="nav-link">Services</a>
+        <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="servicesMenu" aria-label="Show service pages"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 4.5 3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown" id="servicesMenu">
+          <a href="ai-video-ads.html">AI Video Ads &amp; TV Commercials</a>
+          <a href="ai-ugc-videos.html">AI UGC Videos</a>
+          <a href="ai-social-media-videos.html">AI Social Media Videos</a>
+        </div>
+      </div>
       <a href="index.html#pricing" class="nav-link">Pricing</a>
       <a href="index.html#process" class="nav-link">Process</a>
       <a href="index.html#contact" class="nav-link">Contact</a>
@@ -99,9 +107,9 @@
     </div>
     <div class="wrap">
       <p class="portfolio-desc" data-cat="all">Every project across AI video ads, AI UGC videos and social media videos.</p>
-      <p class="portfolio-desc" data-cat="ai" hidden>Cinematic, brand-grade commercials built shot by shot on locked character, environment and product references, then edited, graded and finished by hand.</p>
-      <p class="portfolio-desc" data-cat="tvc" hidden>Creator-style product and testimonial videos made with AI, scripted and paced to feel native to TikTok, Instagram Reels and YouTube Shorts.</p>
-      <p class="portfolio-desc" data-cat="social" hidden>Scroll-stopping short-form content for Reels, TikTok and Shorts, edited to platform-native pacing.</p>
+      <p class="portfolio-desc" data-cat="ai" hidden>Cinematic, brand-grade commercials built shot by shot on locked character, environment and product references, then edited, graded and finished by hand. <a class="portfolio-desc-link" href="ai-video-ads.html">About AI video ads &rarr;</a></p>
+      <p class="portfolio-desc" data-cat="tvc" hidden>Creator-style product and testimonial videos made with AI, scripted and paced to feel native to TikTok, Instagram Reels and YouTube Shorts. <a class="portfolio-desc-link" href="ai-ugc-videos.html">About AI UGC videos &rarr;</a></p>
+      <p class="portfolio-desc" data-cat="social" hidden>Scroll-stopping short-form content for Reels, TikTok and Shorts, edited to platform-native pacing. <a class="portfolio-desc-link" href="ai-social-media-videos.html">About AI social media videos &rarr;</a></p>
       <div class="portfolio-grid" id="portfolioGrid" aria-live="polite"></div>
     </div>
   </section>
@@ -147,6 +155,9 @@
       <a href="portfolio.html">Portfolio</a>
       <a href="index.html#about">About</a>
       <a href="index.html#services">Services</a>
+      <a href="ai-video-ads.html">AI Video Ads</a>
+      <a href="ai-ugc-videos.html">AI UGC Videos</a>
+      <a href="ai-social-media-videos.html">AI Social Media Videos</a>
       <a href="index.html#pricing">Pricing</a>
       <a href="index.html#process">Process</a>
       <a href="index.html#contact">Contact</a>
@@ -171,7 +182,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=4"></script>
-<script type="module" src="js/portfolio.js?v=7"></script>
+<script src="js/script.js?v=5"></script>
+<script type="module" src="js/portfolio.js?v=8"></script>
 </body>
 </html>
