@@ -673,6 +673,8 @@ a.addon-chip small{ color:var(--gold); }
   padding:12px 14px; transition:border-color .25s ease, background .25s ease;
 }
 .form-field textarea{ resize:vertical; min-height:110px; }
+.phone-input{ display:grid; grid-template-columns:minmax(0, 44%) minmax(0, 1fr); gap:8px; }
+.phone-input select{ min-width:0; text-overflow:ellipsis; }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus{
   outline:none; border-color:var(--gold); background:rgba(255,255,255,.05);
 }

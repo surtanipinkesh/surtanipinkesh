@@ -147,8 +147,12 @@
       // The Apps Script only reads name/email/type/message, so the WhatsApp
       // number rides at the top of the message to reach the email and sheet.
       const data = new FormData(contactForm);
-      const whatsapp = (data.get('whatsapp') || '').trim();
-      if (whatsapp) data.set('message', `WhatsApp: ${whatsapp}\n\n${data.get('message')}`);
+      const number = (data.get('whatsapp') || '').trim();
+      if (number) {
+        const whatsapp = `${data.get('whatsappCode') || ''} ${number}`.trim();
+        data.set('whatsapp', whatsapp);
+        data.set('message', `WhatsApp: ${whatsapp}\n\n${data.get('message')}`);
+      }
 
       fetch(CONTACT_ENDPOINT, {
         method: 'POST',
