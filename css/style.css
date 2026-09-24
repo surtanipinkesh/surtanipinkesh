@@ -2,6 +2,15 @@
    Papad Pixels — AI-centric 3D portfolio universe
    ============================================================ */
 
+/* Self-hosted fonts (OFL, see assets/fonts/LICENSES.txt): no render-blocking
+   request to Google Fonts. Variable files cover every weight in one download. */
+@font-face{ font-family:'Orbitron'; font-style:normal; font-weight:400 900; font-display:swap;
+  src:url(../assets/fonts/orbitron-var-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face{ font-family:'Space Grotesk'; font-style:normal; font-weight:300 700; font-display:swap;
+  src:url(../assets/fonts/space-grotesk-var-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face{ font-family:'Press Start 2P'; font-style:normal; font-weight:400; font-display:swap;
+  src:url(../assets/fonts/press-start-2p-latin.woff2) format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
 :root{
   /* Papad Pixels brand kit */
   --bg:            #18160f;   /* Slate Charcoal */
@@ -15,7 +24,7 @@
   --cream:         #f8f5ee;   /* Reel Cream */
   --text:          #f3f0e8;
   --text-dim:      #a79c8a;
-  --text-dimmer:   #6e6455;
+  --text-dimmer:   #a49989;   /* lightest step that still meets WCAG AA on --bg-alt */
 
   --font-display:  'Orbitron', sans-serif;
   --font-body:     'Space Grotesk', sans-serif;
