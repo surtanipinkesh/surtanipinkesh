@@ -31,10 +31,10 @@ jobs:
       - name: Audit live pages vs this branch (mobile, same settings as PageSpeed)
         run: |
           (python3 -m http.server 8080 >/dev/null 2>&1 &) ; sleep 2
-          for u in http://localhost:8080/ http://localhost:8080/portfolio.html http://localhost:8080/ai-social-media-videos.html; do
-            f=$(echo "$u" | sed 's#[^a-z0-9]#_#g')
+          for run in 1 2 3; do for u in http://localhost:8080/ http://localhost:8080/portfolio.html https://papadpixels.com/ https://papadpixels.com/portfolio.html; do
+            f=$(echo "$u" | sed 's#[^a-z0-9]#_#g')_$run
             lighthouse "$u" --quiet --chrome-flags="--headless=new --no-sandbox" --output=json --output-path="$f.json" --only-categories=performance,accessibility,best-practices,seo || true
-          done
+          done; done
           node -e '
           const fs = require("fs");
           for (const f of fs.readdirSync(".").filter(f => f.endsWith(".json"))) {
@@ -50,5 +50,5 @@ jobs:
               mainThread: (a["mainthread-work-breakdown"]?.details?.items || []).slice(0, 6).map(i => i.groupLabel + " " + Math.round(i.duration) + "ms"),
               bootup: (a["bootup-time"]?.details?.items || []).slice(0, 6).map(i => i.url + " " + Math.round(i.total) + "ms"),
             };
-            console.log("LH_RESULT " + JSON.stringify(out));
+            console.log("LH_SHORT " + out.url + " " + JSON.stringify(out.scores) + " " + JSON.stringify(out.metrics));
           }'
