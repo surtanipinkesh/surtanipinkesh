@@ -1,0 +1,38 @@
+name: Lighthouse mobile audit (temporary)
+on:
+  push:
+    branches: [claude/affectionate-noether-wv1fy1]
+    paths: ['.github/workflows/lighthouse-temp.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm i -g lighthouse@12
+      - name: Audit live pages (mobile, same settings as PageSpeed)
+        run: |
+          for u in https://papadpixels.com/ https://papadpixels.com/portfolio.html https://papadpixels.com/ai-video-ads.html; do
+            f=$(echo "$u" | sed 's#[^a-z0-9]#_#g')
+            lighthouse "$u" --quiet --chrome-flags="--headless=new --no-sandbox" --output=json --output-path="$f.json" --only-categories=performance,accessibility,best-practices,seo || true
+          done
+          node -e '
+          const fs = require("fs");
+          for (const f of fs.readdirSync(".").filter(f => f.endsWith(".json"))) {
+            const r = JSON.parse(fs.readFileSync(f, "utf8")); const a = r.audits;
+            const out = { url: r.finalDisplayedUrl,
+              scores: Object.fromEntries(Object.entries(r.categories).map(([k, v]) => [k, Math.round(v.score * 100)])),
+              metrics: Object.fromEntries(["first-contentful-paint","largest-contentful-paint","total-blocking-time","cumulative-layout-shift","speed-index","interactive"].map(k => [k, a[k]?.displayValue])),
+              lcpElement: a["largest-contentful-paint-element"]?.details?.items?.[0]?.items?.[0]?.node?.snippet,
+              opportunities: Object.values(a).filter(x => x.details?.type === "opportunity" && (x.details.overallSavingsMs > 0 || x.details.overallSavingsBytes > 0)).map(x => ({ id: x.id, title: x.title, ms: Math.round(x.details.overallSavingsMs || 0), kb: Math.round((x.details.overallSavingsBytes || 0) / 1024), items: (x.details.items || []).slice(0, 6).map(i => (i.url || "") + " " + Math.round((i.wastedBytes || i.totalBytes || 0) / 1024) + "KB " + Math.round(i.wastedMs || 0) + "ms") })),
+              failing: Object.values(a).filter(x => x.score !== null && x.score < 0.9 && x.scoreDisplayMode !== "informative" && x.scoreDisplayMode !== "manual" && x.scoreDisplayMode !== "notApplicable").map(x => x.id + ": " + x.title + (x.displayValue ? " (" + x.displayValue + ")" : "")),
+              weight: a["total-byte-weight"]?.displayValue,
+              biggest: (a["total-byte-weight"]?.details?.items || []).slice(0, 10).map(i => i.url + " " + Math.round(i.totalBytes / 1024) + "KB"),
+              mainThread: (a["mainthread-work-breakdown"]?.details?.items || []).slice(0, 6).map(i => i.groupLabel + " " + Math.round(i.duration) + "ms"),
+              bootup: (a["bootup-time"]?.details?.items || []).slice(0, 6).map(i => i.url + " " + Math.round(i.total) + "ms"),
+            };
+            console.log("LH_RESULT " + JSON.stringify(out));
+          }'
