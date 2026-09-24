@@ -402,32 +402,67 @@ class PortfolioUniverse {
     const aspect = this.camera.aspect;
     const camZ = this.camera.position.z;
     const narrow = aspect < 1;
-    const PAD = 0.05, EDGE = 1.15;
+    const PAD = 0.04, EDGE = 1.15;
     const D_MIN = narrow ? 7 : 5.5, D_MAX = narrow ? 18 : 14;
+    // Extremes to keep clear: how far the camera slides with the mouse (see
+    // the render loop) and how far each card sways on its Y axis.
+    const CAM_X = 0.18, CAM_Y = 0.075, SWAY = 0.12;
+    const cams = [[-CAM_X, -CAM_Y], [CAM_X, -CAM_Y], [-CAM_X, CAM_Y], [CAM_X, CAM_Y]];
+    const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
     const placed = [];
 
+    // Screen-space box covering every view of the card: tilted to both ends
+    // of its sway, seen from every camera position, padded for its float.
+    const footprint = (c, x, y, z) => {
+      const { width: w, height: h } = c.mesh.geometry.parameters;
+      const cosX = Math.cos(c.mesh.rotation.x), sinX = Math.sin(c.mesh.rotation.x);
+      const box = { l: Infinity, r: -Infinity, b: Infinity, t: -Infinity };
+      let nearest = Infinity;
+      for (const ry of [c.baseRotY - SWAY, c.baseRotY + SWAY]) {
+        const cosY = Math.cos(ry), sinY = Math.sin(ry);
+        for (const [sx, sy] of corners) {
+          // Euler XYZ on a flat quad: rotate about Y, then about X.
+          const lx = sx * w / 2, ly = sy * h / 2;
+          const px = x + lx * cosY;
+          const pz0 = -lx * sinY;
+          const py = y + ly * cosX - pz0 * sinX;
+          const pz = z + ly * sinX + pz0 * cosX;
+          const dist = camZ - pz;
+          nearest = Math.min(nearest, dist);
+          for (const [cx, cy] of cams) {
+            const nx = (px - cx) / (dist * tanH * aspect);
+            const ny = (py - cy) / (dist * tanH);
+            if (nx < box.l) box.l = nx;
+            if (nx > box.r) box.r = nx;
+            if (ny < box.b) box.b = ny;
+            if (ny > box.t) box.t = ny;
+          }
+        }
+      }
+      const padX = (c.floatAmp / 2 + PAD) / (nearest * tanH * aspect);
+      const padY = (c.floatAmp + PAD) / (nearest * tanH);
+      box.l -= padX; box.r += padX; box.b -= padY; box.t += padY;
+      return box;
+    };
+
     this.cards.forEach(c => {
-      const portrait = c.project.orientation === 'portrait';
-      const w = portrait ? 1.35 : 2.3;
-      const h = portrait ? 2.4 : 1.294;
       let best = null, bestCost = Infinity;
       for (let t = 0; t < 4000 && bestCost > 0; t++) {
         const d = D_MIN + Math.random() * (D_MAX - D_MIN);
-        const hx = (w / 2 + c.floatAmp / 2 + PAD) / (d * tanH * aspect);
-        const hy = (h / 2 + c.floatAmp + PAD) / (d * tanH);
-        const nx = (Math.random() * 2 - 1) * (EDGE - hx * 0.3);
-        const ny = (Math.random() * 2 - 1) * (EDGE - hy * 0.3);
-        const r = { l: nx - hx, r: nx + hx, b: ny - hy, t: ny + hy };
+        const x = (Math.random() * 2 - 1) * EDGE * d * tanH * aspect;
+        const y = (Math.random() * 2 - 1) * EDGE * d * tanH;
+        const z = camZ - d;
+        const r = footprint(c, x, y, z);
         let cost = 0;
         for (const p of placed) {
           const ox = Math.min(r.r, p.r) - Math.max(r.l, p.l);
           const oy = Math.min(r.t, p.t) - Math.max(r.b, p.b);
           if (ox > 0 && oy > 0) cost += ox * oy;
         }
-        if (cost < bestCost) { bestCost = cost; best = { r, nx, ny, d }; }
+        if (cost < bestCost) { bestCost = cost; best = { r, x, y, z }; }
       }
       placed.push(best.r);
-      c.basePos.set(best.nx * best.d * tanH * aspect, best.ny * best.d * tanH, camZ - best.d);
+      c.basePos.set(best.x, best.y, best.z);
       c.mesh.position.copy(c.basePos);
     });
     this.layoutAspect = aspect;
@@ -619,7 +654,7 @@ class PortfolioUniverse {
 
         const matches = this.activeFilter === 'all' || c.project.cat === this.activeFilter;
         const isHovered = this.hovered === c;
-        c.targetScale = isHovered ? 1.14 : (matches ? 1 : 0.6);
+        c.targetScale = isHovered ? 1.08 : (matches ? 1 : 0.6);
         c.targetOpacity = matches ? (isHovered ? 1 : 0.92) : 0.08;
         c.hitTest = matches;
 
