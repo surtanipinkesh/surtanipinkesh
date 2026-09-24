@@ -64,11 +64,10 @@
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -81,8 +80,8 @@
     <a href="#top" class="brand">
       <span class="brand-mark">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
       <span class="brand-text">
@@ -95,8 +94,8 @@
         <a href="#top" class="nav-panel-brand" aria-label="Papad Pixels home">
           <span class="brand-mark">
             <picture>
-              <source srcset="assets/logo.webp" type="image/webp">
-              <img src="assets/logo.png" alt="Papad Pixels logo">
+              <source srcset="assets/logo-sm.webp" type="image/webp">
+              <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
             </picture>
           </span>
         </a>
@@ -134,8 +133,8 @@
 <section class="hero" id="top">
   <div class="hero-pin">
     <div class="hero-video-wrap" aria-hidden="true">
-      <iframe id="heroReelFrame"
-        src="https://player.vimeo.com/video/1228841347?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;app_id=122963"
+      <iframe id="heroReelFrame" tabindex="-1"
+        data-src="https://player.vimeo.com/video/1228841347?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1&amp;app_id=122963"
         frameborder="0" allow="autoplay; fullscreen" title="Papad Pixels showreel (background)"></iframe>
     </div>
     <div class="hero-vignette" aria-hidden="true"></div>
@@ -198,7 +197,7 @@
 </section>
 
 <!-- ============ CARD MODAL ============ -->
-<div class="card-modal" id="cardModal" aria-hidden="true">
+<div class="card-modal" id="cardModal" aria-hidden="true" inert>
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
@@ -841,8 +840,8 @@
     <a href="#top" class="brand">
       <span class="brand-mark small">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
     </a>
@@ -878,7 +877,27 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=6"></script>
-<script type="module" src="js/main.js?v=10"></script>
+<script src="js/script.js?v=7"></script>
+<script type="module">
+  // The 3D gallery (Three.js + scene setup) is heavy on phones and sits below
+  // the hero, so fetch and start it once the visitor starts scrolling toward
+  // it, not during the first paint.
+  const gallery = document.getElementById('universe');
+  let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    import('./js/main.js?v=11');
+  };
+  window.addEventListener('scroll', start, { once: true, passive: true });
+  if (gallery && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); start(); }
+    }, { rootMargin: '150px 0px' });
+    io.observe(gallery);
+  } else {
+    start();
+  }
+</script>
 </body>
 </html>

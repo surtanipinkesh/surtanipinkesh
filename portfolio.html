@@ -35,11 +35,10 @@
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -52,8 +51,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
       <span class="brand-text">
@@ -66,8 +65,8 @@
         <a href="index.html" class="nav-panel-brand" aria-label="Papad Pixels home">
           <span class="brand-mark">
             <picture>
-              <source srcset="assets/logo.webp" type="image/webp">
-              <img src="assets/logo.png" alt="Papad Pixels logo">
+              <source srcset="assets/logo-sm.webp" type="image/webp">
+              <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
             </picture>
           </span>
         </a>
@@ -121,7 +120,39 @@
       <p class="portfolio-desc" data-cat="ai" hidden>Cinematic, brand-grade commercials built shot by shot on locked character, environment and product references, then edited, graded and finished by hand. <a class="portfolio-desc-link" href="ai-video-ads.html">About AI video ads &rarr;</a></p>
       <p class="portfolio-desc" data-cat="tvc" hidden>Creator-style product and testimonial videos made with AI, scripted and paced to feel native to TikTok, Instagram Reels and YouTube Shorts. <a class="portfolio-desc-link" href="ai-ugc-videos.html">About AI UGC videos &rarr;</a></p>
       <p class="portfolio-desc" data-cat="social" hidden>Scroll-stopping short-form content for Reels, TikTok and Shorts, edited to platform-native pacing. <a class="portfolio-desc-link" href="ai-social-media-videos.html">About AI social media videos &rarr;</a></p>
-      <div class="portfolio-grid" id="portfolioGrid" aria-live="polite"></div>
+      <h2 class="visually-hidden">Portfolio videos</h2>
+      <div class="portfolio-grid" id="portfolioGrid" aria-live="polite">
+        <article class="work-card" data-cat="social" data-id="1229164404"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway ft. Altona"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway ft. Altona</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229171047"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Some Things You Just Don’t Walk Away From"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Some Things You Just Don’t Walk Away From</h3></article>
+        <article class="work-card" data-cat="ai" data-id="a99QuBXwC1A"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: GNOCCA: The Unveiling | AI Luxury Fragrance Film"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">GNOCCA: The Unveiling | AI Luxury Fragrance Film</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164262"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5" aria-label="Play video: Fashion Runway 02"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 02</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229171046"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: How to Apply Perfume"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">How to Apply Perfume</h3></article>
+        <article class="work-card" data-cat="ai" data-id="e9_L8YMh7zM"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: 100% AI-Generated Ice Cream Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">100% AI-Generated Ice Cream Ad</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164263"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway 01"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 01</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170904"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Dragon Ride"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Dragon Ride</h3></article>
+        <article class="work-card" data-cat="ai" data-id="TMI4O6Ue3j4"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Saucesome Noodles: Every Bite Glows | AI Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Saucesome Noodles: Every Bite Glows | AI Commercial</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164260"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5" aria-label="Play video: Fashion Runway 05"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 05</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170600"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Mystique Perfumes UGC Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Mystique Perfumes UGC Ad</h3></article>
+        <article class="work-card" data-cat="ai" data-id="ngqz3CR3zEg"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Moovelous | AI Cheese Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Moovelous | AI Cheese Commercial</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164261"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway 04"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 04</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170527"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Drive-Thru UGC Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Drive-Thru UGC Ad</h3></article>
+        <article class="work-card" data-cat="ai" data-id="KJANFtOF58w"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Mystique | AI Perfume Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Mystique | AI Perfume Ad</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229163931"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 01"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 01</h3></article>
+        <article class="work-card" data-cat="ai" data-id="rMncClDYaiI"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Cinematic AI Beauty Lipstick Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Cinematic AI Beauty Lipstick Commercial</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229163463"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Thank You for Booking: Dublin"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Thank You for Booking: Dublin</h3></article>
+        <article class="work-card" data-cat="ai" data-id="rNk6ySViTX4"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Dejavu Jeans | AI Fashion Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Dejavu Jeans | AI Fashion Ad</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229162045"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: Social Media Video 02"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 02</h3></article>
+        <article class="work-card" data-cat="ai" data-id="fdwz_iO9it8"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Dejavu Watches: The Emblem of Power"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Dejavu Watches: The Emblem of Power</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229161749"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: Social Media Video 03"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 03</h3></article>
+        <article class="work-card" data-cat="ai" data-id="eBBz6YTp-Tc"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Déjà Vu Perfumes: Golden Hour Whispers"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Déjà Vu Perfumes: Golden Hour Whispers</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158632"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 04"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 04</h3></article>
+        <article class="work-card" data-cat="ai" data-id="hNrWM6FdErA"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Desert Rose: A Fragrance Born from the Sand"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Desert Rose: A Fragrance Born from the Sand</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158480"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 05"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 05</h3></article>
+        <article class="work-card" data-cat="ai" data-id="mdaa5Q93FQ0"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.3333" aria-label="Play video: Déjà Vu Perfumes: A Fragrance That Tells a Story Untold"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Déjà Vu Perfumes: A Fragrance That Tells a Story Untold</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158258"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Stop Worshipping Spreadsheets: Estimate Fast, Win the Margin"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Stop Worshipping Spreadsheets: Estimate Fast, Win the Margin</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158154"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: The Excel Nightmare That Nearly Broke My Team"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">The Excel Nightmare That Nearly Broke My Team</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158027"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 06"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 06</h3></article>
+      </div>
     </div>
   </section>
 
@@ -135,7 +166,7 @@
 </main>
 
 <!-- ============ CARD MODAL ============ -->
-<div class="card-modal" id="cardModal" aria-hidden="true">
+<div class="card-modal" id="cardModal" aria-hidden="true" inert>
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
@@ -155,8 +186,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark small">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
     </a>
@@ -192,7 +223,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=6"></script>
-<script type="module" src="js/portfolio.js?v=10"></script>
+<script src="js/script.js?v=7"></script>
+<script type="module" src="js/portfolio.js?v=11"></script>
 </body>
 </html>

@@ -111,11 +111,10 @@
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -128,8 +127,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
       <span class="brand-text">
@@ -142,8 +141,8 @@
         <a href="index.html" class="nav-panel-brand" aria-label="Papad Pixels home">
           <span class="brand-mark">
             <picture>
-              <source srcset="assets/logo.webp" type="image/webp">
-              <img src="assets/logo.png" alt="Papad Pixels logo">
+              <source srcset="assets/logo-sm.webp" type="image/webp">
+              <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
             </picture>
           </span>
         </a>
@@ -193,7 +192,22 @@
       <p class="section-tag reveal">WORK</p>
       <h2 class="section-title reveal">Social media videos, <span class="accent">made here</span></h2>
       <p class="service-section-desc reveal">Fashion runway series, B2B stories and brand shorts, cut for the feed. Click any video to watch it.</p>
-      <div class="portfolio-grid" id="portfolioGrid" data-cat="social"></div>
+      <div class="portfolio-grid">
+        <article class="work-card" data-cat="social" data-id="1229164404"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway ft. Altona"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway ft. Altona</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164262"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5" aria-label="Play video: Fashion Runway 02"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 02</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164263"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway 01"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 01</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164260"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5" aria-label="Play video: Fashion Runway 05"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 05</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229164261"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Fashion Runway 04"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Fashion Runway 04</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229163931"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 01"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 01</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229163463"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Thank You for Booking: Dublin"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Thank You for Booking: Dublin</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229162045"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: Social Media Video 02"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 02</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229161749"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: Social Media Video 03"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 03</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158632"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 04"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 04</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158480"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 05"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 05</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158258"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Stop Worshipping Spreadsheets: Estimate Fast, Win the Margin"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Stop Worshipping Spreadsheets: Estimate Fast, Win the Margin</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158154"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: The Excel Nightmare That Nearly Broke My Team"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">The Excel Nightmare That Nearly Broke My Team</h3></article>
+        <article class="work-card" data-cat="social" data-id="1229158027"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Social Media Video 06"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">SOCIAL MEDIA VIDEOS</p><h3 class="work-title">Social Media Video 06</h3></article>
+      </div>
       <a class="service-more" href="portfolio.html#social-media-videos">See the full portfolio &rarr;</a>
     </div>
   </section>
@@ -289,7 +303,7 @@
 </main>
 
 <!-- ============ CARD MODAL ============ -->
-<div class="card-modal" id="cardModal" aria-hidden="true">
+<div class="card-modal" id="cardModal" aria-hidden="true" inert>
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
@@ -309,8 +323,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark small">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
     </a>
@@ -346,7 +360,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=6"></script>
-<script type="module" src="js/portfolio.js?v=10"></script>
+<script src="js/script.js?v=7"></script>
+<script type="module" src="js/portfolio.js?v=11"></script>
 </body>
 </html>

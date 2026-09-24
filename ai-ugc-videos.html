@@ -111,11 +111,10 @@
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -128,8 +127,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
       <span class="brand-text">
@@ -142,8 +141,8 @@
         <a href="index.html" class="nav-panel-brand" aria-label="Papad Pixels home">
           <span class="brand-mark">
             <picture>
-              <source srcset="assets/logo.webp" type="image/webp">
-              <img src="assets/logo.png" alt="Papad Pixels logo">
+              <source srcset="assets/logo-sm.webp" type="image/webp">
+              <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
             </picture>
           </span>
         </a>
@@ -193,7 +192,13 @@
       <p class="section-tag reveal">WORK</p>
       <h2 class="section-title reveal">AI UGC ads, <span class="accent">made here</span></h2>
       <p class="service-section-desc reveal">Product demos, perfume and food ads, and story-led UGC: all made with AI and edited for paid social. Click any video to watch it.</p>
-      <div class="portfolio-grid" id="portfolioGrid" data-cat="tvc"></div>
+      <div class="portfolio-grid">
+        <article class="work-card" data-cat="tvc" data-id="1229171047"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Some Things You Just Don’t Walk Away From"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Some Things You Just Don’t Walk Away From</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229171046"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:1.775" aria-label="Play video: How to Apply Perfume"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">How to Apply Perfume</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170904"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Dragon Ride"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Dragon Ride</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170600"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Mystique Perfumes UGC Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Mystique Perfumes UGC Ad</h3></article>
+        <article class="work-card" data-cat="tvc" data-id="1229170527"><button type="button" class="work-thumb" style="--ca:#18160f;--cb:#d3a46e;aspect-ratio:0.5634" aria-label="Play video: Drive-Thru UGC Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI UGC VIDEOS</p><h3 class="work-title">Drive-Thru UGC Ad</h3></article>
+      </div>
       <a class="service-more" href="portfolio.html#ai-ugc-videos">See the full portfolio &rarr;</a>
     </div>
   </section>
@@ -295,7 +300,7 @@
 </main>
 
 <!-- ============ CARD MODAL ============ -->
-<div class="card-modal" id="cardModal" aria-hidden="true">
+<div class="card-modal" id="cardModal" aria-hidden="true" inert>
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
@@ -315,8 +320,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark small">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
     </a>
@@ -352,7 +357,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=6"></script>
-<script type="module" src="js/portfolio.js?v=10"></script>
+<script src="js/script.js?v=7"></script>
+<script type="module" src="js/portfolio.js?v=11"></script>
 </body>
 </html>

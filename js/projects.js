@@ -12,7 +12,7 @@ export const CATEGORIES = {
 // full controls, but branding kept to a minimum (no title/byline/avatar).
 export function embedUrl(source) {
   switch (source.type) {
-    case 'vimeo-video':   return `https://player.vimeo.com/video/${source.id}?autoplay=1&title=0&byline=0&portrait=0`;
+    case 'vimeo-video':   return `https://player.vimeo.com/video/${source.id}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
     case 'youtube-video': return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0&modestbranding=1`;
     default: return '';
   }
@@ -103,6 +103,7 @@ export function openVideoModal(project) {
   document.getElementById('modalVideoFrame').src = embedUrl(project.source);
   document.querySelector('.modal-video')?.classList.toggle('is-portrait', project.orientation === 'portrait');
   const modal = document.getElementById('cardModal');
+  modal.inert = false;
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
 }
@@ -111,6 +112,7 @@ export function closeVideoModal() {
   const modal = document.getElementById('cardModal');
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+  modal.inert = true;
   // Stop playback/audio the instant the modal closes.
   document.getElementById('modalVideoFrame').src = '';
 }

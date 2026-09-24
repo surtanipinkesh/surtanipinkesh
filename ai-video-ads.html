@@ -127,11 +127,10 @@
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -144,8 +143,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
       <span class="brand-text">
@@ -158,8 +157,8 @@
         <a href="index.html" class="nav-panel-brand" aria-label="Papad Pixels home">
           <span class="brand-mark">
             <picture>
-              <source srcset="assets/logo.webp" type="image/webp">
-              <img src="assets/logo.png" alt="Papad Pixels logo">
+              <source srcset="assets/logo-sm.webp" type="image/webp">
+              <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
             </picture>
           </span>
         </a>
@@ -212,17 +211,31 @@
       <div class="industry-group">
         <h3 class="reveal">AI perfume, fragrance &amp; beauty commercials</h3>
         <p class="reveal">Luxury fragrance films and beauty spots. Glass, liquid, skin and light are where AI video shines, and where consistent product references matter most.</p>
-        <div class="portfolio-grid" data-ids="a99QuBXwC1A,KJANFtOF58w,rMncClDYaiI,eBBz6YTp-Tc,hNrWM6FdErA,mdaa5Q93FQ0"></div>
+        <div class="portfolio-grid is-landscape">
+        <article class="work-card" data-cat="ai" data-id="a99QuBXwC1A"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: GNOCCA: The Unveiling | AI Luxury Fragrance Film"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">GNOCCA: The Unveiling | AI Luxury Fragrance Film</h3></article>
+        <article class="work-card" data-cat="ai" data-id="KJANFtOF58w"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Mystique | AI Perfume Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Mystique | AI Perfume Ad</h3></article>
+        <article class="work-card" data-cat="ai" data-id="rMncClDYaiI"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Cinematic AI Beauty Lipstick Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Cinematic AI Beauty Lipstick Commercial</h3></article>
+        <article class="work-card" data-cat="ai" data-id="eBBz6YTp-Tc"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Déjà Vu Perfumes: Golden Hour Whispers"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Déjà Vu Perfumes: Golden Hour Whispers</h3></article>
+        <article class="work-card" data-cat="ai" data-id="hNrWM6FdErA"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Desert Rose: A Fragrance Born from the Sand"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Desert Rose: A Fragrance Born from the Sand</h3></article>
+        <article class="work-card" data-cat="ai" data-id="mdaa5Q93FQ0"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.3333" aria-label="Play video: Déjà Vu Perfumes: A Fragrance That Tells a Story Untold"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Déjà Vu Perfumes: A Fragrance That Tells a Story Untold</h3></article>
+      </div>
       </div>
       <div class="industry-group">
         <h3 class="reveal">AI fashion &amp; accessories ads</h3>
         <p class="reveal">Denim and watches, generated around consistent wardrobe and product references. For short-form fashion content, see the <a href="ai-social-media-videos.html#work">fashion runway series</a>.</p>
-        <div class="portfolio-grid" data-ids="rNk6ySViTX4,fdwz_iO9it8"></div>
+        <div class="portfolio-grid is-landscape">
+        <article class="work-card" data-cat="ai" data-id="rNk6ySViTX4"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Dejavu Jeans | AI Fashion Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Dejavu Jeans | AI Fashion Ad</h3></article>
+        <article class="work-card" data-cat="ai" data-id="fdwz_iO9it8"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Dejavu Watches: The Emblem of Power"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Dejavu Watches: The Emblem of Power</h3></article>
+      </div>
       </div>
       <div class="industry-group">
         <h3 class="reveal">AI food &amp; beverage commercials</h3>
         <p class="reveal">Ice cream, noodles and cheese: appetite-appeal close-ups, macro detail and playful characters, without a food stylist or a studio day.</p>
-        <div class="portfolio-grid" data-ids="e9_L8YMh7zM,TMI4O6Ue3j4,ngqz3CR3zEg"></div>
+        <div class="portfolio-grid is-landscape">
+        <article class="work-card" data-cat="ai" data-id="e9_L8YMh7zM"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: 100% AI-Generated Ice Cream Ad"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">100% AI-Generated Ice Cream Ad</h3></article>
+        <article class="work-card" data-cat="ai" data-id="TMI4O6Ue3j4"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Saucesome Noodles: Every Bite Glows | AI Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Saucesome Noodles: Every Bite Glows | AI Commercial</h3></article>
+        <article class="work-card" data-cat="ai" data-id="ngqz3CR3zEg"><button type="button" class="work-thumb" style="--ca:#24334c;--cb:#e0af3b;aspect-ratio:1.7778" aria-label="Play video: Moovelous | AI Cheese Commercial"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></button><p class="work-cat">AI VIDEO ADS</p><h3 class="work-title">Moovelous | AI Cheese Commercial</h3></article>
+      </div>
       </div>
       <a class="service-more" href="portfolio.html#ai-video-ads">See the full portfolio &rarr;</a>
     </div>
@@ -335,7 +348,7 @@
 </main>
 
 <!-- ============ CARD MODAL ============ -->
-<div class="card-modal" id="cardModal" aria-hidden="true">
+<div class="card-modal" id="cardModal" aria-hidden="true" inert>
   <div class="card-modal-backdrop" id="cardModalBackdrop"></div>
   <div class="card-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="card-modal-close" id="cardModalClose" aria-label="Close">✕</button>
@@ -355,8 +368,8 @@
     <a href="index.html" class="brand">
       <span class="brand-mark small">
         <picture>
-          <source srcset="assets/logo.webp" type="image/webp">
-          <img src="assets/logo.png" alt="Papad Pixels logo">
+          <source srcset="assets/logo-sm.webp" type="image/webp">
+          <img src="assets/logo-sm.png" alt="Papad Pixels logo" width="160" height="98">
         </picture>
       </span>
     </a>
@@ -392,7 +405,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=6"></script>
-<script type="module" src="js/portfolio.js?v=10"></script>
+<script src="js/script.js?v=7"></script>
+<script type="module" src="js/portfolio.js?v=11"></script>
 </body>
 </html>

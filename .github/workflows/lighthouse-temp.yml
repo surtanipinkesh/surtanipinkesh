@@ -9,13 +9,15 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm i -g lighthouse@12
-      - name: Audit live pages (mobile, same settings as PageSpeed)
+      - name: Audit live pages vs this branch (mobile, same settings as PageSpeed)
         run: |
-          for u in https://papadpixels.com/ https://papadpixels.com/portfolio.html https://papadpixels.com/ai-video-ads.html; do
+          (python3 -m http.server 8080 >/dev/null 2>&1 &) ; sleep 2
+          for u in https://papadpixels.com/ http://localhost:8080/ https://papadpixels.com/portfolio.html http://localhost:8080/portfolio.html http://localhost:8080/ai-video-ads.html; do
             f=$(echo "$u" | sed 's#[^a-z0-9]#_#g')
             lighthouse "$u" --quiet --chrome-flags="--headless=new --no-sandbox" --output=json --output-path="$f.json" --only-categories=performance,accessibility,best-practices,seo || true
           done

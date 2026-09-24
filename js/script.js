@@ -6,6 +6,17 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  /* ---------- hero showreel ---------- */
+  // The Vimeo player is heavy; start it on the first sign of a real visitor
+  // (or shortly after load) instead of competing with the first paint.
+  const heroReel = document.getElementById('heroReelFrame');
+  if (heroReel && heroReel.dataset.src) {
+    const loadReel = () => { if (!heroReel.getAttribute('src')) heroReel.src = heroReel.dataset.src; };
+    ['pointerdown', 'pointermove', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
+      window.addEventListener(ev, loadReel, { once: true, passive: true }));
+    window.addEventListener('load', () => setTimeout(loadReel, 3000));
+  }
+
   /* ---------- header scroll state ---------- */
   const header = document.getElementById('siteHeader');
   const progressBar = document.getElementById('progressBar');
