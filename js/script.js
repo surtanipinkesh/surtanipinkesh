@@ -25,17 +25,20 @@
   /* ---------- mobile nav ---------- */
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
-    const isOpen = mainNav.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-  mainNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mainNav.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', false);
+  const setMenuOpen = open => {
+    mainNav.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    if (!open) mainNav.querySelectorAll('.has-dropdown.open').forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
     });
+  };
+  navToggle.addEventListener('click', () => setMenuOpen(!mainNav.classList.contains('open')));
+  document.getElementById('navClose')?.addEventListener('click', () => setMenuOpen(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenuOpen(false); });
+  mainNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setMenuOpen(false));
   });
 
   /* ---------- services dropdown ---------- */
