@@ -14,10 +14,24 @@ jobs:
         with:
           node-version: 22
       - run: npm i -g lighthouse@12
+      - name: Check every stored Vimeo thumbnail URL resolves
+        run: |
+          node --input-type=module -e '
+          const { PROJECTS, thumbSrc } = await import("./js/projects.js");
+          let bad = 0, ok = 0;
+          for (const p of PROJECTS.filter(p => p.thumb)) {
+            for (const w of [320, 640, 800]) {
+              const r = await fetch(thumbSrc(p, w), { method: "GET" });
+              const type = r.headers.get("content-type");
+              if (r.ok && /^image\//.test(type)) ok++; else { bad++; console.log("BAD", r.status, type, p.source.id, w); }
+            }
+          }
+          console.log("THUMB_CHECK ok=" + ok + " bad=" + bad);'
+
       - name: Audit live pages vs this branch (mobile, same settings as PageSpeed)
         run: |
           (python3 -m http.server 8080 >/dev/null 2>&1 &) ; sleep 2
-          for u in https://papadpixels.com/ http://localhost:8080/ https://papadpixels.com/portfolio.html http://localhost:8080/portfolio.html http://localhost:8080/ai-video-ads.html; do
+          for u in http://localhost:8080/ http://localhost:8080/portfolio.html http://localhost:8080/ai-social-media-videos.html; do
             f=$(echo "$u" | sed 's#[^a-z0-9]#_#g')
             lighthouse "$u" --quiet --chrome-flags="--headless=new --no-sandbox" --output=json --output-path="$f.json" --only-categories=performance,accessibility,best-practices,seo || true
           done

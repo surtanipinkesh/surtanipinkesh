@@ -1,41 +1,21 @@
 // ============================================================
 // Papad Pixels — Portfolio grid (portfolio page + service pages)
 // ============================================================
-// The cards themselves are static HTML (written by the page build), so the
-// grid never shifts while loading and search engines read every title. This
-// script only wires up playback, thumbnails and the portfolio tabs.
-import { PROJECTS, fetchMeta, openVideoModal, bindVideoModal } from './projects.js?v=10';
+// The cards (titles and thumbnails) are static HTML written by the page
+// build, so the grid never shifts while loading, images start downloading
+// immediately and search engines read every title. This script only wires
+// up playback and the portfolio tabs.
+import { PROJECTS, openVideoModal, bindVideoModal } from './projects.js?v=11';
 
 const byId = new Map(PROJECTS.map(p => [p.source.id, p]));
 
-// oEmbed hands back a tiny Vimeo thumbnail; the CDN serves any width if the
-// size suffix is swapped. Cards are at most ~300 CSS px wide.
-function thumbAt(url, width) {
-  return url.replace(/_\d+x\d+(?=$|\?)/, `_${width}`);
-}
-
-function hydrate(card, eager) {
+function hydrate(card) {
   const project = byId.get(card.dataset.id);
   if (!project) return;
-  const thumb = card.querySelector('.work-thumb');
-  thumb.addEventListener('click', () => openVideoModal(project));
-  fetchMeta(project).then(() => {
-    if (!project.thumbUrl) return;
-    const width = project.orientation === 'portrait' ? 540 : 640;
-    const img = document.createElement('img');
-    img.alt = project.title;
-    img.width = width;
-    img.height = Math.round(width / project.aspect);
-    img.decoding = 'async';
-    img.loading = eager ? 'eager' : 'lazy';
-    if (eager) img.fetchPriority = 'high';
-    img.src = thumbAt(project.thumbUrl, width);
-    img.addEventListener('error', () => {
-      if (img.src !== project.thumbUrl) img.src = project.thumbUrl;
-      else img.remove();
-    });
-    thumb.prepend(img);
-  });
+  card.querySelector('.work-thumb').addEventListener('click', () => openVideoModal(project));
+  // If a thumbnail ever fails, fall back to the card's placeholder art.
+  const img = card.querySelector('.work-thumb img');
+  img?.addEventListener('error', () => img.remove());
 }
 
 // Round-robins the categories for "All Videos". The grid fills column by
@@ -99,7 +79,7 @@ function setupTabs(grid, tabs) {
 
 function boot() {
   bindVideoModal();
-  document.querySelectorAll('.work-card[data-id]').forEach((card, i) => hydrate(card, i < 4));
+  document.querySelectorAll('.work-card[data-id]').forEach(hydrate);
 
   const grid = document.getElementById('portfolioGrid');
   const tabs = [...document.querySelectorAll('.portfolio-tabs [data-cat]')];

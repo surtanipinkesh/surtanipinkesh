@@ -3,8 +3,8 @@
 // ============================================================
 import * as THREE from './vendor/three.module.min.js';
 import {
-  CATEGORIES, PROJECTS, fetchMeta, loadImage, openVideoModal, bindVideoModal,
-} from './projects.js?v=10';
+  CATEGORIES, PROJECTS, thumbSrc, loadImage, openVideoModal, bindVideoModal,
+} from './projects.js?v=11';
 
 // Round-robins across categories so a touch-device card cap doesn't end up
 // showing only the first category in the list.
@@ -343,8 +343,7 @@ class PortfolioUniverse {
     const list = pickBalanced(PROJECTS, cardCount);
 
     await Promise.all(list.map(async project => {
-      await fetchMeta(project);
-      project.thumbImg = await loadImage(project.thumbUrl);
+      project.thumbImg = await loadImage(thumbSrc(project, 640));
     }));
 
     list.forEach((project, i) => {
