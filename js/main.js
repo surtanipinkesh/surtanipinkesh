@@ -3,8 +3,8 @@
 // ============================================================
 import * as THREE from './vendor/three.module.min.js';
 import {
-  CATEGORIES, PROJECTS, previewEmbedUrl, fetchMeta, loadImage, openVideoModal, bindVideoModal,
-} from './projects.js?v=8';
+  CATEGORIES, PROJECTS, fetchMeta, loadImage, openVideoModal, bindVideoModal,
+} from './projects.js?v=9';
 
 // Round-robins across categories so a touch-device card cap doesn't end up
 // showing only the first category in the list.
@@ -217,7 +217,6 @@ class PortfolioUniverse {
     this.buildStarfield();
     this.buildStarlets();
     this.buildHud();
-    this.buildPreviewPool();
     this.buildCards();
     this.bindEvents();
     this.onResize();
@@ -378,7 +377,7 @@ class PortfolioUniverse {
         baseRotY: mesh.rotation.y,
         floatOffset: Math.random() * Math.PI * 2,
         floatSpeed: 0.25 + Math.random() * 0.25,
-        floatAmp: 0.18 + Math.random() * 0.14,
+        floatAmp: 0.08 + Math.random() * 0.04,
         targetScale: 1,
         targetOpacity: 1,
         hitTest: true,
@@ -402,31 +401,68 @@ class PortfolioUniverse {
     const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
     const aspect = this.camera.aspect;
     const camZ = this.camera.position.z;
-    const PAD = 0.1, D_MIN = 9, D_MAX = 22, EDGE = 1.1;
+    const narrow = aspect < 1;
+    const PAD = 0.04, EDGE = 1.15;
+    const D_MIN = narrow ? 7 : 5.5, D_MAX = narrow ? 18 : 14;
+    // Extremes to keep clear: how far the camera slides with the mouse (see
+    // the render loop) and how far each card sways on its Y axis.
+    const CAM_X = 0.18, CAM_Y = 0.075, SWAY = 0.12;
+    const cams = [[-CAM_X, -CAM_Y], [CAM_X, -CAM_Y], [-CAM_X, CAM_Y], [CAM_X, CAM_Y]];
+    const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
     const placed = [];
 
+    // Screen-space box covering every view of the card: tilted to both ends
+    // of its sway, seen from every camera position, padded for its float.
+    const footprint = (c, x, y, z) => {
+      const { width: w, height: h } = c.mesh.geometry.parameters;
+      const cosX = Math.cos(c.mesh.rotation.x), sinX = Math.sin(c.mesh.rotation.x);
+      const box = { l: Infinity, r: -Infinity, b: Infinity, t: -Infinity };
+      let nearest = Infinity;
+      for (const ry of [c.baseRotY - SWAY, c.baseRotY + SWAY]) {
+        const cosY = Math.cos(ry), sinY = Math.sin(ry);
+        for (const [sx, sy] of corners) {
+          // Euler XYZ on a flat quad: rotate about Y, then about X.
+          const lx = sx * w / 2, ly = sy * h / 2;
+          const px = x + lx * cosY;
+          const pz0 = -lx * sinY;
+          const py = y + ly * cosX - pz0 * sinX;
+          const pz = z + ly * sinX + pz0 * cosX;
+          const dist = camZ - pz;
+          nearest = Math.min(nearest, dist);
+          for (const [cx, cy] of cams) {
+            const nx = (px - cx) / (dist * tanH * aspect);
+            const ny = (py - cy) / (dist * tanH);
+            if (nx < box.l) box.l = nx;
+            if (nx > box.r) box.r = nx;
+            if (ny < box.b) box.b = ny;
+            if (ny > box.t) box.t = ny;
+          }
+        }
+      }
+      const padX = (c.floatAmp / 2 + PAD) / (nearest * tanH * aspect);
+      const padY = (c.floatAmp + PAD) / (nearest * tanH);
+      box.l -= padX; box.r += padX; box.b -= padY; box.t += padY;
+      return box;
+    };
+
     this.cards.forEach(c => {
-      const portrait = c.project.orientation === 'portrait';
-      const w = portrait ? 1.35 : 2.3;
-      const h = portrait ? 2.4 : 1.294;
       let best = null, bestCost = Infinity;
-      for (let t = 0; t < 600 && bestCost > 0; t++) {
+      for (let t = 0; t < 4000 && bestCost > 0; t++) {
         const d = D_MIN + Math.random() * (D_MAX - D_MIN);
-        const hx = (w / 2 + c.floatAmp / 2 + PAD) / (d * tanH * aspect);
-        const hy = (h / 2 + c.floatAmp + PAD) / (d * tanH);
-        const nx = (Math.random() * 2 - 1) * (EDGE - hx * 0.3);
-        const ny = (Math.random() * 2 - 1) * (EDGE - hy * 0.3);
-        const r = { l: nx - hx, r: nx + hx, b: ny - hy, t: ny + hy };
+        const x = (Math.random() * 2 - 1) * EDGE * d * tanH * aspect;
+        const y = (Math.random() * 2 - 1) * EDGE * d * tanH;
+        const z = camZ - d;
+        const r = footprint(c, x, y, z);
         let cost = 0;
         for (const p of placed) {
           const ox = Math.min(r.r, p.r) - Math.max(r.l, p.l);
           const oy = Math.min(r.t, p.t) - Math.max(r.b, p.b);
           if (ox > 0 && oy > 0) cost += ox * oy;
         }
-        if (cost < bestCost) { bestCost = cost; best = { r, nx, ny, d }; }
+        if (cost < bestCost) { bestCost = cost; best = { r, x, y, z }; }
       }
       placed.push(best.r);
-      c.basePos.set(best.nx * best.d * tanH * aspect, best.ny * best.d * tanH, camZ - best.d);
+      c.basePos.set(best.x, best.y, best.z);
       c.mesh.position.copy(c.basePos);
     });
     this.layoutAspect = aspect;
@@ -517,7 +553,6 @@ class PortfolioUniverse {
           this.wrap.style.cursor = 'default';
           const tooltip = document.getElementById('cardTooltip');
           if (tooltip) tooltip.style.opacity = '0';
-          this.clearPreviews();
         }
       });
     }, { threshold: 0.05 });
@@ -589,8 +624,8 @@ class PortfolioUniverse {
 
       const lookX = this.currentLook.x * 0.9;
       const lookY = this.currentLook.y * 0.5;
-      this.camera.position.x = THREE.MathUtils.lerp(this.camera.position.x, lookX * 0.6, 0.06);
-      this.camera.position.y = THREE.MathUtils.lerp(this.camera.position.y, lookY * 0.4, 0.06);
+      this.camera.position.x = THREE.MathUtils.lerp(this.camera.position.x, lookX * 0.2, 0.06);
+      this.camera.position.y = THREE.MathUtils.lerp(this.camera.position.y, lookY * 0.15, 0.06);
       this.camera.lookAt(lookX * 2.2, lookY * 1.4, -6);
 
       if (!reduceMotion) this.stars.rotation.y = t * 0.01;
@@ -619,7 +654,7 @@ class PortfolioUniverse {
 
         const matches = this.activeFilter === 'all' || c.project.cat === this.activeFilter;
         const isHovered = this.hovered === c;
-        c.targetScale = isHovered ? 1.14 : (matches ? 1 : 0.6);
+        c.targetScale = isHovered ? 1.08 : (matches ? 1 : 0.6);
         c.targetOpacity = matches ? (isHovered ? 1 : 0.92) : 0.08;
         c.hitTest = matches;
 
@@ -637,188 +672,12 @@ class PortfolioUniverse {
       });
 
       if (!isTouch) this.updateHover();
-      this.updatePreviews(now);
 
       this.renderer.render(this.scene, this.camera);
     };
     loop();
   }
 
-  // A handful of chromeless, muted iframes overlaid on the canvas so the
-  // cards nearest the camera play live instead of showing a static
-  // thumbnail — matching them 1:1 for every card would be far too heavy
-  // (30 simultaneous video streams), so only the closest few play at once.
-  buildPreviewPool() {
-    this.previewCount = reduceMotion ? 0 : (isTouch ? 2 : 5);
-    this.previewPool = [];
-    for (let i = 0; i < this.previewCount; i++) {
-      const wrap = document.createElement('div');
-      wrap.className = 'card-preview-frame';
-      wrap.setAttribute('aria-hidden', 'true');
-      wrap.style.display = 'none';
-      const inner = document.createElement('div');
-      wrap.appendChild(inner);
-      this.wrap.appendChild(wrap);
-      this.previewPool.push({ id: i, wrap, inner, project: null, record: null, ytPlayer: null });
-    }
-    this._lastPreviewPick = 0;
-    this._ytSeq = 0;
-  }
-
-  // Tears down whatever is currently playing in a slot (Vimeo iframe or a
-  // YT.Player instance) so it can be reassigned to a different video.
-  teardownSlot(slot) {
-    if (slot.ytPlayer) {
-      try { slot.ytPlayer.destroy(); } catch (err) { /* already gone */ }
-      slot.ytPlayer = null;
-    }
-    slot.inner.innerHTML = '';
-  }
-
-  // Vimeo's background=1 mode is reliably chromeless regardless of play
-  // state, so a plain iframe with URL params is enough. YouTube has no such
-  // mode — its title/channel overlay only disappears once the video is
-  // genuinely *playing*, and `mute=1` as a URL param isn't reliably honored
-  // for autoplay purposes across browsers. So YouTube previews are driven
-  // through the real IFrame Player API instead, explicitly calling mute()
-  // then playVideo() (and resuming on pause/end) to guarantee it actually
-  // plays instead of sitting on the branded paused frame.
-  assignSlot(slot, project) {
-    this.teardownSlot(slot);
-    slot.project = project;
-    if (!project) return;
-
-    if (project.source.type === 'vimeo-video') {
-      const iframe = document.createElement('iframe');
-      iframe.className = 'card-preview-iframe';
-      iframe.setAttribute('allow', 'autoplay');
-      iframe.setAttribute('tabindex', '-1');
-      iframe.src = previewEmbedUrl(project.source);
-      slot.inner.appendChild(iframe);
-    } else if (project.source.type === 'youtube-video') {
-      const host = document.createElement('div');
-      host.id = `preview-yt-${slot.id}-${++this._ytSeq}`;
-      slot.inner.appendChild(host);
-      const hostId = host.id;
-      loadYouTubeAPI().then(YT => {
-        // Slot may have been reassigned (or torn down) by the time the API
-        // finished loading — bail out rather than resurrect a stale player.
-        if (slot.project !== project || !document.getElementById(hostId)) return;
-        slot.ytPlayer = new YT.Player(hostId, {
-          width: '100%', height: '100%', videoId: project.source.id,
-          playerVars: {
-            autoplay: 1, mute: 1, controls: 0, modestbranding: 1, rel: 0,
-            playsinline: 1, iv_load_policy: 3, disablekb: 1, fs: 0,
-            loop: 1, playlist: project.source.id,
-          },
-          events: {
-            onReady: e => { e.target.mute(); e.target.playVideo(); },
-            onStateChange: e => {
-              if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(0); e.target.playVideo(); }
-              else if (e.data === YT.PlayerState.PAUSED) { e.target.playVideo(); }
-            },
-          },
-        });
-      });
-    }
-  }
-
-  clearPreviews() {
-    this.previewPool?.forEach(slot => {
-      this.teardownSlot(slot);
-      slot.project = null;
-      slot.record = null;
-      slot.wrap.style.display = 'none';
-    });
-  }
-
-  // Computes each on-screen card's projected rect once per pick cycle so
-  // the "which cards get to play" choice can skip any that would overlap
-  // one another on screen, not just the raw N-nearest-to-camera.
-  projectCardRect(c, rect, vFov) {
-    const ndc = c.mesh.position.clone().project(this.camera);
-    const dist = this.camera.position.distanceTo(c.mesh.position);
-    const pxPerWorldUnit = rect.height / (2 * dist * Math.tan(vFov / 2));
-    const baseW = c.project.orientation === 'portrait' ? 1.35 : 2.3;
-    const baseH = c.project.orientation === 'portrait' ? 2.4 : 1.294;
-    const w = baseW * c.mesh.scale.x * pxPerWorldUnit;
-    const h = baseH * c.mesh.scale.x * pxPerWorldUnit;
-    const sx = (ndc.x * 0.5 + 0.5) * rect.width;
-    const sy = (-ndc.y * 0.5 + 0.5) * rect.height;
-    return { ndcZ: ndc.z, dist, w, h, left: sx - w / 2, right: sx + w / 2, top: sy - h / 2, bottom: sy + h / 2 };
-  }
-
-  updatePreviews(now) {
-    if (!this.previewPool || !this.previewPool.length || !this.cards.length) return;
-    const rect = this.wrap.getBoundingClientRect();
-    const vFov = THREE.MathUtils.degToRad(this.camera.fov);
-
-    // Re-pick which cards get to play every ~800ms — recomputing every
-    // frame would reload the player (and restart the video) constantly.
-    if (now - this._lastPreviewPick > 800) {
-      this._lastPreviewPick = now;
-      const scored = this.cards
-        .filter(c => c.hitTest && c.mesh.material.opacity > 0.5)
-        .map(c => ({ c, r: this.projectCardRect(c, rect, vFov) }))
-        .filter(x => x.r.ndcZ > -1 && x.r.ndcZ < 1)
-        .sort((a, b) => a.r.dist - b.r.dist);
-
-      // Greedily take the closest cards, skipping any whose projected
-      // rect overlaps one already chosen — this is what actually stops
-      // two live previews from visually stacking on top of each other.
-      const chosen = [];
-      for (const item of scored) {
-        if (chosen.length >= this.previewPool.length) break;
-        const overlaps = chosen.some(o =>
-          item.r.left < o.r.right && item.r.right > o.r.left &&
-          item.r.top < o.r.bottom && item.r.bottom > o.r.top
-        );
-        if (!overlaps) chosen.push(item);
-      }
-      const candidates = chosen.map(x => x.c);
-
-      this.previewPool.forEach((slot, i) => {
-        const target = candidates[i] || null;
-        if (slot.record === target) return;
-        slot.record = target;
-        this.assignSlot(slot, target ? target.project : null);
-        if (!target) slot.wrap.style.display = 'none';
-      });
-    }
-
-    this.previewPool.forEach(slot => {
-      const record = slot.record;
-      if (!record) return;
-      const r = this.projectCardRect(record, rect, vFov);
-      if (r.ndcZ > 1 || r.ndcZ < -1) { slot.wrap.style.display = 'none'; return; }
-
-      slot.wrap.style.display = 'block';
-      slot.wrap.style.opacity = String(record.mesh.material.opacity);
-      slot.wrap.style.left = r.left + 'px';
-      slot.wrap.style.top = r.top + 'px';
-      slot.wrap.style.width = r.w + 'px';
-      slot.wrap.style.height = r.h + 'px';
-    });
-  }
-}
-
-// Loads the YouTube IFrame Player API once (shared across every preview
-// slot) and resolves with the global YT object once it's ready.
-function loadYouTubeAPI() {
-  if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
-  if (!window.__ytApiPromise) {
-    window.__ytApiPromise = new Promise(resolve => {
-      const prev = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        if (typeof prev === 'function') prev();
-        resolve(window.YT);
-      };
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(tag);
-    });
-  }
-  return window.__ytApiPromise;
 }
 
 function boot() {

@@ -18,16 +18,6 @@ export function embedUrl(source) {
   }
 }
 
-// Muted, looping, chromeless embed used for the live "floating" previews —
-// Vimeo's background=1 and YouTube's controls=0 both strip UI entirely.
-export function previewEmbedUrl(source) {
-  switch (source.type) {
-    case 'vimeo-video':   return `https://player.vimeo.com/video/${source.id}?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0&portrait=0`;
-    case 'youtube-video': return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&mute=1&loop=1&playlist=${source.id}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1`;
-    default: return '';
-  }
-}
-
 // Individual clips only — each card is one video, grouped by service type.
 // title and w/h (the video's real shape) live here so the page text never
 // depends on Vimeo/YouTube; fetchMeta only adds the Vimeo thumbnail.

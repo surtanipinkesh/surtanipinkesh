@@ -218,19 +218,6 @@ a{ color:inherit; text-decoration:none; }
   mix-blend-mode:overlay;
 }
 
-/* Live, chromeless preview players overlaid on the WebGL canvas for the
-   cards nearest the camera — see PortfolioUniverse.updatePreviews. Vimeo
-   previews are a plain iframe; YouTube previews are driven by the IFrame
-   Player API, which injects its own iframe into the inner div. */
-.card-preview-frame{
-  position:absolute; top:0; left:0; z-index:2;
-  border-radius:10px; overflow:hidden;
-  pointer-events:none; transition:opacity .25s ease;
-  box-shadow:0 0 0 1px rgba(224,175,59,.22);
-}
-.card-preview-frame > div{ width:100%; height:100%; }
-.card-preview-frame iframe{ width:100%; height:100%; border:0; display:block; }
-
 /* HUD corner brackets — decorative sci-fi framing for the gallery viewport */
 .hud-corner{ position:absolute; width:26px; height:26px; z-index:3; opacity:.4; pointer-events:none; }
 .hud-corner::before, .hud-corner::after{ content:''; position:absolute; background:var(--gold); }
