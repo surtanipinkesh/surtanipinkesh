@@ -68,7 +68,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 
@@ -91,6 +91,18 @@
     </a>
 
     <nav class="main-nav" id="mainNav">
+      <div class="nav-panel-head">
+        <a href="#top" class="nav-panel-brand" aria-label="Papad Pixels home">
+          <span class="brand-mark">
+            <picture>
+              <source srcset="assets/logo.webp" type="image/webp">
+              <img src="assets/logo.png" alt="Papad Pixels logo">
+            </picture>
+          </span>
+        </a>
+        <button type="button" class="nav-close" id="navClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
+      </div>
+      <a href="#top" class="nav-link nav-home" data-section="top">Home</a>
       <a href="portfolio.html" class="nav-link">Portfolio</a>
       <a href="#about" class="nav-link" data-section="about">About</a>
       <div class="nav-item has-dropdown">
@@ -177,6 +189,7 @@
   <p class="universe-empty" id="universeEmpty">More landing here soon. See everything already live on <a href="https://www.vimeo.com/surtanipinkesh" target="_blank" rel="noopener">Vimeo</a>.</p>
 
   <p class="universe-hint" id="universeHint">MOVE MOUSE TO LOOK AROUND · CLICK A CARD TO WATCH IT</p>
+  <a href="#stack" class="universe-next" aria-label="Scroll to the next section"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
   <div class="card-tooltip" id="cardTooltip" aria-hidden="true">
     <span class="card-tooltip-cat" id="cardTooltipCat"></span>
@@ -865,7 +878,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=5"></script>
+<script src="js/script.js?v=6"></script>
 <script type="module" src="js/main.js?v=10"></script>
 </body>
 </html>
