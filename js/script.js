@@ -157,6 +157,17 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  /* ---------- enquiry tracking (Google Analytics key events) ---------- */
+  // Mark these as key events in GA: Admin → Events → toggle "Mark as key event".
+  const track = (name, params) => { if (typeof window.gtag === 'function') window.gtag('event', name, params); };
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (href.startsWith('mailto:')) track('email_click', { link_location: link.closest('footer') ? 'footer' : 'contact' });
+    else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) track('whatsapp_click', { link_location: link.closest('footer') ? 'footer' : 'contact' });
+  });
+
   /* ---------- contact form (submits to Google Apps Script) ---------- */
   const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyOW3W-wttVQkSp-0cG5DfclVr1GvgNJFPpGci1t6LExZRu2gmfzL18ZFeSYXnPbLRN/exec';
 
@@ -190,6 +201,7 @@
         body: data,
       })
         .then(() => {
+          track('generate_lead', { form_name: 'contact', project_type: data.get('type') || '' });
           const success = document.getElementById('formSuccess');
           const successName = document.getElementById('formSuccessName');
           if (successName) successName.textContent = name ? `, ${name}` : '';
