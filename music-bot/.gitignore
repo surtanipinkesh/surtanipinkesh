@@ -1,0 +1,12 @@
+# secrets
+client_secret.json
+token.json
+.env
+# media (too big for git - keep on your PC / VPS / cloud drive)
+inbox/**/*
+backgrounds/**/*
+library/**/*
+output/**/*
+!**/.gitkeep
+__pycache__/
+.venv/

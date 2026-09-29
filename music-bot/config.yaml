@@ -1,0 +1,68 @@
+# Channel-wide settings for the music bot.
+channel_name: "Your Channel Name"
+
+mix:
+  target_minutes: 60        # length of each YouTube compilation
+  crossfade_seconds: 4      # overlap between tracks
+  loudness_lufs: -14        # streaming loudness target
+  video_width: 1920
+  video_height: 1080
+  video_fps: 2              # still image: low fps keeps render fast & file small
+
+youtube:
+  category_id: "10"         # 10 = Music
+  privacy: private          # private + publish_at = scheduled release
+  default_language: en
+  made_for_kids: false
+  contains_synthetic_media: true   # AI disclosure
+
+# One block per mood. Folder names under inbox/ and backgrounds/ must match the keys.
+moods:
+  jazz:
+    title_templates:
+      - "Smooth Night Jazz 🎷 Relaxing Jazz Music for Work, Study & Sleep"
+      - "Late Night Jazz Lounge 🌙 Soft Piano & Saxophone Jazz"
+      - "Rainy Evening Jazz ☔ Cozy Jazz Music to Relax"
+    tags: [jazz, smooth jazz, relaxing jazz, night jazz, jazz music, piano jazz, saxophone]
+    styles:
+      - "smooth jazz, soft saxophone lead, brushed drums, upright bass, warm piano chords"
+      - "late night jazz trio, mellow piano, walking bass, soft ride cymbal"
+      - "bossa nova jazz, nylon guitar, light percussion, gentle flute"
+      - "cool jazz, muted trumpet, relaxed swing, vinyl warmth"
+    tempo: [60, 90]
+  coffee:
+    title_templates:
+      - "Coffee Shop Ambience ☕ Warm Jazz & Bossa Nova for a Good Mood"
+      - "Morning Coffee Music ☕ Happy Cafe Jazz to Start Your Day"
+      - "Cozy Cafe Vibes ☕ Relaxing Background Music"
+    tags: [coffee shop music, cafe music, bossa nova, morning jazz, cafe ambience, relaxing music]
+    styles:
+      - "cafe jazz, upbeat bossa nova, acoustic guitar, light piano, happy mood"
+      - "morning coffee jazz, soft vibraphone, gentle swing, warm and bright"
+      - "french cafe, accordion, acoustic guitar, light waltz"
+      - "acoustic lofi cafe, mellow guitar, soft keys, relaxed groove"
+    tempo: [80, 110]
+  focus:
+    title_templates:
+      - "Deep Focus Music 🧠 Lofi Beats for Studying & Coding"
+      - "Study With Me Lofi 📚 Chill Beats to Concentrate"
+      - "Productive Work Session 💻 Ambient Focus Music"
+    tags: [focus music, study music, lofi, lofi hip hop, concentration music, coding music]
+    styles:
+      - "lofi hip hop, dusty drums, jazzy rhodes chords, vinyl crackle, chill"
+      - "ambient electronic, soft pads, minimal beat, steady and calm"
+      - "chillhop, mellow guitar, soft boom bap drums, warm bass"
+      - "minimal piano with soft synth pads, steady pulse, no distractions"
+    tempo: [70, 90]
+  sleep:
+    title_templates:
+      - "Deep Sleep Music 🌙 Calm Piano for Relaxation & Insomnia"
+      - "Peaceful Sleep Music 😴 Soft Ambient Sounds to Fall Asleep"
+      - "Relaxing Night Music ✨ Stress Relief & Deep Rest"
+    tags: [sleep music, relaxing music, deep sleep, calm music, meditation music, insomnia]
+    styles:
+      - "ambient sleep music, soft piano, long reverb, warm drones, very slow"
+      - "calm ambient pads, gentle music box, peaceful and dreamy"
+      - "slow soft piano, felt piano, minimal, soothing, no percussion"
+      - "ethereal ambient, soft strings, floating textures, deep calm"
+    tempo: [50, 65]
