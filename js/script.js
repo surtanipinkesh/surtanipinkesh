@@ -20,9 +20,11 @@
   /* ---------- header scroll state ---------- */
   const header = document.getElementById('siteHeader');
   const progressBar = document.getElementById('progressBar');
+  const scrollCue = document.querySelector('.hero-scroll-cue');
 
   function onScroll(){
     header.classList.toggle('scrolled', window.scrollY > 40);
+    scrollCue?.classList.toggle('is-hidden', window.scrollY > 60);
 
     const h = document.documentElement;
     const scrolled = h.scrollTop;
@@ -166,6 +168,7 @@
     const href = link.getAttribute('href');
     if (href.startsWith('mailto:')) track('email_click', { link_location: link.closest('footer') ? 'footer' : 'contact' });
     else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) track('whatsapp_click', { link_location: link.closest('footer') ? 'footer' : 'contact' });
+    else if (href.includes('gumroad.com/')) track('course_click', { link_location: link.closest('.portfolio-cta') ? 'page_end' : 'hero' });
   });
 
   /* ---------- contact form (submits to Google Apps Script) ---------- */
