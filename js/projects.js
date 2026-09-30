@@ -3,7 +3,7 @@
 // ============================================================
 
 export const CATEGORIES = {
-  ai:     { label: 'AI Video Ads',        colorA: '#24334c', colorB: '#e0af3b' },
+  ai:     { label: 'AI Video Ads & TV Commercials', colorA: '#24334c', colorB: '#e0af3b' },
   tvc:    { label: 'AI UGC Videos',       colorA: '#18160f', colorB: '#d3a46e' },
   social: { label: 'Social Media Videos', colorA: '#24334c', colorB: '#d3a46e' },
 };

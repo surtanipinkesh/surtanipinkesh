@@ -58,9 +58,9 @@
     "@type": "OfferCatalog",
     "name": "AI video production services",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Video Ads & AI TV Commercials", "url": "https://papadpixels.com/ai-video-ads.html" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI UGC Videos", "url": "https://papadpixels.com/ai-ugc-videos.html" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Social Media Videos", "url": "https://papadpixels.com/ai-social-media-videos.html" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Video Ads & AI TV Commercials", "url": "https://papadpixels.com/ai-video-ads" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI UGC Videos", "url": "https://papadpixels.com/ai-ugc-videos" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Social Media Videos", "url": "https://papadpixels.com/ai-social-media-videos" } }
     ]
   },
   "sameAs": [
@@ -82,7 +82,7 @@
 <link rel="preconnect" href="https://i.vimeocdn.com">
 
 <link rel="preload" href="assets/fonts/space-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=18">
+<link rel="stylesheet" href="css/style.css?v=19">
 </head>
 <body>
 
@@ -117,20 +117,20 @@
         <button type="button" class="nav-close" id="navClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg></button>
       </div>
       <a href="#top" class="nav-link nav-home" data-section="top">Home</a>
-      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="/portfolio" class="nav-link">Portfolio</a>
       <a href="#about" class="nav-link" data-section="about">About</a>
       <div class="nav-item has-dropdown">
         <a href="#services" class="nav-link" data-section="services">Services</a>
         <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="servicesMenu" aria-label="Show service pages"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3 4.5 3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-dropdown" id="servicesMenu">
-          <a href="ai-video-ads.html">AI Video Ads &amp; TV Commercials</a>
-          <a href="ai-ugc-videos.html">AI UGC Videos</a>
-          <a href="ai-social-media-videos.html">AI Social Media Videos</a>
+          <a href="/ai-video-ads">AI Video Ads &amp; TV Commercials</a>
+          <a href="/ai-ugc-videos">AI UGC Videos</a>
+          <a href="/ai-social-media-videos">Social Media Videos</a>
         </div>
       </div>
       <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
       <a href="#process" class="nav-link" data-section="process">Process</a>
-      <a href="learn.html" class="nav-link">Learn</a>
+      <a href="/learn" class="nav-link">Learn</a>
       <a href="#contact" class="nav-link" data-section="contact">Contact</a>
     </nav>
 
@@ -175,7 +175,7 @@
     </p>
     <div class="universe-actions reveal">
       <a href="#contact" class="btn btn-primary"><span>Start a Project</span></a>
-      <a href="portfolio.html" class="btn btn-outline"><span>View Portfolio</span></a>
+      <a href="/portfolio" class="btn btn-outline"><span>View Portfolio</span></a>
     </div>
   </div>
 </section>
@@ -195,10 +195,10 @@
 
   <div class="universe-filters reveal" id="universeFilters">
     <button class="filter-btn active" data-filter="all">All Work</button>
-    <button class="filter-btn" data-filter="ai">AI Video Ads</button>
+    <button class="filter-btn" data-filter="ai">AI Video Ads &amp; TV Commercials</button>
     <button class="filter-btn" data-filter="tvc">AI UGC Videos</button>
     <button class="filter-btn" data-filter="social">Social Media Videos</button>
-    <a class="filter-btn filter-link" href="portfolio.html">View full portfolio &rarr;</a>
+    <a class="filter-btn filter-link" href="/portfolio">View full portfolio &rarr;</a>
   </div>
 
   <p class="universe-empty" id="universeEmpty">More landing here soon. See everything already live on <a href="https://vimeo.com/papadpixels" target="_blank" rel="noopener">Vimeo</a>.</p>
@@ -221,7 +221,7 @@
       <iframe id="modalVideoFrame" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Project video"></iframe>
     </div>
     <div class="modal-body">
-      <span class="card-modal-cat" id="modalCat">AI Video Ads</span>
+      <span class="card-modal-cat" id="modalCat">AI Video Ads &amp; TV Commercials</span>
       <h3 id="modalTitle">Project Title</h3>
     </div>
   </div>
@@ -340,21 +340,21 @@
     <p class="services-sub reveal">AI video ads, AI TV commercials, AI UGC and AI social media videos for brands and businesses, plus the editing craft that finishes them.</p>
 
     <div class="service-pages">
-      <a class="service-page-card reveal" href="ai-video-ads.html">
+      <a class="service-page-card reveal" href="/ai-video-ads">
         <span class="service-page-tag">AI COMMERCIALS</span>
         <h3>AI Video Ads &amp; TV Commercials</h3>
         <p>Brand-grade AI commercials and TVC ads, built shot by shot with Seedance 2.5.</p>
         <span class="service-page-more">Explore &rarr;</span>
       </a>
-      <a class="service-page-card reveal" href="ai-ugc-videos.html">
+      <a class="service-page-card reveal" href="/ai-ugc-videos">
         <span class="service-page-tag">AI UGC</span>
         <h3>AI UGC Videos</h3>
         <p>Creator-style product demos, testimonials and hooks made with AI, ready for paid social.</p>
         <span class="service-page-more">Explore &rarr;</span>
       </a>
-      <a class="service-page-card reveal" href="ai-social-media-videos.html">
+      <a class="service-page-card reveal" href="/ai-social-media-videos">
         <span class="service-page-tag">SHORT-FORM</span>
-        <h3>AI Social Media Videos</h3>
+        <h3>Social Media Videos</h3>
         <p>Scroll-stopping Reels, TikToks and Shorts, AI-generated and cut to platform-native pacing.</p>
         <span class="service-page-more">Explore &rarr;</span>
       </a>
@@ -409,14 +409,14 @@
 
     <div class="pricing-grid">
       <div class="price-card reveal">
-        <h3>Social Media Videos</h3>
+        <h3>Social Media/UGC Videos</h3>
         <p class="price-who">Scroll-stopping content for Reels, TikTok and Shorts, fully AI-generated and edited to platform-native pacing.</p>
         <div class="price-picker">
-          <p class="price-picker-label">Pick a length</p>
+          <p class="price-picker-label">Starting price by length</p>
           <div class="price-lengths">
-            <div class="price-length"><span class="len">15s</span><span class="amt">$295</span></div>
-            <div class="price-length"><span class="len">30s</span><span class="amt">$495</span></div>
-            <div class="price-length"><span class="len">60s</span><span class="amt">$795</span></div>
+            <div class="price-length"><span class="len">15s</span><span class="amt"><small>from</small> $295</span></div>
+            <div class="price-length"><span class="len">30s</span><span class="amt"><small>from</small> $495</span></div>
+            <div class="price-length"><span class="len">60s</span><span class="amt"><small>from</small> $795</span></div>
           </div>
         </div>
         <ul class="price-feats">
@@ -437,11 +437,11 @@
         <h3>AI Commercials</h3>
         <p class="price-who">Cinematic, brand-grade commercials built shot-by-shot on locked character, environment and product reference sheets, not stitched from stock or first-frame chaining.</p>
         <div class="price-picker">
-          <p class="price-picker-label">Pick a length</p>
+          <p class="price-picker-label">Starting price by length</p>
           <div class="price-lengths">
-            <div class="price-length"><span class="len">15s</span><span class="amt">$595</span></div>
-            <div class="price-length"><span class="len">30s</span><span class="amt">$995</span></div>
-            <div class="price-length"><span class="len">60s</span><span class="amt">$1,595</span></div>
+            <div class="price-length"><span class="len">15s</span><span class="amt"><small>from</small> $595</span></div>
+            <div class="price-length"><span class="len">30s</span><span class="amt"><small>from</small> $995</span></div>
+            <div class="price-length"><span class="len">60s</span><span class="amt"><small>from</small> $1,595</span></div>
           </div>
         </div>
         <ul class="price-feats">
@@ -474,6 +474,8 @@
         <a href="#contact" class="btn btn-outline price-cta"><span>Talk to Me</span></a>
       </div>
     </div>
+
+    <p class="pricing-note reveal">All prices above are starting prices. The final cost depends on the scope of your project, such as the length, number of scenes and characters, and the deliverables you need. You get a clear quote before any work begins.</p>
 
     <div class="price-addons reveal">
       <p class="price-addons-tag">ADD-ONS FOR ANY PACKAGE</p>
@@ -861,15 +863,15 @@
     </a>
 
     <nav class="footer-nav">
-      <a href="portfolio.html">Portfolio</a>
+      <a href="/portfolio">Portfolio</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="ai-video-ads.html">AI Video Ads</a>
-      <a href="ai-ugc-videos.html">AI UGC Videos</a>
-      <a href="ai-social-media-videos.html">AI Social Media Videos</a>
+      <a href="/ai-video-ads">AI Video Ads &amp; TV Commercials</a>
+      <a href="/ai-ugc-videos">AI UGC Videos</a>
+      <a href="/ai-social-media-videos">Social Media Videos</a>
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
-      <a href="learn.html">Learn</a>
+      <a href="/learn">Learn</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -902,7 +904,7 @@
   const start = () => {
     if (started) return;
     started = true;
-    import('./js/main.js?v=11');
+    import('./js/main.js?v=12');
   };
   window.addEventListener('scroll', start, { once: true, passive: true });
   if (gallery && 'IntersectionObserver' in window) {
