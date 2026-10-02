@@ -7,14 +7,33 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- hero showreel ---------- */
-  // The Vimeo player is heavy; start it on the first sign of a real visitor
-  // (or shortly after load) instead of competing with the first paint.
+  // A still frame shows at once; the Vimeo player starts as soon as the page
+  // has loaded and fades in over the still only when it is really playing.
   const heroReel = document.getElementById('heroReelFrame');
+  const heroWrap = document.getElementById('heroVideoWrap');
   if (heroReel && heroReel.dataset.src) {
-    const loadReel = () => { if (!heroReel.getAttribute('src')) heroReel.src = heroReel.dataset.src; };
+    const showReel = () => heroWrap && heroWrap.classList.add('is-playing');
+    const loadReel = () => {
+      if (heroReel.getAttribute('src')) return;
+      heroReel.src = heroReel.dataset.src;
+      heroReel.addEventListener('load', () => setTimeout(showReel, 6000), { once: true }); // fallback if no events arrive
+    };
+    window.addEventListener('message', e => {
+      if (e.origin !== 'https://player.vimeo.com' || e.source !== heroReel.contentWindow) return;
+      let data = e.data;
+      try { if (typeof data === 'string') data = JSON.parse(data); } catch (_) { return; }
+      if (!data || !data.event) return;
+      if (data.event === 'ready') {
+        ['play', 'playProgress', 'timeupdate'].forEach(value =>
+          heroReel.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value }), 'https://player.vimeo.com'));
+      } else if (['play', 'playProgress', 'timeupdate'].includes(data.event)) {
+        showReel();
+      }
+    });
     ['pointerdown', 'pointermove', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
       window.addEventListener(ev, loadReel, { once: true, passive: true }));
-    window.addEventListener('load', () => setTimeout(loadReel, 3000));
+    if (document.readyState === 'complete') loadReel();
+    else window.addEventListener('load', loadReel, { once: true });
   }
 
   /* ---------- header scroll state ---------- */
