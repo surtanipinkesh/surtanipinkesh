@@ -5,7 +5,7 @@
 // build, so the grid never shifts while loading, images start downloading
 // immediately and search engines read every title. This script only wires
 // up playback and the portfolio tabs.
-import { PROJECTS, openVideoModal, bindVideoModal } from './projects.js?v=12';
+import { PROJECTS, openVideoModal, bindVideoModal } from './projects.js?v=13';
 
 const byId = new Map(PROJECTS.map(p => [p.source.id, p]));
 

@@ -48,13 +48,10 @@ export const PROJECTS = [
   { cat: 'ai', title: '100% AI-Generated Ice Cream Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'e9_L8YMh7zM' } },
   { cat: 'ai', title: 'Saucesome Noodles: Every Bite Glows | AI Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
   { cat: 'ai', title: 'Moovelous | AI Cheese Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
-  { cat: 'ai', title: 'Mystique | AI Perfume Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'KJANFtOF58w' } },
-  { cat: 'ai', title: 'Cinematic AI Beauty Lipstick Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'rMncClDYaiI' } },
+  { cat: 'ai', title: 'Mystique | AI Perfume Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'JkG-pEVQ-O0' } },
+  { cat: 'ai', title: 'Cinematic AI Beauty Lipstick Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'Gm2HEd6EK6c' } },
   { cat: 'ai', title: 'Dejavu Jeans | AI Fashion Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
   { cat: 'ai', title: 'Dejavu Watches: The Emblem of Power', w: 16, h: 9, source: { type: 'youtube-video', id: 'fdwz_iO9it8' } },
-  { cat: 'ai', title: 'Déjà Vu Perfumes: Golden Hour Whispers', w: 16, h: 9, source: { type: 'youtube-video', id: 'eBBz6YTp-Tc' } },
-  { cat: 'ai', title: 'Desert Rose: A Fragrance Born from the Sand', w: 16, h: 9, source: { type: 'youtube-video', id: 'hNrWM6FdErA' } },
-  { cat: 'ai', title: 'Déjà Vu Perfumes: A Fragrance That Tells a Story Untold', w: 4, h: 3, source: { type: 'youtube-video', id: 'mdaa5Q93FQ0' } },
 ];
 
 PROJECTS.forEach(p => {
