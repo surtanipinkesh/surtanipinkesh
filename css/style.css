@@ -135,11 +135,12 @@ a{ color:inherit; text-decoration:none; }
   font-family:var(--font-mono); font-size:10px; font-weight:400;
   letter-spacing:.2em; text-transform:uppercase; white-space:nowrap; color:var(--text-dimmer);
 }
-@media (max-width:1180px){ .site-header .brand-text{ display:none; } }
+/* the tagline only fits beside the centred menu on wide screens */
+@media (max-width:1599px){ .site-header .brand-text{ display:none; } }
 
 .main-nav{ display:flex; align-items:center; gap:30px; }
-/* phone-menu-only pieces: logo + close button row, and a Home link */
-.nav-panel-head, .nav-home{ display:none; }
+/* phone-menu-only piece: logo + close button row */
+.nav-panel-head{ display:none; }
 .nav-panel-brand{ display:flex; }
 .nav-close{
   width:38px; height:38px; border-radius:8px; border:1px solid var(--panel-border);
@@ -149,6 +150,9 @@ a{ color:inherit; text-decoration:none; }
 .nav-close svg{ width:18px; height:18px; }
 .nav-close:hover{ color:var(--gold); border-color:var(--gold); }
 @media (max-width:1180px) and (min-width:901px){ .main-nav{ gap:20px; } .nav-link{ font-size:14.3px; } }
+/* small laptops: menu sits between logo and button instead of the exact centre, tighter spacing */
+@media (max-width:1100px) and (min-width:901px){ .header-inner{ display:flex; justify-content:space-between; } .main-nav{ gap:16px; } .nav-link{ font-size:13.5px; } }
+@media (max-width:980px) and (min-width:901px){ .main-nav{ gap:12px; } .nav-link{ font-size:13px; } }
 .nav-link{ font-size:15.4px; font-weight:500; color:var(--text-dim); position:relative; padding:6px 0; transition:color .25s ease; }
 .nav-link::after{ content:''; position:absolute; left:0; bottom:0; height:1px; width:0; background:var(--gold); transition:width .3s var(--ease); }
 .nav-link:hover, .nav-link.active{ color:var(--text); }
@@ -173,7 +177,6 @@ a{ color:inherit; text-decoration:none; }
     transition:transform .4s var(--ease); border-left:1px solid var(--panel-border); z-index:210;
   }
   .nav-panel-head{ display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:14px; }
-  .nav-home{ display:inline-block; }
   .main-nav.open{ transform:translateX(0); }
   .header-inner{ display:flex; justify-content:space-between; }
   .nav-link{ font-size:22px; }
