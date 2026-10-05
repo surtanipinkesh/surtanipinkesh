@@ -23,8 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Publish the site files only; README.md is the GitHub profile, not part of the site
+      - run: mkdir _site && tar --exclude=./.git --exclude=./.github --exclude=./README.md --exclude=./_site -cf - . | tar -xf - -C _site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
       - id: deployment
         uses: actions/deploy-pages@v4
