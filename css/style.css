@@ -789,6 +789,8 @@ a.addon-chip small{ color:var(--gold); }
    ============================================================ */
 .site-footer{ position:relative; z-index:2; border-top:1px solid var(--panel-border); padding:50px 0 26px; background:var(--bg-alt); }
 .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding-bottom:34px; border-bottom:1px solid var(--panel-border); }
+/* phones: let the footer tagline wrap instead of running off the screen */
+@media (max-width:600px){ .site-footer .brand-tag{ white-space:normal; letter-spacing:.14em; } }
 .footer-nav{ display:flex; gap:26px; flex-wrap:wrap; }
 .footer-nav a{ font-size:14px; color:var(--text-dim); transition:color .25s ease; }
 .footer-nav a:hover{ color:var(--gold); }
