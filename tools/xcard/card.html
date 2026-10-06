@@ -17,6 +17,9 @@ html,body{width:1200px;height:675px;background:var(--navy)}
 h1{font-family:'Orbitron',sans-serif;font-weight:800;line-height:1.16;margin-top:30px;letter-spacing:.005em;color:var(--cream)}
 h1 em{font-style:normal;color:var(--gold-bright)}
 .sub{margin-top:24px;font-size:27px;line-height:1.42;color:#d9d3c6;max-width:960px}
+.points{list-style:none;padding:0;margin-top:26px;display:grid;gap:12px;max-width:1000px}
+.points li{position:relative;padding-left:34px;font-size:25px;line-height:1.38;color:#e9e4d8}
+.points li::before{content:'';position:absolute;left:0;top:.5em;width:14px;height:14px;background:var(--gold);transform:rotate(45deg) scale(.75)}
 .foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between}
 .foot img{height:66px;display:block}
 .foot .src{font-family:'Space Mono',monospace;font-size:17px;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.6}
@@ -26,6 +29,7 @@ h1 em{font-style:normal;color:var(--gold-bright)}
   <div class="kicker"><i></i><span id="kicker"></span></div>
   <h1 id="headline"></h1>
   <p class="sub" id="sub"></p>
+  <ul class="points" id="points"></ul>
   <div class="foot">
     <img src="../../assets/logo-header.png" alt="">
     <div class="src">Source: <b id="source"></b><br>papadpixels.com</div>
@@ -38,10 +42,15 @@ document.getElementById('kicker').textContent = d.kicker;
 // *words* in the headline are highlighted in gold
 document.getElementById('headline').innerHTML = esc(d.headline).replace(/\*(.+?)\*/g, '<em>$1</em>');
 document.getElementById('sub').textContent = d.sub || '';
+if (!d.sub) document.getElementById('sub').remove();
+const ul = document.getElementById('points');
+(d.points || []).forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+if (!ul.children.length) ul.remove();
 document.getElementById('source').textContent = d.source;
 const h = document.getElementById('headline');
 let size = 64; h.style.fontSize = size + 'px';
-const room = () => document.querySelector('.foot').getBoundingClientRect().top - document.getElementById('sub').getBoundingClientRect().bottom;
+const last = () => (document.getElementById('points') || document.getElementById('sub') || h);
+const room = () => document.querySelector('.foot').getBoundingClientRect().top - last().getBoundingClientRect().bottom;
 while (size > 34 && room() < 40) { size -= 2; h.style.fontSize = size + 'px'; }
 document.body.dataset.ready = '1';
 </script>
