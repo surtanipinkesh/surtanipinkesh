@@ -7,28 +7,30 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- hero showreel ---------- */
-  // A still frame shows at once; the Vimeo player starts as soon as the page
-  // has loaded and fades in over the still only when it is really playing.
+  // A still frame shows at once; the YouTube reel (muted, looping) starts as
+  // soon as the page has loaded and fades in over the still only once it is
+  // really playing. If autoplay is blocked the still simply stays.
   const heroReel = document.getElementById('heroReelFrame');
   const heroWrap = document.getElementById('heroVideoWrap');
   if (heroReel && heroReel.dataset.src) {
+    const YT_ORIGIN = 'https://www.youtube-nocookie.com';
     const showReel = () => heroWrap && heroWrap.classList.add('is-playing');
+    const listen = () => heroReel.contentWindow &&
+      heroReel.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'heroReel', channel: 'widget' }), YT_ORIGIN);
     const loadReel = () => {
       if (heroReel.getAttribute('src')) return;
-      heroReel.src = heroReel.dataset.src;
-      heroReel.addEventListener('load', () => setTimeout(showReel, 6000), { once: true }); // fallback if no events arrive
+      heroReel.src = heroReel.dataset.src + '&origin=' + encodeURIComponent(location.origin);
+      heroReel.addEventListener('load', () => { listen(); setTimeout(listen, 1000); }, { once: true });
     };
     window.addEventListener('message', e => {
-      if (e.origin !== 'https://player.vimeo.com' || e.source !== heroReel.contentWindow) return;
+      if (e.origin !== YT_ORIGIN || e.source !== heroReel.contentWindow) return;
       let data = e.data;
       try { if (typeof data === 'string') data = JSON.parse(data); } catch (_) { return; }
       if (!data || !data.event) return;
-      if (data.event === 'ready') {
-        ['play', 'playProgress', 'timeupdate'].forEach(value =>
-          heroReel.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value }), 'https://player.vimeo.com'));
-      } else if (['play', 'playProgress', 'timeupdate'].includes(data.event)) {
-        showReel();
-      }
+      const info = data.info;
+      const playing = (data.event === 'onStateChange' && info === 1) ||
+        (data.event === 'infoDelivery' && info && (info.playerState === 1 || info.currentTime > 0.3));
+      if (playing) showReel();
     });
     ['pointerdown', 'pointermove', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
       window.addEventListener(ev, loadReel, { once: true, passive: true }));
