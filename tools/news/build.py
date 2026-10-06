@@ -289,7 +289,7 @@ def index_page(stories, header, footer):
           <span class="news-card-dek">{esc(o['dek'])}</span>
         </a>''' for o in rest)
     grid = f'\n      <div class="news-grid">{cards}\n      </div>' if rest else ''
-    return head(title, desc, url, image, extra) + header.replace('class="nav-link">News', 'class="nav-link active" aria-current="page">News') + f'''
+    return head(title, desc, url, image, extra) + header + f'''
 
 <main>
   <section class="service-hero news-index-hero">
