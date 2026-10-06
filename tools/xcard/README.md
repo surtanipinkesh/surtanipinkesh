@@ -1,59 +1,92 @@
-# Daily X news post
+# Daily AI news: website story + X post
 
-Every morning a Claude routine writes one AI-news post for
-x.com/papadpixels and hands it to the posting robot
-(github.com/surtanipinkesh/papad-social), which posts it through the X API.
-Nothing here is published on papadpixels.com (the deploy workflow leaves
-`tools/` out). AI ads go to X straight from the robot's own post files.
+Every morning a Claude routine picks the day's most important AI image /
+video / AI-advertising news and publishes it twice:
 
-## What the routine does
+- a **full story page** on papadpixels.com/news (built by
+  `tools/news/build.py` from a story file), and
+- a **short X post** for x.com/papadpixels with the same image card,
+  posted by the robot in github.com/surtanipinkesh/papad-social.
 
-1. Work out today's date in Asia/Dubai (YYYY-MM-DD).
-2. **Find the news.**
-   - Use web search to find the most important news from the last
-     24–48 hours about AI image or video generation: model launches and
-     updates (Veo, Kling, Seedance, Wan, Runway, Luma, Midjourney, GPT
-     Image, Flux, MiniMax, Pika, LTX…), big feature or pricing changes,
-     or AI advertising news that matters to brands.
-   - Only use a story that at least two independent outlets (or the
-     company's own announcement) report. Never invent or guess details.
-     If nothing new and confirmed happened, post nothing that day.
-   - Do not repeat a story already posted: check `posts/*-x-ai-news.yml`
-     in papad-social.
-3. **Write the post so it explains the news on its own.** A reader should
-   understand the story without going anywhere else:
-   - what happened and who did it, in plain words;
-   - the key details: what is new, who can use it, where, when, price or
-     limits if known;
-   - one line on why it matters for brands or creators.
+`tools/` itself is never published (the deploy workflow leaves it out).
+AI ads go to X straight from the robot's own post files.
 
-   Then 2–3 hashtags. **No links and no "read more" / "via" pointers**
-   (posts with links cost more on X; the robot rejects them). Max 280
-   characters as X counts them (every emoji counts as 2). Never mention
-   any person's name from the Papad Pixels team.
-4. **Image card.** It carries the extra detail that does not fit in the
-   text: a short headline plus 2–3 key facts as bullet points. The source
-   is credited small in the corner. Render it straight into the robot's
-   repository and look at the PNG before using it:
+## 1. Pick the story
 
-   ```
-   NODE_PATH=$(npm root -g) node tools/xcard/render.js /home/user/papad-social/media/x-news/YYYY-MM-DD.png \
-     '{"kicker":"AI News · DD Mon YYYY","headline":"Short headline with *gold words*","points":["Key fact one","Key fact two","Key fact three"],"source":"Outlet or company"}'
-   ```
+- Work out today's date in Asia/Dubai (YYYY-MM-DD).
+- Web-search the last 24–48 hours: model launches and updates (Veo,
+  Kling, Seedance, Wan, Runway, Luma, Midjourney, GPT Image, Flux,
+  MiniMax, Pika, LTX…), big feature or pricing changes, or AI advertising
+  news that matters to brands.
+- Use only stories that at least two independent outlets (or the
+  company's own announcement) report. Never invent or guess details. If
+  nothing new and confirmed happened, publish nothing that day.
+- Skip anything already covered: check `tools/news/articles/`.
 
-   Keep the headline under ~60 characters with 1–3 key words in
-   `*stars*` (they turn gold), and each point under ~75 characters.
-   (`"sub":"One sentence"` works instead of `points` for a very simple
-   story.)
-5. **Hand it to the robot.** In papad-social, add
-   `posts/YYYY-MM-DD-1230-x-ai-news.yml`:
+## 2. Research it properly
 
-   ```yaml
-   publish_at: YYYY-MM-DD 12:30   # India time = 11:00 Dubai
-   image: media/x-news/YYYY-MM-DD.png
-   x:
-     text: "…"
-   ```
+The website story must let a reader understand everything in one place.
+Search more than once: the announcement itself, the key numbers (who can
+use it, where, when, price, limits, partners), what came before it (the
+background), and how people are reacting. Keep a list of the pages you
+used for the Sources list.
 
-   Run `python poster.py list` to check it, then commit and push to main.
-6. Tell the owner in one or two lines what will go out today.
+**Video:** search YouTube (`allowed_domains: ["youtube.com"]`) for the
+company's official launch/demo video, or failing that a well-known
+creator testing it. Only use a video whose title and channel clearly
+match the story; leave `video` out rather than guess.
+
+## 3. Write the story file
+
+Add `tools/news/articles/YYYY-MM-DD-<slug>.json` (copy the shape of an
+existing one):
+
+- `title` (plain), `headline_html` (same with 1–3 words in
+  `<span class="accent">…</span>`), `dek` (2–3 sentence summary).
+- `card`: `headline` (≤60 characters, gold words in `*stars*`),
+  `points` (2–3 key facts, ≤75 characters each), `source`.
+- `tldr`: 3–5 one-line facts.
+- `sections`: "What happened", "The key details" (a `list` of
+  `<strong>Label:</strong> fact` items), "The background", and "What it
+  means for brands" with `"label": "Papad Pixels view"` (clearly our
+  opinion, practical, about creative and advertising).
+- `video` (optional): `youtube` id, `title`, one-line `caption` saying
+  whose video it is. `video_after` = index of the section it follows.
+- `sources`: every page used, with a descriptive name. `tags`: 3–5.
+
+Write everything in your own words: no copied sentences from articles.
+Never mention any person's name from the Papad Pixels team.
+
+## 4. Build and publish the website story
+
+```
+python3 tools/news/build.py      # renders assets/news/<slug>.jpg, builds news/, updates sitemap.xml
+```
+
+Serve the site locally and look at the new page (desktop and 390px
+phone) before publishing. Then commit on the working branch, open a pull
+request and squash-merge it; the site deploys on merge.
+
+## 5. Hand the X post to the robot
+
+- Copy the card to `/home/user/papad-social/media/x-news/YYYY-MM-DD.jpg`.
+- Add `posts/YYYY-MM-DD-1230-x-ai-news.yml` in papad-social:
+
+  ```yaml
+  publish_at: YYYY-MM-DD 12:30   # India time = 11:00 Dubai
+  image: media/x-news/YYYY-MM-DD.jpg
+  x:
+    text: "…"
+  ```
+
+- The X text explains the news on its own: what happened, the key
+  details, why it matters for brands, then 2–3 hashtags. **No links and
+  no "via" / "read more"** (posts with links cost more on X; the robot
+  rejects them). Max 280 characters as X counts them (every emoji counts
+  as 2).
+- Run `python poster.py list`, then commit and push to papad-social main.
+
+## 6. Tell the owner
+
+One or two plain lines: today's story, the link to the new page, and
+that the X post goes out at 11:00 Dubai. Send the card with SendUserFile.
