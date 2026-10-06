@@ -1094,3 +1094,13 @@ a.addon-chip small{ color:var(--gold); }
 .news-cta p{ color:var(--text-dim); }
 .news-cta-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
 .news-more .news-grid{ margin-top:10px; }
+.news-faq-item{ border-bottom:1px solid var(--panel-border); padding:14px 0; }
+.news-faq-item summary{ cursor:pointer; font-weight:600; color:var(--text); list-style:none; position:relative; padding-right:30px; }
+.news-faq-item summary::-webkit-details-marker{ display:none; }
+.news-faq-item summary::after{ content:'+'; position:absolute; right:4px; top:-2px; color:var(--gold); font-size:22px; }
+.news-faq-item[open] summary::after{ content:'–'; }
+.news-faq-item p{ margin:10px 0 0; color:var(--text-dim); }
+.home-news .news-grid{ margin-top:30px; }
+.home-news-more{ text-align:center; margin-top:28px; }
+.home-news-more a{ color:var(--gold); font-weight:600; }
+.home-news-more a:hover{ text-decoration:underline; }
