@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-06",
+  "slug": "chatgpt-image-generation-visual-ads",
+  "title": "OpenAI will show ads while you create images in ChatGPT",
+  "headline_html": "OpenAI will show ads while you <span class=\"accent\">create images</span> in ChatGPT",
+  "dek": "Image generation is becoming an advertising space. From later this month, a first group of brands will test labelled visual ads inside ChatGPT's image tool in the US. Here is what is changing, how it works and what it means for brands.",
+  "card": {"headline": "ChatGPT image generation becomes an *ad channel*", "points": ["OpenAI will test labelled visual ads while people create images in ChatGPT", "US only to start, Free and Go plans, from later this month", "Ads stay separate from the image being made"], "source": "OpenAI via Yahoo Finance"},
+  "tldr": [
+    "OpenAI will start testing a new visual ad format inside ChatGPT's image generation later in October 2026.",
+    "The test is US-only, with an initial group of advertisers, and shows ads to people on the Free and Go plans.",
+    "Ads are clearly labelled and kept separate from the image the person is making. OpenAI says ads do not influence ChatGPT's answers.",
+    "DoubleVerify and Integral Ad Science will pilot independent brand-safety checks, without access to private conversations."
+  ],
+  "sections": [
+    {"heading": "What happened", "paragraphs": [
+      "OpenAI announced that it will begin testing visual ads during image generation in ChatGPT later this month in the United States. While someone waits for an image to be created, they may see a labelled ad from one of the brands in the test.",
+      "The ad images can show product inspiration, a product in use, or what a service makes possible. They are kept apart from the picture the person asked for, so a brand never appears inside someone's own image."
+    ]},
+    {"heading": "The key details", "list": [
+      "<strong>Where and when:</strong> United States only, starting later in October 2026, with an initial group of advertisers.",
+      "<strong>Who sees them:</strong> people on ChatGPT's Free and Go plans. Higher paid plans have stayed ad-free since ads first launched.",
+      "<strong>How they look:</strong> clearly labelled visual ads shown during image creation, separate from the generated image.",
+      "<strong>Brand safety:</strong> DoubleVerify and Integral Ad Science are running brand-suitability pilots. OpenAI says the partners test its standards in a controlled environment and do not access private conversations.",
+      "<strong>Measurement:</strong> OpenAI also widened its list of measurement partners, including Hightouch, Tealium and LiveRamp for conversions and AppsFlyer, Adjust, Branch and Kochava for attribution."
+    ]},
+    {"heading": "The background", "paragraphs": [
+      "This is not ChatGPT's first ad format. OpenAI announced ads in January 2026 and began showing them in the US in February: sponsored cards placed below ChatGPT's answers, shown to logged-in adults on the Free and Go plans. The new test is the first time ads move into image generation, one of ChatGPT's most popular features.",
+      "OpenAI says ChatGPT now reaches about 1.2 billion people every week, which is why advertisers are paying close attention to every new placement."
+    ]},
+    {"heading": "What it means for brands", "label": "Papad Pixels view", "paragraphs": [
+      "People open the image tool when they are already thinking visually: planning a party, mocking up a product, decorating a room. That is a strong moment for a brand to appear, but only if the ad looks as good as the images people are generating around it.",
+      "A plain stock-photo banner next to a fresh, cinematic AI image will look dated. Brands that want to win in placements like this will need scroll-stopping visuals, made fast and in many variations to test. For now the test is US-only, so brands elsewhere have time to get their creative ready before it expands."
+    ]}
+  ],
+  "video": {"youtube": "2agJo3Jf_O4", "title": "The Thinking Behind Ads in ChatGPT", "caption": "OpenAI Podcast, Episode 13: OpenAI's ads team explains the principles behind ads in ChatGPT, from when ads first launched in February 2026."},
+  "sources": [
+    {"name": "Yahoo Finance: OpenAI testing visual ads in ChatGPT image generation", "url": "https://finance.yahoo.com/media-advertising/articles/openai-testing-visual-ads-chatgpt-172839451.html"},
+    {"name": "PPC Land: OpenAI to test ads during ChatGPT image generation in US this month", "url": "https://ppc.land/openai-to-test-ads-during-chatgpt-image-generation-in-us-this-month/"},
+    {"name": "BestMediaInfo: OpenAI pilots ChatGPT ad verification with DoubleVerify and IAS", "url": "https://bestmediainfo.com/mediainfo/mediainfo-digital/openai-pilots-chatgpt-ad-verification-with-doubleverify-and-ias-tests-visual-ads-12627772"},
+    {"name": "BetaNews: OpenAI to test visual ads during ChatGPT image generation", "url": "https://betanews.com/article/chatgpt-visual-ads-image-generation/"},
+    {"name": "OpenAI Podcast, Episode 13 (YouTube)", "url": "https://www.youtube.com/watch?v=2agJo3Jf_O4"}
+  ],
+  "tags": ["ChatGPT", "OpenAI", "AI advertising", "AI image generation"]
+}
