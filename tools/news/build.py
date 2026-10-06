@@ -267,7 +267,7 @@ def article_page(a, others, header, footer):
       <aside class="news-cta reveal">
         <p class="section-tag">PAPAD PIXELS</p>
         <h2>Need ads that look this good <span class="accent">everywhere?</span></h2>
-        <p>We make AI video ads, AI TV commercials and AI UGC for brands worldwide, from brief to 4K delivery.</p>
+        <p>Papad Pixels is an AI video production studio making AI video ads, AI TV commercials and AI UGC for brands worldwide, from brief to 4K delivery.</p>
         <div class="news-cta-actions">
           <a href="/#contact" class="btn btn-primary"><span>Start a Project</span></a>
           <a href="/portfolio" class="btn btn-outline"><span>See Our Work</span></a>
