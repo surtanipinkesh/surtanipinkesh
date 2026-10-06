@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Papad Pixels AI News</title>
+  <link>https://papadpixels.com/ai-news/</link>
+  <atom:link href="https://papadpixels.com/ai-news/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>AI image and video generation news, explained for brands.</description>
+  <language>en</language>
+  <item>
+    <title>OpenAI will show ads while you create images in ChatGPT</title>
+    <link>https://papadpixels.com/ai-news/chatgpt-image-generation-visual-ads</link>
+    <guid isPermaLink="true">https://papadpixels.com/ai-news/chatgpt-image-generation-visual-ads</guid>
+    <pubDate>Tue, 06 Oct 2026 05:00:00 +0000</pubDate>
+    <description>OpenAI will test labelled visual ads in ChatGPT image generation in the US from late October 2026: who sees them, how they work, what it means for brands.</description>
+    <enclosure url="https://papadpixels.com/assets/ai-news/chatgpt-image-generation-visual-ads.jpg" type="image/jpeg" length="98112"/>
+  </item>
+</channel>
+</rss>

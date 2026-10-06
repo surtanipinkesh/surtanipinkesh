@@ -2,14 +2,16 @@
 """Builds the AI News section of papadpixels.com.
 
 Each story is a JSON file in tools/news/articles/. This script turns every
-story into news/<slug>.html, rebuilds the news/index.html listing and adds
-the pages to sitemap.xml. Header and footer are copied from learn.html so
-the menu always matches the rest of the site.
+story into ai-news/<slug>.html (served at /ai-news/<slug>), rebuilds the
+ai-news/index.html listing and its RSS feed, fills the "Latest AI news"
+strip on the homepage, adds the pages to sitemap.xml and keeps the old
+/news/ addresses forwarding to the new ones. Header and footer are copied
+from learn.html so the menu always matches the rest of the site.
 
     python3 tools/news/build.py            build everything
     python3 tools/news/build.py --cards    also (re)render the image cards
 
-A story's image card is assets/news/<slug>.jpg, rendered from its "card"
+A story's image card is assets/ai-news/<slug>.jpg, rendered from its "card"
 field with tools/xcard/render.js.
 """
 import datetime as dt
@@ -23,6 +25,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ARTICLES = ROOT / 'tools' / 'news' / 'articles'
 SITE = 'https://papadpixels.com'
+SECTION = 'ai-news'          # pages live at /ai-news/<slug>
+OLD_SECTIONS = ('news',)      # earlier addresses that now forward here
 CSS_VERSION = re.search(r'css/style\.css\?v=(\d+)', (ROOT / 'index.html').read_text()).group(1)
 JS_VERSION = re.search(r'js/script\.js\?v=(\d+)', (ROOT / 'index.html').read_text()).group(1)
 
@@ -45,7 +49,7 @@ def site_parts():
     header = learn[learn.index('<!-- ============ NAV ============ -->'):learn.index('</header>') + len('</header>')]
     footer = learn[learn.index('<!-- ============ FOOTER ============ -->'):learn.index('</footer>') + len('</footer>')]
     header = header.replace(' active" aria-current="page"', '"')
-    header = header.replace('<a href="/news/" class="nav-link">', '<a href="/news/" class="nav-link active" aria-current="page">')
+    header = header.replace(f'<a href="/{SECTION}/" class="nav-link">', f'<a href="/{SECTION}/" class="nav-link active" aria-current="page">')
     return absolute(header), absolute(footer)
 
 
@@ -94,6 +98,7 @@ def head(title, description, url, image, extra_ld):
 <link rel="preload" href="/assets/fonts/orbitron-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/space-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css?v={CSS_VERSION}">
+<link rel="alternate" type="application/rss+xml" title="Papad Pixels AI News" href="/{SECTION}/feed.xml">
 </head>
 <body>
 
@@ -135,8 +140,8 @@ def load():
     for f in sorted(ARTICLES.glob('*.json')):
         a = json.loads(f.read_text())
         a['_date'] = dt.date.fromisoformat(a['date'])
-        a['url'] = f"{SITE}/news/{a['slug']}"
-        a['image'] = f"/assets/news/{a['slug']}.jpg"
+        a['url'] = f"{SITE}/{SECTION}/{a['slug']}"
+        a['image'] = f"/assets/{SECTION}/{a['slug']}.jpg"
         stories.append(a)
     return sorted(stories, key=lambda a: (a['_date'], a['slug']), reverse=True)
 
@@ -175,18 +180,23 @@ def video_block(v):
 
 def article_page(a, others, header, footer):
     d = a['_date']
-    title = f"{a['title']} | AI News | Papad Pixels"
+    title = f"{a.get('seo_title') or a['title']} | Papad Pixels"
+    description = a.get('description') or a['dek']
     image = SITE + a['image']
     article_ld = {
         '@context': 'https://schema.org', '@type': 'NewsArticle',
-        'headline': a['title'], 'description': a['dek'], 'image': [image],
+        'headline': a['title'], 'description': description, 'image': [image],
         'datePublished': f"{a['date']}T09:00:00+04:00", 'dateModified': f"{a['date']}T09:00:00+04:00",
         'author': {'@type': 'Organization', 'name': 'Papad Pixels', 'url': SITE + '/'},
         'publisher': {'@type': 'Organization', 'name': 'Papad Pixels',
                       'logo': {'@type': 'ImageObject', 'url': SITE + '/assets/logo-mark.png'}},
         'mainEntityOfPage': a['url'], 'keywords': ', '.join(a.get('tags', [])),
     }
-    extra = ld(article_ld) + '\n' + ld(breadcrumbs([('Home', SITE + '/'), ('AI News', SITE + '/news/'), (a['title'], a['url'])]))
+    extra = ld(article_ld) + '\n' + ld(breadcrumbs([('Home', SITE + '/'), ('AI News', f'{SITE}/{SECTION}/'), (a['title'], a['url'])]))
+    if a.get('faq'):
+        extra += '\n' + ld({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+            {'@type': 'Question', 'name': q['q'], 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub(r'<[^>]+>', '', q['a'])}}
+            for q in a['faq']]})
     body = []
     video_after = a.get('video_after', 1)
     for i, s in enumerate(a['sections']):
@@ -203,7 +213,7 @@ def article_page(a, others, header, footer):
     sources = ''.join(f'\n          <li><a href="{esc(s["url"])}" target="_blank" rel="noopener">{esc(s["name"])}</a></li>' for s in a['sources'])
     tags = ''.join(f'<li>{esc(t)}</li>' for t in a.get('tags', []))
     more = ''.join(f'''
-        <a class="news-card" href="/news/{o['slug']}">
+        <a class="news-card" href="/{SECTION}/{o['slug']}">
           <img src="{o['image']}" alt="" loading="lazy" width="1200" height="675">
           <span class="news-card-date">{long_date(o['_date'])}</span>
           <span class="news-card-title">{esc(o['title'])}</span>
@@ -217,12 +227,19 @@ def article_page(a, others, header, footer):
     </div>
   </section>''' if others else ''
     minutes = max(2, round(words(a) / 200))
-    return head(title, a['dek'], a['url'], image, extra) + header + f'''
+    faq = ''.join(f'''
+          <details class="news-faq-item"><summary>{esc(q['q'])}</summary><p>{q['a']}</p></details>''' for q in a.get('faq', []))
+    faq_block = f'''
+
+      <section class="news-section news-faq reveal">
+        <h2>Questions people ask</h2>{faq}
+      </section>''' if faq else ''
+    return head(title, description, a['url'], image, extra) + header + f'''
 
 <main>
   <article class="news-article">
     <header class="news-head wrap">
-      <nav class="news-crumbs" aria-label="Breadcrumb"><a href="/news/">AI News</a><span aria-hidden="true">/</span><time datetime="{a['date']}">{long_date(d)}</time></nav>
+      <nav class="news-crumbs" aria-label="Breadcrumb"><a href="/{SECTION}/">AI News</a><span aria-hidden="true">/</span><time datetime="{a['date']}">{long_date(d)}</time></nav>
       <h1 class="reveal">{a['headline_html']}</h1>
       <p class="news-dek reveal">{esc(a['dek'])}</p>
       <p class="news-byline">By Papad Pixels · {minutes} min read</p>
@@ -238,7 +255,7 @@ def article_page(a, others, header, footer):
         <ul>{tldr}
         </ul>
       </aside>
-{''.join(body)}
+{''.join(body)}{faq_block}
 
       <section class="news-sources">
         <h2>Sources</h2>
@@ -264,15 +281,15 @@ def article_page(a, others, header, footer):
 
 
 def index_page(stories, header, footer):
-    url = SITE + '/news/'
-    title = 'AI News: Image and Video Generation, Explained for Brands | Papad Pixels'
+    url = f'{SITE}/{SECTION}/'
+    title = 'AI News Today: AI Image & Video Generation Updates for Brands | Papad Pixels'
     desc = 'The latest news on AI image and video generation and AI advertising, explained in plain words with what it means for brands. Updated by Papad Pixels.'
     image = SITE + (stories[0]['image'] if stories else '/assets/og-image.jpg')
     extra = ld({'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': 'AI News', 'url': url, 'description': desc}) \
         + '\n' + ld(breadcrumbs([('Home', SITE + '/'), ('AI News', url)]))
     lead, rest = (stories[0], stories[1:]) if stories else (None, [])
     feature = f'''
-      <a class="news-feature reveal" href="/news/{lead['slug']}">
+      <a class="news-feature reveal" href="/{SECTION}/{lead['slug']}">
         <img src="{lead['image']}" alt="" width="1200" height="675" fetchpriority="high">
         <span class="news-feature-text">
           <span class="news-card-date">{long_date(lead['_date'])} · Latest</span>
@@ -282,7 +299,7 @@ def index_page(stories, header, footer):
         </span>
       </a>''' if lead else '<p class="news-empty">The first stories are on their way.</p>'
     cards = ''.join(f'''
-        <a class="news-card reveal" href="/news/{o['slug']}">
+        <a class="news-card reveal" href="/{SECTION}/{o['slug']}">
           <img src="{o['image']}" alt="" loading="lazy" width="1200" height="675">
           <span class="news-card-date">{long_date(o['_date'])}</span>
           <span class="news-card-title">{esc(o['title'])}</span>
@@ -312,12 +329,75 @@ def index_page(stories, header, footer):
 def update_sitemap(stories):
     p = ROOT / 'sitemap.xml'
     s = p.read_text()
-    s = re.sub(r'\s*<url>\s*<loc>https://papadpixels\.com/news/[^<]*</loc>.*?</url>', '', s, flags=re.S)
-    entries = [(f'{SITE}/news/', stories[0]['date'] if stories else dt.date.today().isoformat())]
+    s = re.sub(r'\s*<url>\s*<loc>https://papadpixels\.com/(?:ai-)?news/[^<]*</loc>.*?</url>', '', s, flags=re.S)
+    entries = [(f'{SITE}/{SECTION}/', stories[0]['date'] if stories else dt.date.today().isoformat())]
     entries += [(a['url'], a['date']) for a in stories]
     block = ''.join(f'\n  <url>\n    <loc>{u}</loc>\n    <lastmod>{d}</lastmod>\n  </url>' for u, d in entries)
     s = s.replace('\n</urlset>', block + '\n</urlset>')
     p.write_text(s)
+
+
+def feed(stories):
+    items = ''.join(f"""
+  <item>
+    <title>{esc(a['title'])}</title>
+    <link>{a['url']}</link>
+    <guid isPermaLink="true">{a['url']}</guid>
+    <pubDate>{dt.datetime.combine(a['_date'], dt.time(5, 0), dt.timezone.utc):%a, %d %b %Y %H:%M:%S +0000}</pubDate>
+    <description>{esc(a.get('description') or a['dek'])}</description>
+    <enclosure url="{SITE}{a['image']}" type="image/jpeg" length="{(ROOT / a['image'].lstrip('/')).stat().st_size}"/>
+  </item>""" for a in stories[:30])
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Papad Pixels AI News</title>
+  <link>{SITE}/{SECTION}/</link>
+  <atom:link href="{SITE}/{SECTION}/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>AI image and video generation news, explained for brands.</description>
+  <language>en</language>{items}
+</channel>
+</rss>
+"""
+
+
+def home_strip(stories):
+    """The 'Latest AI news' strip on the homepage, between the markers in index.html."""
+    p = ROOT / 'index.html'
+    s = p.read_text()
+    start, end = '<!-- AI-NEWS:START -->', '<!-- AI-NEWS:END -->'
+    if start not in s or not stories:
+        return
+    cards = ''.join(f"""
+        <a class="news-card reveal" href="/{SECTION}/{a['slug']}">
+          <img src="{a['image'].lstrip('/')}" alt="" loading="lazy" width="1200" height="675">
+          <span class="news-card-date">{long_date(a['_date'])}</span>
+          <span class="news-card-title">{esc(a['title'])}</span>
+        </a>""" for a in stories[:3])
+    block = f"""{start}
+<section class="section home-news" id="ai-news">
+  <div class="wrap">
+    <p class="section-tag reveal">AI NEWS</p>
+    <h2 class="section-title reveal">Latest in <span class="accent">AI image &amp; video</span></h2>
+    <div class="news-grid">{cards}
+    </div>
+    <p class="home-news-more reveal"><a href="/{SECTION}/">All AI news &rarr;</a></p>
+  </div>
+</section>
+{end}"""
+    s = s[:s.index(start)] + block + s[s.index(end) + len(end):]
+    p.write_text(s)
+
+
+def forward(target):
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Moved to {target}</title>
+<link rel="canonical" href="{target}">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={target}">
+<script>location.replace({json.dumps(target)} + location.hash)</script>
+</head><body><p>This page moved to <a href="{target}">{target}</a>.</p></body></html>
+"""
 
 
 def main():
@@ -329,14 +409,24 @@ def main():
         if not (ROOT / a['image'].lstrip('/')).is_file():
             render_card(a)
     header, footer = site_parts()
-    out = ROOT / 'news'
+    out = ROOT / SECTION
     out.mkdir(exist_ok=True)
     for a in stories:
         others = [o for o in stories if o is not a]
         (out / f"{a['slug']}.html").write_text(article_page(a, others, header, footer))
-        print('page ', f"news/{a['slug']}.html")
+        print('page ', f"{SECTION}/{a['slug']}.html")
     (out / 'index.html').write_text(index_page(stories, header, footer))
-    print('page  news/index.html')
+    print(f'page  {SECTION}/index.html')
+    (out / 'feed.xml').write_text(feed(stories))
+    print(f'feed  {SECTION}/feed.xml')
+    for old in OLD_SECTIONS:   # old addresses keep working
+        o = ROOT / old
+        o.mkdir(exist_ok=True)
+        (o / 'index.html').write_text(forward(f'{SITE}/{SECTION}/'))
+        for a in stories:
+            (o / f"{a['slug']}.html").write_text(forward(a['url']))
+    home_strip(stories)
+    print('homepage strip updated')
     update_sitemap(stories)
     print('sitemap updated')
 
