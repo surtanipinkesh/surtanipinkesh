@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Orbitron';font-weight:400 900;src:url(../../assets/fonts/orbitron-var-latin.woff2) format('woff2')}
+@font-face{font-family:'Space Grotesk';font-weight:300 700;src:url(../../assets/fonts/space-grotesk-var-latin.woff2) format('woff2')}
+@font-face{font-family:'Space Mono';font-weight:400;src:url(../../assets/fonts/space-mono-400-latin.woff2) format('woff2')}
+:root{--navy:#24334c;--bg:#18160f;--gold:#e0af3b;--gold-bright:#f0c568;--cream:#f8f5ee;--dim:#a79c8a}
+*{margin:0;box-sizing:border-box}
+html,body{width:1200px;height:675px;background:var(--navy)}
+.card{position:relative;width:1200px;height:675px;overflow:hidden;padding:64px 72px;color:var(--cream);
+  background:radial-gradient(900px 500px at 85% 15%,rgba(224,175,59,.16),transparent 60%),
+             linear-gradient(160deg,#2a3b58 0%,var(--navy) 45%,#1a2537 100%);
+  display:flex;flex-direction:column;font-family:'Space Grotesk',sans-serif}
+.card::after{content:'';position:absolute;inset:22px;border:1px solid rgba(224,175,59,.28);border-radius:6px;pointer-events:none}
+.kicker{font-family:'Space Mono',monospace;font-size:20px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:16px}
+.kicker i{display:block;width:44px;height:2px;background:var(--gold)}
+h1{font-family:'Orbitron',sans-serif;font-weight:800;line-height:1.16;margin-top:30px;letter-spacing:.005em;color:var(--cream)}
+h1 em{font-style:normal;color:var(--gold-bright)}
+.sub{margin-top:24px;font-size:27px;line-height:1.42;color:#d9d3c6;max-width:960px}
+.foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between}
+.foot img{height:66px;display:block}
+.foot .src{font-family:'Space Mono',monospace;font-size:17px;letter-spacing:.08em;color:var(--dim);text-align:right;line-height:1.6}
+.foot .src b{color:var(--cream);font-weight:400}
+</style></head>
+<body><div class="card">
+  <div class="kicker"><i></i><span id="kicker"></span></div>
+  <h1 id="headline"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="foot">
+    <img src="../../assets/logo-header.png" alt="">
+    <div class="src">Source: <b id="source"></b><br>papadpixels.com</div>
+  </div>
+</div>
+<script>
+const d = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+document.getElementById('kicker').textContent = d.kicker;
+// *words* in the headline are highlighted in gold
+document.getElementById('headline').innerHTML = esc(d.headline).replace(/\*(.+?)\*/g, '<em>$1</em>');
+document.getElementById('sub').textContent = d.sub || '';
+document.getElementById('source').textContent = d.source;
+const h = document.getElementById('headline');
+let size = 64; h.style.fontSize = size + 'px';
+const room = () => document.querySelector('.foot').getBoundingClientRect().top - document.getElementById('sub').getBoundingClientRect().bottom;
+while (size > 34 && room() < 40) { size -= 2; h.style.fontSize = size + 'px'; }
+document.body.dataset.ready = '1';
+</script>
+</body></html>
