@@ -72,6 +72,8 @@ existing one):
 
 Write everything in your own words: no copied sentences from articles.
 Never mention any person's name from the Papad Pixels team.
+When describing Papad Pixels, always call it an **AI video production
+studio**, never an agency.
 
 ## 4. Build and publish the website story
 
