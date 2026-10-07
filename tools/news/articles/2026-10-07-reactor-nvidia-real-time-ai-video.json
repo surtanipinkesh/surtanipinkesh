@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-07",
+  "slug": "reactor-nvidia-real-time-ai-video",
+  "title": "NVIDIA backs Reactor, the startup making AI video run in real time",
+  "headline_html": "NVIDIA backs Reactor, the startup making AI video run <span class=\"accent\">in real time</span>",
+  "seo_title": "Reactor Raises $74M With NVIDIA for Real-Time AI Video",
+  "description": "NVIDIA and Sapphire Ventures join Reactor's Series A, taking the real-time AI video startup to $74M. What Reactor does and what it means for brands.",
+  "dek": "Most AI video today is rendered as a finished clip. Reactor generates it live, frame by frame, as people interact with it, and NVIDIA has just invested. Here is what Reactor does, why investors care and what real-time AI video could mean for advertising.",
+  "card": {"headline": "NVIDIA backs *live* AI video", "points": ["NVIDIA and Sapphire Ventures join Reactor's Series A", "Total funding now $74M, in a round led by Lightspeed", "Streams interactive AI video at 60+ fps, under 40 ms delay"], "source": "Reactor via Business Wire"},
+  "tldr": [
+    "On 5 October 2026, Reactor announced that NVIDIA and Sapphire Ventures have joined its Series A round, led by Lightspeed Venture Partners.",
+    "The new money takes Reactor's total funding to $74 million, up from $59 million when it launched in May 2026.",
+    "Reactor is a developer platform for real-time generative video and world models: AI video that is created live while people interact with it.",
+    "Its system runs these models at more than 60 frames per second with under 40 milliseconds of delay, through one SDK and API."
+  ],
+  "sections": [
+    {"heading": "What happened", "paragraphs": [
+      "Reactor, a San Francisco startup building infrastructure for real-time AI video, announced that NVIDIA and Sapphire Ventures have joined its Series A round. The round is led by Lightspeed Venture Partners, which also led Reactor's launch funding in May.",
+      "With the new investors, Reactor has raised $74 million in total. The company says it is seeing growing use across media, entertainment and physical AI, where machines learn to understand and act in the real world."
+    ]},
+    {"heading": "The key details", "list": [
+      "<strong>What Reactor builds:</strong> an inference engine, a global GPU cloud and a streaming layer that let developers run real-time world models inside their own apps.",
+      "<strong>Speed:</strong> more than 60 frames per second with under 40 milliseconds of delay, fast enough for video that reacts the moment someone moves or types.",
+      "<strong>For developers:</strong> one SDK and API, so a real-time AI world can be added to an app with a few lines of code.",
+      "<strong>Funding:</strong> $74 million in total. Lightspeed led the round; NVIDIA and Sapphire Ventures are the newest investors, joining earlier backers including WndrCo and Amplify Partners.",
+      "<strong>The team:</strong> founded in 2025 by two former technical leads on Apple Vision Pro. Early partners span film, television and robotics."
+    ]},
+    {"heading": "The background", "paragraphs": [
+      "The AI video tools most brands know, such as Seedance, Veo or Kling, take a prompt and render a finished clip a few seconds or minutes later. World models work differently: they keep generating the scene continuously and change it in response to what the viewer does, more like a video game than a video file.",
+      "Running that live is expensive and technically hard, because every frame has to be generated in a fraction of a second. That is the problem Reactor is selling its platform to solve, and it explains why a chip maker like NVIDIA is interested. Reactor first came out of stealth in May 2026 with $59 million, and world-model startups have been attracting some of the year's larger AI funding rounds."
+    ]},
+    {"heading": "What it means for brands", "label": "Papad Pixels view", "paragraphs": [
+      "Today an AI ad is a finished film: every viewer sees the same 15 or 30 seconds. Real-time video points to ads people can steer, such as a product demo you explore from any angle, a story that branches on your choice, or a scene that changes for each viewer.",
+      "It is early: Reactor sells infrastructure to developers, not a ready-made ad tool, so interactive AI ads at scale are still some way off. For now the winners are brands with strong, consistent AI visuals they can reuse. Characters, products and worlds built for <a href=\"/ai-video-ads\">AI video ads</a> today become the assets that interactive formats will be built on tomorrow."
+    ]}
+  ],
+  "faq": [
+    {"q": "What is Reactor?", "a": "Reactor is a San Francisco developer platform for real-time generative video and world models. It provides the engine, GPU cloud and streaming layer that let apps run AI video live, at more than 60 frames per second."},
+    {"q": "How much funding has Reactor raised?", "a": "$74 million in total. It launched in May 2026 with $59 million led by Lightspeed Venture Partners, and NVIDIA and Sapphire Ventures joined the Series A in October 2026."},
+    {"q": "What is a world model in AI video?", "a": "A world model generates a scene continuously and reacts to input as it goes, instead of rendering one fixed clip. That makes interactive, game-like AI video possible."},
+    {"q": "Can brands use real-time AI video in ads today?", "a": "Not widely yet. Platforms like Reactor are aimed at developers, so interactive AI ads are still early. Brands can prepare by building consistent AI characters, products and worlds that can later be reused in interactive formats."}
+  ],
+  "video": {"youtube": "sfYQm75tvPg", "title": "How to Use Real-Time World Models for Branching Stories with Reactor", "caption": "Reactor's team shows how real-time world models can power interactive, branching stories."},
+  "video_after": 1,
+  "sources": [
+    {"name": "Business Wire via Morningstar: Reactor expands investors in Series A round", "url": "https://www.morningstar.com/news/business-wire/20261005241694/reactor-expands-investors-in-series-a-round-to-scale-real-time-world-model-infrastructure"},
+    {"name": "Yahoo Finance: Reactor expands investors in Series A round", "url": "https://finance.yahoo.com/technology/ai/articles/reactor-expands-investors-series-round-150000298.html"},
+    {"name": "Dealroom: NVIDIA backs Reactor's Series A for real-time world model infrastructure", "url": "https://dealroom.co/news/160020-nvidia-backs-reactors-series-a-for-real-time-world-model-infrastructure/"},
+    {"name": "Crypto Briefing: Nvidia joins Reactor's Series A as world model startup reaches $74 million", "url": "https://cryptobriefing.com/nvidia-backs-reactor-world-models-funding/"},
+    {"name": "PR Newswire: Reactor emerges from stealth with $59M (May 2026)", "url": "https://www.prnewswire.com/news-releases/reactor-emerges-from-stealth-with-59m-to-build-the-platform-for-real-time-ai-worlds-302783715.html"},
+    {"name": "Reactor on YouTube: real-time world models for branching stories", "url": "https://www.youtube.com/watch?v=sfYQm75tvPg"}
+  ],
+  "tags": ["Reactor", "NVIDIA", "Real-time AI video", "World models"]
+}
