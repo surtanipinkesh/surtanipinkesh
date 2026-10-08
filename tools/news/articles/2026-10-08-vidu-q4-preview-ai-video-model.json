@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-08",
+  "slug": "vidu-q4-preview-ai-video-model",
+  "title": "Vidu Q4 Preview: ShengShu's new AI video model focuses on acting, voice and 4K",
+  "headline_html": "Vidu Q4 Preview puts <span class=\"accent\">AI acting</span> and 4K video first",
+  "seo_title": "Vidu Q4 Preview: Features, 4K and Pricing Explained",
+  "description": "Vidu Q4 Preview is out: 15 image references, 3 voice references, up to 16-second clips in 4K. Features, pricing and what it means for AI ads.",
+  "dek": "ShengShu Technology has released a public preview of Vidu Q4, its next flagship AI video model. The focus is performance: faces, emotion, movement and voice that stay in sync, with consistent characters across shots and output up to 4K.",
+  "card": {"headline": "Vidu Q4 makes AI characters *act*", "points": ["Up to 15 image and 3 voice references per clip", "Clips up to 16 seconds, from 540p to 4K", "Launch prices from $0.014 per second"], "source": "ShengShu Technology"},
+  "tldr": [
+    "On 7 October 2026, ShengShu Technology released Vidu Q4 Preview, an early version of its next flagship AI video model.",
+    "It is built for performance: facial expression, emotion, body movement and voice are generated to work together.",
+    "One clip can use up to 15 image references and 3 audio references to keep characters, outfits and voices consistent.",
+    "Clips run up to 16 seconds, at resolutions from 540p up to 4K, with 10-bit colour at the top tiers.",
+    "It is available now on Vidu's website and API, with launch promotional pricing from $0.014 per second."
+  ],
+  "sections": [
+    {"heading": "What happened", "paragraphs": [
+      "ShengShu Technology, the Beijing company behind the Vidu video generator, released Vidu Q4 Preview on 7 October 2026. It is an early, public version of Q4, the model that will replace Vidu Q3 as its flagship.",
+      "The company is shipping the preview before the full release so creators can use it on real projects and shape the final model. Its main promise is better acting: AI characters whose faces, emotions, movements and voices stay in step with each other, aimed at short dramas, advertising and film."
+    ]},
+    {"heading": "The key details", "list": [
+      "<strong>Consistent characters:</strong> Reference-to-Video takes 1 to 15 image references and up to 3 audio references, so the same person, outfit and voice can carry across shots.",
+      "<strong>Performance:</strong> expression, emotion, body movement and speech are generated together rather than layered on afterwards.",
+      "<strong>Camera and effects:</strong> the camera is designed to follow fast action such as fights and chases more smoothly, and effects like explosions and particles blend better into the scene.",
+      "<strong>Length and quality:</strong> clips of up to 16 seconds, at 540p, 720p, 1080p, 2K or 4K, with 10-bit colour at the higher resolutions.",
+      "<strong>Price:</strong> launch promotional pricing starts at $0.014 per second. ShengShu's own release lists standard rates from $0.045 per second at 540p up to $0.39 per second at 4K, with 30% off image-to-video and reference-to-video until 30 November. Final pricing may change.",
+      "<strong>Where:</strong> on the Vidu web app and through the Vidu API platform for developers."
+    ]},
+    {"heading": "The background", "paragraphs": [
+      "ShengShu was founded in Beijing in 2023 by a team with roots at Tsinghua University, and its Vidu models are one of China's main rivals to Kling, Seedance and Google's Veo. Vidu Q3, released in January 2026, added synchronised sound and video in clips up to 16 seconds and became known for its reference-to-video feature.",
+      "Q4 arrives during a busy few months for AI video. ByteDance's Seedance 2.5, Alibaba's Wan 3 and MiniMax H3 all launched over the summer, and Kuaishou has said the full Kling 4.0 will launch this month. Most of these releases compete on length and resolution; Vidu is putting acting and character consistency at the centre instead."
+    ]},
+    {"heading": "What it means for brands", "label": "Papad Pixels view", "paragraphs": [
+      "The hardest part of AI video ads is not a pretty shot, it is a believable person who looks, moves and sounds the same in every scene. A model built around references for face, wardrobe and voice makes recurring brand characters, spokespeople and AI UGC-style creators far more practical.",
+      "4K output with 10-bit colour also matters for anything going beyond social, such as TV, outdoor screens or work that needs proper colour grading. It is still a preview, so we would test it alongside the tools already in a production pipeline rather than switch overnight. If you want to see how consistent AI characters work in practice, have a look at our <a href=\"/ai-ugc-videos\">AI UGC videos</a>."
+    ]}
+  ],
+  "faq": [
+    {"q": "When was Vidu Q4 Preview released?", "a": "ShengShu Technology released Vidu Q4 Preview on 7 October 2026. It is an early public version; the full Q4 model will follow."},
+    {"q": "How much does Vidu Q4 Preview cost?", "a": "Launch promotional pricing starts at $0.014 per second of video. ShengShu's release lists standard rates from $0.045 per second at 540p to $0.39 per second at 4K, and says final pricing may change."},
+    {"q": "What resolution and length does Vidu Q4 support?", "a": "Clips of up to 16 seconds, at 540p, 720p, 1080p, 2K or 4K, with 10-bit colour available at the higher resolutions."},
+    {"q": "How is Vidu Q4 different from Vidu Q3?", "a": "Q4 focuses on performance and consistency: up to 15 image and 3 voice references per clip, better-coordinated expression and movement, smoother action camera work and output up to 4K."}
+  ],
+  "sources": [
+    {"name": "GlobeNewswire: Shengshu Technology launches Vidu Q4 Preview", "url": "https://www.globenewswire.com/news-release/2026/10/07/3376813/0/en/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances.html"},
+    {"name": "PR Newswire: Vidu launches Q4 Preview", "url": "https://www.prnewswire.com/news-releases/vidu-launches-q4-preview-making-flagship-ai-video-creation-accessible-to-everyone-302901266.html"},
+    {"name": "Unite.AI: Vidu releases Q4 Preview of next-generation flagship AI video model", "url": "https://www.unite.ai/vidu-releases-q4-preview-of-next-generation-flagship-ai-video-model/"},
+    {"name": "Vidu platform: pricing documentation", "url": "https://platform.vidu.com/docs/pricing"},
+    {"name": "36Kr: Vidu Q3 launch and ShengShu background", "url": "https://eu.36kr.com/en/p/3760875689837315"}
+  ],
+  "tags": ["Vidu", "ShengShu", "AI video model", "4K"]
+}
