@@ -1,0 +1,111 @@
+{
+ "date": "2026-10-10",
+ "slug": "google-synthid-detector-public-ai-video-check",
+ "title": "Google opens SynthID Detector to everyone: check if an image, video or audio clip was made with AI",
+ "headline_html": "Anyone can now <span class=\"accent\">check AI video</span> with Google's SynthID Detector",
+ "seo_title": "Google SynthID Detector Now Public: How It Works",
+ "description": "Google's SynthID Detector is now free for everyone and reads watermarks from Google, OpenAI, NVIDIA and Kakao. What it checks, limits and why brands care.",
+ "dek": "Google has opened its SynthID Detector website to the public. Anyone can upload an image, video or audio file and see whether it carries an invisible AI watermark from Google or its partners OpenAI, NVIDIA and Kakao, with Apple support on the way.",
+ "card": {
+  "headline": "Anyone can now *check AI video* with Google",
+  "points": [
+   "Free SynthID Detector website, open to the public",
+   "Reads watermarks from Google, OpenAI, NVIDIA, Kakao",
+   "Images, video and audio, about 10 checks a day"
+  ],
+  "source": "Google"
+ },
+ "tldr": [
+  "Google opened its SynthID Detector website to the public on 7 October 2026, worldwide and in English.",
+  "You upload an image, video or audio file and it says whether it finds a SynthID watermark.",
+  "It now reads watermarks from Google, OpenAI, NVIDIA and Kakao, and Google says Apple support is coming.",
+  "Sign-in with a Google, Apple or OpenAI account is required, with a limit of roughly 10 checks per person per day.",
+  "It is not a general AI detector: no watermark found does not prove a file was made without AI."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Google has made SynthID Detector, its tool for spotting AI-generated media, available to anyone. Until now the website was limited to journalists, researchers and other early testers. Since 7 October 2026 it has been open worldwide, in English, at synthid.com.",
+    "The bigger change is who it covers. SynthID started as Google's own invisible watermark, built into images, video and audio made with its AI models. The detector now also recognises the watermark when it is used by OpenAI, NVIDIA and Kakao, so one upload can check media from several of the biggest AI image and video tools."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>What it checks:</strong> images, video (including MP4, MOV and WEBM) and audio files. Text is not part of the public site.",
+    "<strong>Whose AI:</strong> Google, OpenAI, NVIDIA and Kakao. Google says Apple will be added soon.",
+    "<strong>Result:</strong> a simple answer on whether a SynthID watermark was found. The public version does not highlight which part of a file was edited.",
+    "<strong>Access:</strong> free, after signing in with a Google, Apple or OpenAI account.",
+    "<strong>Limits:</strong> roughly 10 checks per person per day, according to Google, partly to stop people using the checker to build watermark-removal tools. Bulk checking by software is not allowed.",
+    "<strong>Not a lie detector:</strong> Google says plainly that this is not a general AI detector. Media from tools that do not use SynthID will not be flagged, and a clean result does not prove a file is human-made."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Google DeepMind introduced SynthID in 2023 as a watermark that hides inside the pixels or sound of AI output, invisible to people but readable by software, and designed to survive common edits like cropping, compression and filters. It has since been added to Google's image, video, music and text models, and Google has said that well over 10 billion pieces of content carry it.",
+    "The detector website was first shown in May 2025 for a small group of testers, and Google later added SynthID checks inside the Gemini app. Opening it to everyone, and reading other companies' watermarks too, comes as AI images and video spread fast across social media and advertising. Platforms, regulators and industry groups are all pushing for clearer labelling of AI content, alongside open standards like C2PA content credentials."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "AI-made video is now something your customers can check in a few seconds. That is good news for honest brands: it makes deepfakes and fake product claims easier to catch, and it rewards being open about using AI rather than hiding it.",
+    "For AI ads, the practical step is simple: assume any AI shot can be identified, label AI content where platforms ask for it, and make the creative good enough that nobody minds how it was made. Strong ideas, real product details and a clear brand story matter more than ever. That is how we approach our <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is Google's SynthID Detector free?",
+   "a": "Yes. It is free to use at synthid.com after signing in with a Google, Apple or OpenAI account, with a limit of roughly 10 checks per person per day."
+  },
+  {
+   "q": "Can SynthID Detector tell if any video was made with AI?",
+   "a": "No. It only finds SynthID watermarks, which are used by Google, OpenAI, NVIDIA and Kakao. AI video from tools that do not use SynthID will not be detected."
+  },
+  {
+   "q": "What files can I check with SynthID Detector?",
+   "a": "Images, video files such as MP4, MOV and WEBM, and audio files. Text checking is not part of the public website."
+  },
+  {
+   "q": "When did SynthID Detector open to the public?",
+   "a": "Google opened it to everyone on 7 October 2026, worldwide and in English. It had been limited to journalists and researchers since May 2025."
+  }
+ ],
+ "sources": [
+  {
+   "name": "PetaPixel: Google's SynthID AI detector is now freely available to everyone",
+   "url": "https://petapixel.com/2026/10/08/googles-synthid-ai-detector-is-now-freely-available-to-everyone/"
+  },
+  {
+   "name": "Search Engine Journal: Google opens its SynthID watermark detector to the public",
+   "url": "https://www.searchenginejournal.com/google-opens-synthid-watermark-detector-to-public/592226/"
+  },
+  {
+   "name": "The Next Web: Google opens SynthID Detector to everyone to check for AI-made media",
+   "url": "https://thenextweb.com/news/google-synthid-detector-public-ai-content-checker"
+  },
+  {
+   "name": "PPC Land: Google's SynthID Detector gains public access and covers 4 companies",
+   "url": "https://ppc.land/googles-synthid-detector-gains-public-access-and-covers-4-companies/"
+  },
+  {
+   "name": "Android Headlines: Google unlocks SynthID site to spot AI fakes",
+   "url": "https://www.androidheadlines.com/2026/10/google-unlocks-synthid-site-spot-ai-fakes.html"
+  },
+  {
+   "name": "SynthID Detector (official site)",
+   "url": "https://synthid.com"
+  }
+ ],
+ "tags": [
+  "Google",
+  "SynthID",
+  "AI detection",
+  "AI video",
+  "Watermark"
+ ]
+}
