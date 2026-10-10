@@ -44,14 +44,14 @@ export const PROJECTS = [
   { cat: 'tvc', title: 'Mystique Perfumes UGC Ad', w: 240, h: 426, thumb: '2203763529-c9a1e0b5fef87a83396fa67a917d7a352b1a7aada00e8fba54a7f17875d04da4-d', source: { type: 'vimeo-video', id: '1229170600' } },
   { cat: 'tvc', title: 'Drive-Thru UGC Ad', w: 240, h: 426, thumb: '2203763485-23fba5fd9623de8a8da4a8d24a7039a62cbf330157775cbd525a8f7bc0118c22-d', source: { type: 'vimeo-video', id: '1229170527' } },
   // AI Video Ads
-  { cat: 'ai', title: 'GNOCCA: The Unveiling | AI Luxury Fragrance Film', w: 16, h: 9, source: { type: 'youtube-video', id: 'a99QuBXwC1A' } },
-  { cat: 'ai', title: '100% AI-Generated Ice Cream Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'e9_L8YMh7zM' } },
+  { cat: 'ai', title: 'GNOCCA: The Unveiling | AI Luxury Fragrance Film', w: 16, h: 9, source: { type: 'youtube-video', id: '2HyZ7oYIjMg' } },
+  { cat: 'ai', title: '100% AI-Generated Ice Cream Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'oGAJmeoQsMc' } },
   { cat: 'ai', title: 'Saucesome Noodles: Every Bite Glows | AI Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
   { cat: 'ai', title: 'Moovelous | AI Cheese Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
   { cat: 'ai', title: 'Mystique | AI Perfume Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'JkG-pEVQ-O0' } },
   { cat: 'ai', title: 'Cinematic AI Beauty Lipstick Commercial', w: 16, h: 9, source: { type: 'youtube-video', id: 'Gm2HEd6EK6c' } },
   { cat: 'ai', title: 'Dejavu Jeans | AI Fashion Ad', w: 16, h: 9, source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
-  { cat: 'ai', title: 'Dejavu Watches: The Emblem of Power', w: 16, h: 9, source: { type: 'youtube-video', id: 'fdwz_iO9it8' } },
+  { cat: 'ai', title: 'Dejavu Watches: The Emblem of Power', w: 16, h: 9, source: { type: 'youtube-video', id: 'aZxwMphu6bw' } },
 ];
 
 PROJECTS.forEach(p => {
