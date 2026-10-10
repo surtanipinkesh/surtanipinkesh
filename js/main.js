@@ -4,7 +4,7 @@
 import * as THREE from './vendor/three.module.min.js';
 import {
   CATEGORIES, PROJECTS, thumbSrc, loadImage, openVideoModal, bindVideoModal,
-} from './projects.js?v=13';
+} from './projects.js?v=14';
 
 // Round-robins across categories so a touch-device card cap doesn't end up
 // showing only the first category in the list.
