@@ -91,7 +91,7 @@ request and squash-merge it; the site deploys on merge.
 - Add `posts/YYYY-MM-DD-1230-x-ai-news.yml` in papad-social:
 
   ```yaml
-  publish_at: YYYY-MM-DD 12:30   # India time = 11:00 Dubai
+  publish_at: YYYY-MM-DD 11:00   # Dubai time (GMT+4)
   image: media/x-news/YYYY-MM-DD.jpg
   x:
     text: "…"
