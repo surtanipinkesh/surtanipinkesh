@@ -1,0 +1,107 @@
+{
+ "date": "2026-10-11",
+ "slug": "meta-ai-video-ads-advertising-week",
+ "title": "Meta opens AI video ads to all advertisers: still images now become video ads on Facebook and Instagram",
+ "headline_html": "Meta now turns <span class=\"accent\">still images into video ads</span> for every advertiser",
+ "seo_title": "Meta AI Video Ads: Image-to-Video Now for All Brands",
+ "description": "Meta made its image-to-video ad tool available to all advertisers and widened Ads Creative Studio. What changed and what it means for brand video.",
+ "dek": "At Advertising Week New York, Meta made its tool that turns still product images into video ads available to every advertiser on Facebook and Instagram. It also opened its Ads Creative Studio to more brands and showed checkout inside chats with businesses.",
+ "card": {
+  "headline": "Meta turns *still images into video ads*",
+  "points": [
+   "Image-to-video ads now open to all advertisers",
+   "Ads Creative Studio edits hooks, audio, captions",
+   "Product photos become product videos in catalogs"
+  ],
+  "source": "Meta, Advertising Week NY"
+ },
+ "tldr": [
+  "On 6 October 2026, at Advertising Week New York, Meta made its image-to-video ad feature generally available.",
+  "Advertisers can turn still images into short video ads inside Advantage+ Creative on Facebook and Instagram.",
+  "Ads Creative Studio, tested with select partners earlier this year, is opening to more advertisers.",
+  "Eligible catalog advertisers can turn product photos into product videos.",
+  "Meta also showed shoppers buying inside a chat with a business, built with Shopify."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Meta used Advertising Week in New York on 6 October 2026 to roll out a set of AI advertising tools. The headline for brands: the feature in Advantage+ Creative that turns still images into video ads is now generally available, which means any advertiser on Facebook and Instagram can use it rather than a test group.",
+    "Meta paired it with wider access to Ads Creative Studio, its space for generating and editing ad concepts, plus updates to its AI business assistant and new ways for people to buy inside a conversation with a brand."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Image to video:</strong> Advantage+ Creative can turn static ad images into short video ads automatically. It is now generally available to advertisers on Facebook and Instagram.",
+    "<strong>Ads Creative Studio:</strong> after an early rollout to selected partners in 2026, it is opening to more advertisers. It lets brands generate video ad concepts and adjust the hook, audio, length, text overlays, captions and end scene.",
+    "<strong>Catalog videos:</strong> eligible catalog advertisers can turn product images into product videos, and Meta plans to test showing related products from the same brand.",
+    "<strong>Business AI assistant:</strong> it now uses past campaign data and brand guidelines, and Meta is testing scheduled performance reports. Meta says advertisers using it see about 5% more conversions at the same cost per conversion.",
+    "<strong>Checkout in chat:</strong> Meta showed people buying directly in a Messenger conversation with a business, built with Shopify, and is testing checkout inside Meta AI with payment partners.",
+    "<strong>Rollout:</strong> several features are rolling out in phases or still in testing, so what you see can vary by account and market."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Meta has been pushing towards ads that its AI builds and runs end to end. Image-to-video was first previewed in 2025 and tested through 2026 before this general release. Its rivals are moving the same way: Amazon Ads offers a video generator for sellers, and OpenAI recently brought visual ads into ChatGPT, which we covered in <a href=\"/ai-news/chatgpt-image-generation-visual-ads\">ChatGPT's move into visual ads</a>.",
+    "Short-form video is now the main ad format on Instagram and Facebook, and making enough of it is the bottleneck for most brands. Meta's answer is to generate more of it automatically from the assets advertisers already have."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "This is good news for volume. If you sell many products, getting quick motion versions of your product photos for free will help ads keep running fresh. But every brand on Facebook and Instagram now gets the same tool, so automatic image-to-video becomes the baseline, not an advantage.",
+    "What stands out next to it is a real idea: a hook written for your audience, a story, a look that belongs to your brand. We see the strongest results when brands use Meta's tools for variations and testing, and put proper creative into the hero ads those variations come from. That is the work we do in our <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can every advertiser use Meta's image-to-video ads now?",
+   "a": "Yes. Meta made the image-to-video feature in Advantage+ Creative generally available on 6 October 2026 for advertisers on Facebook and Instagram, though rollout can vary by account."
+  },
+  {
+   "q": "What is Meta Ads Creative Studio?",
+   "a": "It is Meta's tool for generating video ad concepts and editing the hook, audio, length, text overlays, captions and end scene. After an early test with selected partners, it is opening to more advertisers."
+  },
+  {
+   "q": "Does Meta's AI video tool cost extra?",
+   "a": "Meta has not announced a separate fee. The tools sit inside its ad products, so you pay for the ads you run, not for the generated videos."
+  },
+  {
+   "q": "Should brands stop making their own video ads?",
+   "a": "No. Automatic videos are useful for quick variations, but every advertiser now has the same tool. Distinctive creative with a clear hook and brand look is what makes ads stand out."
+  }
+ ],
+ "sources": [
+  {
+   "name": "MediaPost: Meta unveils enhanced AI business assistant, automated ad tools",
+   "url": "https://www.mediapost.com/publications/article/418580/meta-unveils-enhanced-ai-business-assistant-autom.html"
+  },
+  {
+   "name": "Social Media Today: Meta introduces new AI-powered tools at Advertising Week",
+   "url": "https://socialmediatoday.com/news/meta-introduces-new-ai-powered-tools-at-ad-week-2026/832288"
+  },
+  {
+   "name": "Inside AI News: Meta launches AI ad tools with in-chat checkout at Ad Week 2026",
+   "url": "https://insideai.news/news/ai-in-business/meta-ai-advertising-tools/13743/"
+  },
+  {
+   "name": "AI Frontier Review: Meta pairs customer lifecycle targeting with video-from-static ads",
+   "url": "https://aifrontierreview.com/articles/2026-10-09-meta-rolls-out-net-new-customer-targeting-and-ai-video-ads-to-all-advertisers-at/"
+  },
+  {
+   "name": "Common Thread Co.: Meta launches generative video ads and in-conversation checkout",
+   "url": "https://commonthreadco.com/blogs/coachs-corner/meta-launches-generative-video-ads-and-in-conversation-checkout-at-advertising-week-ny-what-ecommerce-brands-must-do-now"
+  }
+ ],
+ "tags": [
+  "Meta",
+  "AI video ads",
+  "Instagram",
+  "Facebook",
+  "Advertising"
+ ]
+}
