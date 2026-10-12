@@ -413,16 +413,27 @@ a{ color:inherit; text-decoration:none; }
   .universe-actions{ margin-bottom:8px; }
   .universe-empty{ bottom:140px; }
 
+  /* Every tab stays visible (no sideways scrolling to discover them) */
   .universe-filters{
     bottom:76px; left:0; right:0; transform:none; max-width:none;
-    flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto;
+    flex-wrap:wrap; justify-content:center;
     padding:0 20px 6px; gap:8px; animation:none;
-    -webkit-overflow-scrolling:touch; scrollbar-width:none;
   }
-  .universe-filters::-webkit-scrollbar{ display:none; }
-  .filter-btn{ white-space:nowrap; flex-shrink:0; }
+  .filter-btn{ white-space:nowrap; }
 
   .universe-hint{ display:none; }
+}
+
+/* Phones: tabs as a 2 x 2 grid with short labels, portfolio link underneath */
+.fl-short{ display:none; }
+@media (max-width:600px){
+  .universe-filters{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; bottom:60px; padding:0 16px;
+  }
+  .universe-filters .filter-btn{ text-align:center; padding:10px 6px; font-size:11px; letter-spacing:.08em; }
+  .universe-filters .filter-link{ grid-column:1 / -1; justify-content:center; margin-top:2px; }
+  .fl-full{ display:none; }
+  .fl-short{ display:inline; }
 }
 
 @media (max-width:420px){

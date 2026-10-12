@@ -250,7 +250,8 @@ class PortfolioUniverse {
     }
     this.renderer = renderer;
     if (this.renderer) {
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      // Phones get 1.5x: noticeably lighter to draw while scrolling, still sharp.
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, isTouch ? 1.5 : 2));
       this.renderer.setClearColor(0x000000, 0);
     }
   }
@@ -682,16 +683,26 @@ class PortfolioUniverse {
       this.wrap.addEventListener('touchstart', e => {
         if (!e.touches.length) return;
         this.dragging = true;
+        this.dragAxis = null;
         this.dragLast.set(e.touches[0].clientX, e.touches[0].clientY);
         this._touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
       }, { passive: true });
       this.wrap.addEventListener('touchmove', e => {
         if (!this.dragging || !e.touches.length) return;
         const t = e.touches[0];
-        const dx = t.clientX - this.dragLast.x;
-        const dy = t.clientY - this.dragLast.y;
-        this.targetLook.x = THREE.MathUtils.clamp(this.targetLook.x + dx * 0.004, -1, 1);
-        this.targetLook.y = THREE.MathUtils.clamp(this.targetLook.y - dy * 0.004, -1, 1);
+        // Lock each swipe to one direction from its first few pixels: an
+        // up/down swipe only scrolls the page (the camera stays still, so it
+        // never fights the scroll); a sideways swipe looks around the scene.
+        if (!this.dragAxis) {
+          const ox = t.clientX - this._touchStart.x, oy = t.clientY - this._touchStart.y;
+          if (Math.hypot(ox, oy) < 8) return;
+          this.dragAxis = Math.abs(ox) > Math.abs(oy) ? 'x' : 'y';
+          this.dragLast.set(t.clientX, t.clientY);
+        }
+        if (this.dragAxis === 'x') {
+          const dx = t.clientX - this.dragLast.x;
+          this.targetLook.x = THREE.MathUtils.clamp(this.targetLook.x + dx * 0.004, -1, 1);
+        }
         this.dragLast.set(t.clientX, t.clientY);
       }, { passive: true });
       this.wrap.addEventListener('touchend', e => {
@@ -778,7 +789,7 @@ class PortfolioUniverse {
     // Point sprites are sized in device pixels: world size × this ÷ depth.
     if (this.pxMat) {
       const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
-      this.pxMat.uniforms.uScale.value = h * Math.min(window.devicePixelRatio, 2) / (2 * tanH);
+      this.pxMat.uniforms.uScale.value = h * (this.renderer ? this.renderer.getPixelRatio() : 1) / (2 * tanH);
     }
     // A big shape change (window resize, phone rotation) re-flows the cards
     // so they neither overlap nor bunch up in the middle.
