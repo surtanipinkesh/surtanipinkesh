@@ -4,7 +4,7 @@
 import * as THREE from './vendor/three.module.min.js';
 import {
   CATEGORIES, PROJECTS, thumbSrc, loadImage, openVideoModal, bindVideoModal,
-} from './projects.js?v=14';
+} from './projects.js?v=15';
 
 // Round-robins across categories so a touch-device card cap doesn't end up
 // showing only the first category in the list.
@@ -39,6 +39,17 @@ function makeCardTexture(project) {
 
   if (project.thumbImg) {
     drawImageCover(ctx, project.thumbImg, 0, 0, w, h);
+    // Film stills stay clean: just the frame and a hairline edge. The title
+    // shows in the hover tooltip instead.
+    if (project.frame) {
+      ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(1.5, 1.5, w - 3, h - 3);
+      const clean = new THREE.CanvasTexture(canvas);
+      clean.colorSpace = THREE.SRGBColorSpace;
+      clean.anisotropy = 4;
+      return clean;
+    }
   } else {
     const grad = ctx.createLinearGradient(0, 0, w, h);
     grad.addColorStop(0, cfg.colorA);
@@ -343,7 +354,7 @@ class PortfolioUniverse {
     const list = pickBalanced(PROJECTS, cardCount);
 
     await Promise.all(list.map(async project => {
-      project.thumbImg = await loadImage(thumbSrc(project, 640));
+      project.thumbImg = await loadImage(thumbSrc(project, project.frame ? 1280 : 640));
     }));
 
     list.forEach((project, i) => {
@@ -373,7 +384,13 @@ class PortfolioUniverse {
       const record = {
         mesh, project,
         basePos: new THREE.Vector3(),
-        baseRotY: mesh.rotation.y,
+        // Scattered "home" spot deep in space; a tab's cards fly from here
+        // to spots near the screen and back (see applyFilter).
+        homePos: new THREE.Vector3(),
+        homeRotY: mesh.rotation.y,
+        homeRotX: mesh.rotation.x,
+        focused: false,
+        anim: null,
         floatOffset: Math.random() * Math.PI * 2,
         floatSpeed: 0.25 + Math.random() * 0.25,
         floatAmp: 0.08 + Math.random() * 0.04,
@@ -391,68 +408,59 @@ class PortfolioUniverse {
     this.updateEmptyState();
   }
 
-  // Places cards in screen space rather than by 3D distance: two cards far
-  // apart in depth can still sit on top of each other from the camera's
-  // point of view. Each card samples depth + screen position and keeps the
-  // spot whose on-screen rect (padded for its float motion) overlaps the
-  // already-placed cards least — zero in practice for 30 cards.
-  layoutCards() {
+  // Screen-space box covering every view of the card at (x, y, z): tilted
+  // to both ends of its sway, seen from every camera position the mouse can
+  // slide to, padded for its float. Coordinates are NDC (-1..1).
+  footprint(c, x, y, z) {
     const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
     const aspect = this.camera.aspect;
     const camZ = this.camera.position.z;
-    const narrow = aspect < 1;
-    const PAD = 0.04, EDGE = 1.15;
-    const D_MIN = narrow ? 7 : 5.5, D_MAX = narrow ? 18 : 14;
-    // Extremes to keep clear: how far the camera slides with the mouse (see
-    // the render loop) and how far each card sways on its Y axis.
-    const CAM_X = 0.18, CAM_Y = 0.075, SWAY = 0.12;
-    const cams = [[-CAM_X, -CAM_Y], [CAM_X, -CAM_Y], [-CAM_X, CAM_Y], [CAM_X, CAM_Y]];
-    const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
-    const placed = [];
-
-    // Screen-space box covering every view of the card: tilted to both ends
-    // of its sway, seen from every camera position, padded for its float.
-    const footprint = (c, x, y, z) => {
-      const { width: w, height: h } = c.mesh.geometry.parameters;
-      const cosX = Math.cos(c.mesh.rotation.x), sinX = Math.sin(c.mesh.rotation.x);
-      const box = { l: Infinity, r: -Infinity, b: Infinity, t: -Infinity };
-      let nearest = Infinity;
-      for (const ry of [c.baseRotY - SWAY, c.baseRotY + SWAY]) {
-        const cosY = Math.cos(ry), sinY = Math.sin(ry);
-        for (const [sx, sy] of corners) {
-          // Euler XYZ on a flat quad: rotate about Y, then about X.
-          const lx = sx * w / 2, ly = sy * h / 2;
-          const px = x + lx * cosY;
-          const pz0 = -lx * sinY;
-          const py = y + ly * cosX - pz0 * sinX;
-          const pz = z + ly * sinX + pz0 * cosX;
-          const dist = camZ - pz;
-          nearest = Math.min(nearest, dist);
-          for (const [cx, cy] of cams) {
-            const nx = (px - cx) / (dist * tanH * aspect);
-            const ny = (py - cy) / (dist * tanH);
-            if (nx < box.l) box.l = nx;
-            if (nx > box.r) box.r = nx;
-            if (ny < box.b) box.b = ny;
-            if (ny > box.t) box.t = ny;
-          }
+    const PAD = 0.04, CAM_X = 0.18, CAM_Y = 0.075, SWAY = 0.12;
+    const { width: w, height: h } = c.mesh.geometry.parameters;
+    const cosX = Math.cos(c.homeRotX), sinX = Math.sin(c.homeRotX);
+    const box = { l: Infinity, r: -Infinity, b: Infinity, t: -Infinity };
+    let nearest = Infinity;
+    for (const ry of [c.homeRotY - SWAY, c.homeRotY + SWAY]) {
+      const cosY = Math.cos(ry), sinY = Math.sin(ry);
+      for (const [sx, sy] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
+        // Euler XYZ on a flat quad: rotate about Y, then about X.
+        const lx = sx * w / 2, ly = sy * h / 2;
+        const px = x + lx * cosY;
+        const pz0 = -lx * sinY;
+        const py = y + ly * cosX - pz0 * sinX;
+        const pz = z + ly * sinX + pz0 * cosX;
+        const dist = camZ - pz;
+        nearest = Math.min(nearest, dist);
+        for (const [cx, cy] of [[-CAM_X, -CAM_Y], [CAM_X, -CAM_Y], [-CAM_X, CAM_Y], [CAM_X, CAM_Y]]) {
+          const nx = (px - cx) / (dist * tanH * aspect);
+          const ny = (py - cy) / (dist * tanH);
+          if (nx < box.l) box.l = nx;
+          if (nx > box.r) box.r = nx;
+          if (ny < box.b) box.b = ny;
+          if (ny > box.t) box.t = ny;
         }
       }
-      const padX = (c.floatAmp / 2 + PAD) / (nearest * tanH * aspect);
-      const padY = (c.floatAmp + PAD) / (nearest * tanH);
-      box.l -= padX; box.r += padX; box.b -= padY; box.t += padY;
-      return box;
-    };
+    }
+    const padX = (c.floatAmp / 2 + PAD) / (nearest * tanH * aspect);
+    const padY = (c.floatAmp + PAD) / (nearest * tanH);
+    box.l -= padX; box.r += padX; box.b -= padY; box.t += padY;
+    return box;
+  }
 
-    this.cards.forEach(c => {
+  // Scatters cards by sampling depth + screen position and keeping, for each
+  // card, the spot whose on-screen box overlaps the already-placed ones least
+  // (plus any penalty from outOf, e.g. leaving the allowed area). Working in
+  // screen space matters: two cards far apart in depth can still sit on top
+  // of each other from the camera's point of view.
+  scatter(list, pick, outOf = () => 0) {
+    const placed = [];
+    const out = new Map();
+    list.forEach(c => {
       let best = null, bestCost = Infinity;
       for (let t = 0; t < 4000 && bestCost > 0; t++) {
-        const d = D_MIN + Math.random() * (D_MAX - D_MIN);
-        const x = (Math.random() * 2 - 1) * EDGE * d * tanH * aspect;
-        const y = (Math.random() * 2 - 1) * EDGE * d * tanH;
-        const z = camZ - d;
-        const r = footprint(c, x, y, z);
-        let cost = 0;
+        const [x, y, z] = pick();
+        const r = this.footprint(c, x, y, z);
+        let cost = outOf(r) * 10;
         for (const p of placed) {
           const ox = Math.min(r.r, p.r) - Math.max(r.l, p.l);
           const oy = Math.min(r.t, p.t) - Math.max(r.b, p.b);
@@ -461,10 +469,92 @@ class PortfolioUniverse {
         if (cost < bestCost) { bestCost = cost; best = { r, x, y, z }; }
       }
       placed.push(best.r);
-      c.basePos.set(best.x, best.y, best.z);
-      c.mesh.position.copy(c.basePos);
+      out.set(c, new THREE.Vector3(best.x, best.y, best.z));
+    });
+    return out;
+  }
+
+  // Every card's "home": scattered deep in space across the whole view.
+  layoutCards() {
+    const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+    const aspect = this.camera.aspect;
+    const camZ = this.camera.position.z;
+    const narrow = aspect < 1;
+    const EDGE = 1.15;
+    const D_MIN = narrow ? 7 : 5.5, D_MAX = narrow ? 18 : 14;
+    const homes = this.scatter(this.cards, () => {
+      const d = D_MIN + Math.random() * (D_MAX - D_MIN);
+      return [(Math.random() * 2 - 1) * EDGE * d * tanH * aspect, (Math.random() * 2 - 1) * EDGE * d * tanH, camZ - d];
+    });
+    this.cards.forEach(c => {
+      c.homePos.copy(homes.get(c));
+      c.basePos.copy(c.homePos);
+      c.mesh.position.copy(c.homePos);
     });
     this.layoutAspect = aspect;
+    this.nearCache = {};
+    // A re-flow mid-tab snaps the selected cards straight to their new spots.
+    this.applyFilter(false);
+  }
+
+  // Where a tab's cards float when it's selected: still scattered and tilted
+  // like the rest of the universe, but pulled in close to the screen and
+  // gathered into the free area between the header and the tab bar. Cached
+  // per tab so a tab always brings its cards to the same spots.
+  nearLayout(filter, list) {
+    if (!list.length) return new Map();
+    if (this.nearCache[filter]) return this.nearCache[filter];
+    const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+    const aspect = this.camera.aspect;
+    const camZ = this.camera.position.z;
+    // Free band on screen, as NDC: below the fixed header, above the tab bar.
+    const wrapRect = this.wrap.getBoundingClientRect();
+    const hPx = Math.max(wrapRect.height, 1);
+    const bar = document.getElementById('universeFilters')?.getBoundingClientRect();
+    const botPx = bar && bar.height ? bar.top - wrapRect.top - 16 : hPx * 0.78;
+    const yTop = 1 - 2 * 92 / hPx;
+    const yBot = Math.min(1 - 2 * botPx / hPx, 0.1);
+    const xLim = aspect < 1 ? 0.94 : 0.9;
+    // Depth that gives the group roughly 40% coverage of that band, so the
+    // cards come in big but still have room to float apart.
+    const area = list.reduce((s, c) => s + c.mesh.geometry.parameters.width * c.mesh.geometry.parameters.height, 0);
+    const perD2 = 2 * xLim * tanH * aspect * (yTop - yBot) * tanH;
+    const d0 = THREE.MathUtils.clamp(Math.sqrt(area / (0.4 * perD2)), 4, 10);
+    const outOf = r => Math.max(0, r.r - xLim) + Math.max(0, -xLim - r.l) + Math.max(0, r.t - yTop) + Math.max(0, yBot - r.b);
+    const spots = this.scatter(list, () => {
+      const d = d0 * (0.85 + Math.random() * 0.35);
+      const ny = yBot + Math.random() * (yTop - yBot);
+      return [(Math.random() * 2 - 1) * xLim * d * tanH * aspect, ny * d * tanH, camZ - d];
+    }, outOf);
+    this.nearCache[filter] = spots;
+    return spots;
+  }
+
+  // Brings the active tab's cards in from deep space to float close to the
+  // screen, and sends every other card back to its home spot. Animated on
+  // tab clicks (staggered ease with a swoop), instant on layout changes.
+  applyFilter(animate) {
+    const f = this.activeFilter;
+    const chosen = f === 'all' ? [] : this.cards.filter(c => c.project.cat === f);
+    const near = this.nearLayout(f, chosen);
+    const now = performance.now();
+    let order = 0;
+    this.cards.forEach(c => {
+      const to = near.get(c) || c.homePos;
+      c.focused = near.has(c);
+      c.mesh.renderOrder = c.focused ? 2 : 0;
+      if (animate && !reduceMotion) {
+        c.anim = {
+          from: c.basePos.clone(), to: to.clone(),
+          start: now + (c.focused ? order++ * 70 : Math.random() * 160),
+          dur: c.focused ? 1500 : 1200,
+          arc: c.focused ? 1 : -0.8,
+        };
+      } else {
+        c.anim = null;
+        c.basePos.copy(to);
+      }
+    });
   }
 
   bindEvents() {
@@ -525,6 +615,7 @@ class PortfolioUniverse {
           if (nowMatch && !wasMatch) c.spawnAt = performance.now();
         });
 
+        this.applyFilter(true);
         this.updateEmptyState();
         this.pulseHud();
         this.triggerScanFlash();
@@ -621,8 +712,10 @@ class PortfolioUniverse {
       const lerpFactor = reduceMotion ? 1 : 0.05;
       this.currentLook.lerp(this.targetLook, lerpFactor);
 
-      const lookX = this.currentLook.x * 0.9;
-      const lookY = this.currentLook.y * 0.5;
+      // Calmer mouse-look while a tab's cards are up close, so they stay in view.
+      this.lookScale = THREE.MathUtils.lerp(this.lookScale ?? 1, this.activeFilter === 'all' ? 1 : 0.45, 0.05);
+      const lookX = this.currentLook.x * 0.9 * this.lookScale;
+      const lookY = this.currentLook.y * 0.5 * this.lookScale;
       this.camera.position.x = THREE.MathUtils.lerp(this.camera.position.x, lookX * 0.2, 0.06);
       this.camera.position.y = THREE.MathUtils.lerp(this.camera.position.y, lookY * 0.15, 0.06);
       this.camera.lookAt(lookX * 2.2, lookY * 1.4, -6);
@@ -645,10 +738,24 @@ class PortfolioUniverse {
 
       const now = performance.now();
       this.cards.forEach(c => {
+        let spin = 0;
+        if (c.anim) {
+          const a = c.anim;
+          const p = THREE.MathUtils.clamp((now - a.start) / a.dur, 0, 1);
+          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          const swoop = Math.sin(Math.PI * e);
+          c.basePos.lerpVectors(a.from, a.to, e);
+          c.basePos.z += swoop * a.arc;
+          spin = swoop * 0.4 * Math.sign(a.arc);
+          if (p >= 1) c.anim = null;
+        }
         if (!reduceMotion) {
           c.mesh.position.y = c.basePos.y + Math.sin(t * c.floatSpeed + c.floatOffset) * c.floatAmp;
           c.mesh.position.x = c.basePos.x + Math.cos(t * c.floatSpeed * 0.8 + c.floatOffset) * (c.floatAmp * 0.5);
-          c.mesh.rotation.y = c.baseRotY + Math.sin(t * c.floatSpeed * 0.6 + c.floatOffset) * 0.12;
+          c.mesh.position.z = c.basePos.z;
+          c.mesh.rotation.y = c.homeRotY + spin + Math.sin(t * c.floatSpeed * 0.6 + c.floatOffset) * 0.12;
+        } else {
+          c.mesh.position.copy(c.basePos);
         }
 
         const matches = this.activeFilter === 'all' || c.project.cat === this.activeFilter;
@@ -656,6 +763,8 @@ class PortfolioUniverse {
         c.targetScale = isHovered ? 1.08 : (matches ? 1 : 0.6);
         c.targetOpacity = matches ? (isHovered ? 1 : 0.92) : 0.08;
         c.hitTest = matches;
+        // Faded cards mustn't hide the grid behind them.
+        c.mesh.material.depthWrite = matches;
 
         const spawning = c.spawnAt && now - c.spawnAt < 550 && !reduceMotion;
         let s;
