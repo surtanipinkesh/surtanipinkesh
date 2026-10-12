@@ -228,6 +228,7 @@ class PortfolioUniverse {
     this.buildStarfield();
     this.buildStarlets();
     this.buildHud();
+    this.buildPixels();
     this.buildCards();
     this.bindEvents();
     this.onResize();
@@ -329,17 +330,123 @@ class PortfolioUniverse {
   }
 
   // Briefly speeds up the HUD rings — the "simulation" cue that fires on
-  // every tab switch, on top of the scanline flash and card warp-in.
+  // every tab switch, alongside the flying pixels and card warp-in.
   pulseHud() {
     this.rings?.forEach(r => { r.boost = 0.4; });
   }
 
-  triggerScanFlash() {
-    const el = document.getElementById('universe');
-    if (!el || reduceMotion) return;
-    el.classList.remove('scan-flash');
-    void el.offsetWidth;
-    el.classList.add('scan-flash');
+  // "Flying pixels" for tab switches: a pool of small square points that
+  // break off a moving card in its own colours, stream along a curved path
+  // and re-form at the card's new spot. One draw call for the whole pool.
+  buildPixels() {
+    const N = isTouch ? 900 : 2400;
+    const geo = new THREE.BufferGeometry();
+    this.px = {
+      N, next: 0, live: 0,
+      pos: new Float32Array(N * 3), col: new Float32Array(N * 3),
+      size: new Float32Array(N), alpha: new Float32Array(N),
+      list: Array.from({ length: N }, () => ({ start: 0, dur: 0, from: new THREE.Vector3(), to: new THREE.Vector3(), off: new THREE.Vector3(), done: true })),
+    };
+    geo.setAttribute('position', new THREE.BufferAttribute(this.px.pos, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(this.px.col, 3));
+    geo.setAttribute('size', new THREE.BufferAttribute(this.px.size, 1));
+    geo.setAttribute('alpha', new THREE.BufferAttribute(this.px.alpha, 1));
+    this.pxMat = new THREE.ShaderMaterial({
+      uniforms: { uScale: { value: 400 } },
+      vertexShader: `
+        attribute float size; attribute float alpha; attribute vec3 color;
+        varying float vAlpha; varying vec3 vColor; uniform float uScale;
+        void main() {
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * uScale / -mv.z;
+          gl_Position = projectionMatrix * mv;
+          vAlpha = alpha; vColor = color;
+        }`,
+      fragmentShader: `
+        varying float vAlpha; varying vec3 vColor;
+        void main() { if (vAlpha < 0.01) discard; gl_FragColor = vec4(vColor, vAlpha); }`,
+      transparent: true, depthWrite: false,
+    });
+    const points = new THREE.Points(geo, this.pxMat);
+    points.frustumCulled = false;
+    points.renderOrder = 3;
+    this.scene.add(points);
+    this.pxPoints = points;
+  }
+
+  // Samples a card's own picture into a small colour grid, so its pixels
+  // fly off in the card's real colours. Falls back to brand gold.
+  samplePixelColors(record) {
+    try {
+      const src = record.mesh.material.map.image;
+      const c = document.createElement('canvas');
+      c.width = 16; c.height = 16;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(src, 0, 0, 16, 16);
+      record.pixelColors = ctx.getImageData(0, 0, 16, 16).data;
+    } catch (e) {
+      record.pixelColors = null;
+    }
+  }
+
+  emitPixels(c, from, to, start, dur) {
+    if (reduceMotion || !this.px) return;
+    const px = this.px;
+    const { width: w, height: h } = c.mesh.geometry.parameters;
+    const count = isTouch ? 60 : 140;
+    const gold = [[0.878, 0.686, 0.231], [0.941, 0.773, 0.408], [0.973, 0.961, 0.933], [0.827, 0.643, 0.431]];
+    for (let i = 0; i < count; i++) {
+      const k = px.next;
+      px.next = (px.next + 1) % px.N;
+      const p = px.list[k];
+      const u = Math.random(), v = Math.random();
+      const lx = (u - 0.5) * w, ly = (v - 0.5) * h;
+      p.from.set(from.x + lx, from.y + ly, from.z);
+      p.to.set(to.x + lx, to.y + ly, to.z);
+      // Spread mid-flight: outward from the card's centre plus some drift.
+      p.off.set(lx * 1.4 + (Math.random() - 0.5) * 1.6, ly * 1.4 + (Math.random() - 0.5) * 1.2, (Math.random() - 0.5) * 1.5);
+      p.start = start + Math.random() * dur * 0.25;
+      p.dur = dur * (0.6 + Math.random() * 0.25);
+      p.done = false;
+      let rgb;
+      if (c.pixelColors && Math.random() > 0.22) {
+        const gx = Math.min(15, Math.floor(u * 16)), gy = Math.min(15, Math.floor((1 - v) * 16));
+        const o = (gy * 16 + gx) * 4;
+        rgb = [c.pixelColors[o] / 255, c.pixelColors[o + 1] / 255, c.pixelColors[o + 2] / 255];
+      } else {
+        rgb = gold[(Math.random() * gold.length) | 0];
+      }
+      px.col.set(rgb, k * 3);
+      px.size[k] = 0.05 + Math.random() * 0.1;
+      px.alpha[k] = 0;
+      px.pos.set([p.from.x, p.from.y, p.from.z], k * 3);
+    }
+    this.pxPoints.geometry.attributes.color.needsUpdate = true;
+    this.pxPoints.geometry.attributes.size.needsUpdate = true;
+    this.pxActive = true;
+  }
+
+  updatePixels(now) {
+    if (!this.pxActive) return;
+    const px = this.px;
+    let any = false;
+    for (let k = 0; k < px.N; k++) {
+      const p = px.list[k];
+      if (p.done) continue;
+      const t = (now - p.start) / p.dur;
+      if (t < 0) { any = true; continue; }
+      if (t >= 1) { p.done = true; px.alpha[k] = 0; continue; }
+      any = true;
+      const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const sw = Math.sin(Math.PI * e);
+      px.pos[k * 3] = p.from.x + (p.to.x - p.from.x) * e + p.off.x * sw;
+      px.pos[k * 3 + 1] = p.from.y + (p.to.y - p.from.y) * e + p.off.y * sw;
+      px.pos[k * 3 + 2] = p.from.z + (p.to.z - p.from.z) * e + p.off.z * sw;
+      px.alpha[k] = Math.min(1, Math.sin(Math.PI * t) * 1.6) * 0.95;
+    }
+    this.pxPoints.geometry.attributes.position.needsUpdate = true;
+    this.pxPoints.geometry.attributes.alpha.needsUpdate = true;
+    this.pxActive = any;
   }
 
   // Async: resolves each project's real title/thumbnail/aspect ratio via
@@ -400,6 +507,7 @@ class PortfolioUniverse {
         spawnAt: 0,
       };
       mesh.userData.record = record;
+      this.samplePixelColors(record);
       this.cards.push(record);
       this.scene.add(mesh);
     });
@@ -515,11 +623,11 @@ class PortfolioUniverse {
     const yTop = 1 - 2 * 92 / hPx;
     const yBot = Math.min(1 - 2 * botPx / hPx, 0.1);
     const xLim = aspect < 1 ? 0.94 : 0.9;
-    // Depth that gives the group roughly 40% coverage of that band, so the
+    // Depth that gives the group roughly 30% coverage of that band, so the
     // cards come in big but still have room to float apart.
     const area = list.reduce((s, c) => s + c.mesh.geometry.parameters.width * c.mesh.geometry.parameters.height, 0);
     const perD2 = 2 * xLim * tanH * aspect * (yTop - yBot) * tanH;
-    const d0 = THREE.MathUtils.clamp(Math.sqrt(area / (0.4 * perD2)), 4, 10);
+    const d0 = THREE.MathUtils.clamp(Math.sqrt(area / (0.3 * perD2)), 4, 11);
     const outOf = r => Math.max(0, r.r - xLim) + Math.max(0, -xLim - r.l) + Math.max(0, r.t - yTop) + Math.max(0, yBot - r.b);
     const spots = this.scatter(list, () => {
       const d = d0 * (0.85 + Math.random() * 0.35);
@@ -550,6 +658,7 @@ class PortfolioUniverse {
           dur: c.focused ? 1500 : 1200,
           arc: c.focused ? 1 : -0.8,
         };
+        if (c.anim.from.distanceToSquared(c.anim.to) > 0.01) this.emitPixels(c, c.anim.from, c.anim.to, c.anim.start, c.anim.dur);
       } else {
         c.anim = null;
         c.basePos.copy(to);
@@ -618,7 +727,6 @@ class PortfolioUniverse {
         this.applyFilter(true);
         this.updateEmptyState();
         this.pulseHud();
-        this.triggerScanFlash();
       });
     });
 
@@ -667,6 +775,11 @@ class PortfolioUniverse {
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     if (this.renderer) this.renderer.setSize(w, h, false);
+    // Point sprites are sized in device pixels: world size × this ÷ depth.
+    if (this.pxMat) {
+      const tanH = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+      this.pxMat.uniforms.uScale.value = h * Math.min(window.devicePixelRatio, 2) / (2 * tanH);
+    }
     // A big shape change (window resize, phone rotation) re-flows the cards
     // so they neither overlap nor bunch up in the middle.
     if (this.cards.length && Math.abs(this.camera.aspect / this.layoutAspect - 1) > 0.2) this.layoutCards();
@@ -738,7 +851,7 @@ class PortfolioUniverse {
 
       const now = performance.now();
       this.cards.forEach(c => {
-        let spin = 0;
+        let spin = 0, dip = 0;
         if (c.anim) {
           const a = c.anim;
           const p = THREE.MathUtils.clamp((now - a.start) / a.dur, 0, 1);
@@ -747,6 +860,8 @@ class PortfolioUniverse {
           c.basePos.lerpVectors(a.from, a.to, e);
           c.basePos.z += swoop * a.arc;
           spin = swoop * 0.4 * Math.sign(a.arc);
+          // The card thins out mid-flight while its pixels carry it across.
+          if (a.from.distanceToSquared(a.to) > 0.01) dip = swoop * 0.65;
           if (p >= 1) c.anim = null;
         }
         if (!reduceMotion) {
@@ -776,11 +891,12 @@ class PortfolioUniverse {
           s = THREE.MathUtils.lerp(c.mesh.scale.x, c.targetScale, 0.12);
         }
         c.mesh.scale.setScalar(s);
-        c.mesh.material.opacity = THREE.MathUtils.lerp(c.mesh.material.opacity, c.targetOpacity, spawning ? 0.3 : 0.12);
+        c.mesh.material.opacity = THREE.MathUtils.lerp(c.mesh.material.opacity, c.targetOpacity * (1 - dip), spawning || dip ? 0.3 : 0.12);
       });
 
       if (!isTouch) this.updateHover();
 
+      this.updatePixels(now);
       this.renderer.render(this.scene, this.camera);
     };
     loop();
