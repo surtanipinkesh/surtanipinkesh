@@ -393,7 +393,7 @@ class PortfolioUniverse {
     if (reduceMotion || !this.px) return;
     const px = this.px;
     const { width: w, height: h } = c.mesh.geometry.parameters;
-    const count = isTouch ? 60 : 140;
+    const count = isTouch ? 45 : 100;
     const gold = [[0.878, 0.686, 0.231], [0.941, 0.773, 0.408], [0.973, 0.961, 0.933], [0.827, 0.643, 0.431]];
     for (let i = 0; i < count; i++) {
       const k = px.next;
@@ -417,7 +417,7 @@ class PortfolioUniverse {
         rgb = gold[(Math.random() * gold.length) | 0];
       }
       px.col.set(rgb, k * 3);
-      px.size[k] = 0.05 + Math.random() * 0.1;
+      px.size[k] = 0.025 + Math.random() * 0.05;
       px.alpha[k] = 0;
       px.pos.set([p.from.x, p.from.y, p.from.z], k * 3);
     }
