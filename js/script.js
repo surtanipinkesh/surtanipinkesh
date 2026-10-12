@@ -7,54 +7,26 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- hero showreel ---------- */
-  // A still frame shows at once; the YouTube reel (muted) starts as soon as
-  // the page has loaded and fades in over the still only once it is really
-  // playing. If autoplay is blocked the still simply stays.
-  // Looping is done here rather than with YouTube's loop option: the reel is
-  // sent back to the start just before it ends, so it never reaches the end
-  // and YouTube never shows its play/skip controls between loops.
-  const heroReel = document.getElementById('heroReelFrame');
+  // A still frame shows at once; the silent showreel (hosted on the site, so it starts
+  // fast on phones) loads after the page and fades in over the still once it is playing.
+  // Phones get the smaller file. If autoplay is blocked, the still simply stays.
+  const heroReel = document.getElementById('heroReel');
   const heroWrap = document.getElementById('heroVideoWrap');
-  if (heroReel && heroReel.dataset.src) {
-    const YT_ORIGIN = 'https://www.youtube-nocookie.com';
-    const showReel = () => heroWrap && heroWrap.classList.add('is-playing');
-    const listen = () => heroReel.contentWindow &&
-      heroReel.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'heroReel', channel: 'widget' }), YT_ORIGIN);
+  if (heroReel && heroReel.dataset.srcLarge) {
+    const small = window.matchMedia('(max-width: 768px)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
     const loadReel = () => {
-      if (heroReel.getAttribute('src')) return;
-      heroReel.src = heroReel.dataset.src + '&origin=' + encodeURIComponent(location.origin);
-      heroReel.addEventListener('load', () => { listen(); setTimeout(listen, 1000); }, { once: true });
+      if (heroReel.getAttribute('src') || saveData) return;
+      heroReel.src = small ? heroReel.dataset.srcSmall : heroReel.dataset.srcLarge;
+      heroReel.muted = true;
+      const p = heroReel.play();
+      if (p && p.catch) p.catch(() => {});
     };
-    const command = (func, args = []) => heroReel.contentWindow &&
-      heroReel.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), YT_ORIGIN);
-    const restart = () => { command('seekTo', [0, true]); command('playVideo'); };
-    let duration = 0, loopTimer = 0;
-    window.addEventListener('message', e => {
-      if (e.origin !== YT_ORIGIN || e.source !== heroReel.contentWindow) return;
-      let data = e.data;
-      try { if (typeof data === 'string') data = JSON.parse(data); } catch (_) { return; }
-      if (!data || !data.event) return;
-      const info = data.info;
-      const state = data.event === 'onStateChange' ? info : (info && info.playerState);
-      if (info && info.duration > 0) duration = info.duration;
-      if (state === 0) {             // reached the end anyway: hide it behind the still and restart
-        heroWrap.classList.remove('is-playing');
-        restart();
-        return;
-      }
-      if (info && typeof info.currentTime === 'number') {
-        if (info.currentTime > 0.3 && (!duration || info.currentTime < duration - 0.3)) showReel();
-        clearTimeout(loopTimer);
-        const left = duration - info.currentTime;
-        if (duration && left > 0) loopTimer = setTimeout(restart, Math.max(0, left - 0.35) * 1000);
-      } else if (state === 1 && !duration) {
-        showReel();
-      }
-    });
-    ['pointerdown', 'pointermove', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
-      window.addEventListener(ev, loadReel, { once: true, passive: true }));
+    heroReel.addEventListener('playing', () => heroWrap && heroWrap.classList.add('is-playing'));
     if (document.readyState === 'complete') loadReel();
     else window.addEventListener('load', loadReel, { once: true });
+    ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
+      window.addEventListener(ev, loadReel, { once: true, passive: true }));
   }
 
   /* ---------- header scroll state ---------- */
