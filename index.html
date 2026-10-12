@@ -88,7 +88,7 @@
 <link rel="preconnect" href="https://i.ytimg.com">
 
 <link rel="preload" href="assets/fonts/space-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=31">
+<link rel="stylesheet" href="css/style.css?v=32">
 </head>
 <body>
 
@@ -156,10 +156,10 @@
 <section class="hero" id="top">
   <div class="hero-pin">
     <div class="hero-video-wrap" id="heroVideoWrap" aria-hidden="true">
-      <img class="hero-poster" src="assets/hero-poster.webp" srcset="assets/hero-poster-900.webp 900w, assets/hero-poster.webp 1470w" sizes="100vw" width="1470" height="630" alt="" fetchpriority="high" decoding="async">
-      <iframe id="heroReelFrame" tabindex="-1"
-        data-src="https://www.youtube-nocookie.com/embed/e-mvDHGIbI4?autoplay=1&amp;mute=1&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0&amp;enablejsapi=1"
-        frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" title="Papad Pixels AI showreel (background)"></iframe>
+      <img class="hero-poster" src="assets/hero/reel-poster.webp" srcset="assets/hero/reel-poster-800.webp 800w, assets/hero/reel-poster.webp 1280w" sizes="100vw" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
+      <video id="heroReel" class="hero-reel" muted loop playsinline preload="none" tabindex="-1"
+        data-src-small="assets/hero/reel-480.mp4" data-src-large="assets/hero/reel-720.mp4"
+        poster="assets/hero/reel-poster.webp" title="Papad Pixels AI showreel (background)"></video>
     </div>
     <div class="hero-vignette" aria-hidden="true"></div>
 
@@ -923,7 +923,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=12"></script>
+<script src="js/script.js?v=13"></script>
 <script type="module">
   // The 3D gallery (Three.js + scene setup) is heavy on phones and sits below
   // the hero, so fetch and start it once the visitor starts scrolling toward
