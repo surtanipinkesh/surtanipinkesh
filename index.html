@@ -88,7 +88,7 @@
 <link rel="preconnect" href="https://i.ytimg.com">
 
 <link rel="preload" href="assets/fonts/space-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=33">
+<link rel="stylesheet" href="css/style.css?v=34">
 </head>
 <body>
 
@@ -202,10 +202,10 @@
   <span class="hud-corner hud-corner-br" aria-hidden="true"></span>
 
   <div class="universe-filters reveal" id="universeFilters">
-    <button class="filter-btn active" data-filter="all">All Work</button>
-    <button class="filter-btn" data-filter="ai">AI Video Ads &amp; TV Commercials</button>
-    <button class="filter-btn" data-filter="tvc">AI UGC Videos</button>
-    <button class="filter-btn" data-filter="social">Social Media Videos</button>
+    <button class="filter-btn active" data-filter="all"><span class="fl-full">All Work</span><span class="fl-short">All</span></button>
+    <button class="filter-btn" data-filter="ai"><span class="fl-full">AI Video Ads &amp; TV Commercials</span><span class="fl-short">AI Ads &amp; TVCs</span></button>
+    <button class="filter-btn" data-filter="tvc"><span class="fl-full">AI UGC Videos</span><span class="fl-short">AI UGC</span></button>
+    <button class="filter-btn" data-filter="social"><span class="fl-full">Social Media Videos</span><span class="fl-short">Social</span></button>
     <a class="filter-btn filter-link" href="/portfolio">View full portfolio &rarr;</a>
   </div>
 
@@ -933,7 +933,7 @@
   const start = () => {
     if (started) return;
     started = true;
-    import('./js/main.js?v=18');
+    import('./js/main.js?v=19');
   };
   window.addEventListener('scroll', start, { once: true, passive: true });
   if (gallery && 'IntersectionObserver' in window) {
