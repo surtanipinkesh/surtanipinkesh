@@ -69,7 +69,7 @@ PROJECTS.forEach(p => {
 // AI ads use a clean still from the film itself, hosted on the site
 // (assets/work/<video id>-640/1280.webp): no text, no overlays.
 export function thumbSrc(project, width) {
-  if (project.frame) return `/assets/work/${project.source.id}-${width > 640 ? 1280 : 640}.webp`;
+  if (project.frame) return `/assets/work/${project.source.id}-${width > 640 ? 1280 : 640}.webp?v=2`;
   return project.thumb ? `https://i.vimeocdn.com/video/${project.thumb}_${width}?region=us` : null;
 }
 
