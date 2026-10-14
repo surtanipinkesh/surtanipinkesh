@@ -1,0 +1,107 @@
+{
+ "date": "2026-10-14",
+ "slug": "meta-muse-wonder-what-it-means-for-brands",
+ "title": "Meta Muse Wonder: what Meta's first frontier AI model means for brands on Instagram and Facebook",
+ "headline_html": "Meta launches <span class=\"accent\">Muse Wonder</span>, its first frontier AI model",
+ "seo_title": "Meta Muse Wonder: What It Means for Brands",
+ "description": "Meta released Muse Wonder and Muse Wonder Full, its first frontier AI models. What they do, what they cost, and what they mean for brands on Instagram and Facebook.",
+ "dek": "Meta Superintelligence Labs released Muse Wonder and Muse Wonder Full on 12 October 2026, its first frontier AI models. They are chat and agent models built for long tasks. Meta has not announced any video or ad features for them yet.",
+ "card": {
+  "headline": "Meta launches *Muse Wonder*",
+  "points": [
+   "Meta's first frontier AI model, out 12 Oct",
+   "Built for chat and long agent tasks",
+   "No video or ad features announced yet"
+  ],
+  "source": "Meta, TechCrunch, CNBC"
+ },
+ "tldr": [
+  "On 12 October 2026, Meta Superintelligence Labs released Muse Wonder and Muse Wonder Full, its first frontier AI models.",
+  "Both are chat and agent models. Meta highlights two features: Active Memory and Active Focus.",
+  "Muse Wonder is available on the Meta Model API and in Muse Code at $4 per million input tokens and $20 per million output tokens.",
+  "Muse Wonder Full is only available on the Muse Code Power ($50 a month) and Maximum ($200 a month) plans.",
+  "Meta has not announced video generation or ad creative features for the models, and has not given a date for Instagram or WhatsApp."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Meta Superintelligence Labs released two models on 12 October 2026: Muse Wonder and the larger Muse Wonder Full. Meta calls them its first frontier models, meaning they are meant to compete with the top models from OpenAI, Google and Anthropic.",
+    "They are text-first chat and agent models, built to work through long, multi-step tasks such as coding and research. They are not video or image generators."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Two versions:</strong> Muse Wonder is the standard model. Muse Wonder Full is the larger, slower version for harder tasks.",
+    "<strong>Active Memory and Active Focus:</strong> Meta says the models keep track of what matters across long tasks and stay focused on the goal. Meta reports it leads rivals on MemoryBench, a test Meta itself created.",
+    "<strong>Independent ranking:</strong> on the Artificial Analysis Index, Muse Wonder Full scores 56 and Muse Wonder 52, close behind the top-ranked model at 58.",
+    "<strong>Price:</strong> Muse Wonder costs $4 per million input tokens and $20 per million output tokens on the Meta Model API.",
+    "<strong>Access:</strong> Muse Wonder Full is only in the Muse Code Power ($50 a month) and Maximum ($200 a month) plans.",
+    "<strong>Consumer rollout:</strong> Meta says the models will power experiences in the Muse app, starting with subscribers. No date has been given, and Meta has not said when or whether they reach Instagram or WhatsApp."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Meta set up Meta Superintelligence Labs to catch up with the leading AI labs, and Muse Wonder is the first model from that effort. Early reviews say it is strong at long tasks but weaker than its rivals in some areas, such as building 3D scenes and games.",
+    "Meta's ad business is moving on a separate track. Just last week it opened its image-to-video ad tool to every advertiser, which we covered in <a href=\"/ai-news/meta-ai-video-ads-advertising-week\">Meta opens AI video ads to all advertisers</a>."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Nothing changes in your Instagram or Facebook content this week. Muse Wonder does not make videos and is not inside Meta's ad tools yet. Be careful with posts claiming otherwise.",
+    "The bigger signal is where Meta is heading. A company that owns Instagram, Facebook and WhatsApp now has its own top-tier model, and its ad tools are already generating video automatically. As more of the basic work gets automated, the content that stands out on those feeds will be the content with a real idea and a look of its own. That is what we focus on in our <a href=\"/ai-social-media-videos\">AI social media videos</a> and <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "What is Meta Muse Wonder?",
+   "a": "Muse Wonder is Meta's first frontier AI model, released on 12 October 2026 by Meta Superintelligence Labs together with a larger version, Muse Wonder Full. It is a chat and agent model built for long, multi-step tasks."
+  },
+  {
+   "q": "Can Muse Wonder make videos or ads?",
+   "a": "No. Meta has not announced video generation or ad creative features for Muse Wonder. Meta's AI video ad tools are separate products inside its ads platform."
+  },
+  {
+   "q": "How much does Muse Wonder cost?",
+   "a": "On the Meta Model API, Muse Wonder costs $4 per million input tokens and $20 per million output tokens. Muse Wonder Full is only available on the Muse Code Power ($50 a month) and Maximum ($200 a month) plans."
+  },
+  {
+   "q": "Is Muse Wonder coming to Instagram and WhatsApp?",
+   "a": "Meta says the models will power Muse app experiences, starting with subscribers, but has not given a date or confirmed a rollout to Instagram or WhatsApp."
+  }
+ ],
+ "sources": [
+  {
+   "name": "Meta: Introducing Muse Wonder",
+   "url": "https://research.meta.ai/blog/muse-wonder"
+  },
+  {
+   "name": "TechCrunch: Meta releases its first frontier model, Muse Wonder",
+   "url": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/"
+  },
+  {
+   "name": "CNBC: Meta unveils Muse Wonder AI model and agent",
+   "url": "https://www.cnbc.com/2026/10/12/meta-muse-wonder-ai-model-agent.html"
+  },
+  {
+   "name": "Quartz: Meta launches Muse Wonder",
+   "url": "https://qz.com/meta-muse-wonder-ai-model-launch-101226"
+  },
+  {
+   "name": "Technology.org: Muse Wonder pricing and Muse Code plans",
+   "url": "https://www.technology.org/2026/10/13/meta-muse-wonder-frontier-model-pricing-muse-code/"
+  }
+ ],
+ "tags": [
+  "Meta",
+  "Muse Wonder",
+  "AI models",
+  "Instagram",
+  "Facebook"
+ ]
+}
