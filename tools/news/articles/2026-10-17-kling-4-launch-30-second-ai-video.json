@@ -1,0 +1,102 @@
+{
+ "date": "2026-10-17",
+ "slug": "kling-4-launch-30-second-ai-video",
+ "title": "Kling 4.0 is officially out: 30-second AI video in one go, with more control over every shot",
+ "headline_html": "Kling 4.0 launches with <span class=\"accent\">30-second AI video</span> in one go",
+ "seo_title": "Kling 4.0 Launch: 30-Second AI Video, Features",
+ "description": "Kling 4.0 officially launched with 30-second AI video in one generation, 15 references and 10 keyframes. What's live, what's coming, what it means for brands.",
+ "dek": "Kuaishou officially launched Kling 4.0 on 15 October 2026. The new model makes AI video clips of up to 30 seconds in a single generation and lets creators guide it with up to 15 reference materials and 10 keyframes. HDR output and API access are still to come.",
+ "card": {
+  "headline": "Kling 4.0 makes *30-second AI video*",
+  "points": [
+   "Officially launched 15 Oct by Kuaishou",
+   "Up to 30 seconds in a single generation",
+   "Up to 15 references and 10 keyframes"
+  ],
+  "source": "Kuaishou / Kling AI"
+ },
+ "tldr": [
+  "Kuaishou officially launched Kling 4.0, its new AI video model, on 15 October 2026.",
+  "It generates clips of up to 30 seconds in one pass, longer than many AI video tools manage in a single generation.",
+  "Creators can guide a video with up to 15 reference materials and up to 10 keyframes.",
+  "Kling says 4K and 10-bit HDR output are planned but not available yet.",
+  "API access for businesses and developers is coming soon, and Kling has not yet published Kling 4.0 credit prices."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Kuaishou, the company behind Kling AI, announced that Kling 4.0 officially launched on 15 October 2026. It is the next generation of one of the most widely used AI video models, and it follows a limited early-access version, Kling 4.0 Flash, that opened to top-tier subscribers on 28 September.",
+    "The headline change is length. Kling 4.0 can produce a continuous video of up to 30 seconds in a single generation, long enough for a complete short ad or social clip without stitching several short clips together."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Length:</strong> up to 30 seconds of continuous video in one generation.",
+    "<strong>Control:</strong> up to 15 reference materials, such as product shots, characters or locations, and up to 10 keyframes to set what happens at points in the clip.",
+    "<strong>Motion:</strong> Kuaishou says the model is more stable in fast, dynamic scenes, a common weak spot in AI video.",
+    "<strong>Coming later:</strong> Kling says 4K and 10-bit HDR output are planned but not yet available.",
+    "<strong>API:</strong> access for enterprise customers and developers is described as coming soon.",
+    "<strong>Price:</strong> Kling has not published credit prices for Kling 4.0 yet, so the real cost per video is still unknown."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Kling has been in a tight race with other video models such as Seedance, Veo and Vidu, which launched its own Q4 Preview earlier this month (we covered it in <a href=\"/ai-news/vidu-q4-preview-ai-video-model\">Vidu Q4 Preview</a>). Most of these models have competed on realism; Kling 4.0 is pushing on length and control instead.",
+    "Longer single clips matter because every cut between separate AI clips is a chance for faces, products and lighting to change. One continuous 30-second generation keeps a scene consistent for much longer."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "This is a genuine step for brand video. A 30-second clip is the length of a full ad or a complete Reel, and being able to lock in your product, model and setting with references and keyframes means less drift and fewer reshoots. For product launches and social ads, that makes AI video more practical, not just more impressive.",
+    "Tools still do not decide what is worth watching. The brands that get the most out of Kling 4.0 will be the ones with a clear idea, a strong first second and a look that is theirs. We test new models like this on real briefs and choose the right one for each film in our <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When did Kling 4.0 launch?",
+   "a": "Kuaishou says Kling 4.0 officially launched on 15 October 2026 and announced it on 16 October. A faster early-access version, Kling 4.0 Flash, had opened to some subscribers on 28 September."
+  },
+  {
+   "q": "How long can Kling 4.0 videos be?",
+   "a": "Up to 30 seconds in a single generation, guided by up to 15 reference materials and up to 10 keyframes."
+  },
+  {
+   "q": "Does Kling 4.0 support 4K and HDR?",
+   "a": "Kling says 4K and 10-bit HDR output are planned but not available yet."
+  },
+  {
+   "q": "How much does Kling 4.0 cost?",
+   "a": "Kling has not published Kling 4.0 credit prices yet. API access for businesses and developers is described as coming soon."
+  }
+ ],
+ "sources": [
+  {
+   "name": "Kuaishou (GlobeNewswire): Kling AI officially launches next-generation Kling 4.0",
+   "url": "https://www.globenewswire.com/news-release/2026/10/16/3382768/0/en/kling-ai-officially-launches-next-generation-kling-4-0-raising-the-bar-for-professional-grade-video-models.html"
+  },
+  {
+   "name": "36Kr: Kling 4.0 released",
+   "url": "https://eu.36kr.com/en/p/4028394336393095"
+  },
+  {
+   "name": "Pluang: Kuaishou launches Kling 4.0",
+   "url": "https://pluang.com/en/news-feed/kling-ai-model-40-diluncurkan-tingkatkan-kualitas-video-profesional"
+  },
+  {
+   "name": "Origami: what businesses can buy from Kling 4.0 today",
+   "url": "https://origami.sa/en/blog/kling-4-ai-video-business-guide/"
+  }
+ ],
+ "tags": [
+  "Kling",
+  "AI video",
+  "Kuaishou",
+  "AI video ads"
+ ]
+}
