@@ -1,0 +1,106 @@
+{
+ "date": "2026-10-20",
+ "slug": "flux-3-max-fast-ai-video-model",
+ "title": "FLUX 3 Max is out: a 10-second AI video in about 12 seconds, at top-tier quality",
+ "headline_html": "FLUX 3 Max makes a 10-second AI video in <span class=\"accent\">about 12 seconds</span>",
+ "seo_title": "FLUX 3 Max: Fast AI Video Model, Price, Speed",
+ "description": "fal and Black Forest Labs launched FLUX 3 Max, an AI video model that renders a 10-second clip in about 12 seconds. Speed, price and what it means for brands.",
+ "dek": "fal launched FLUX 3 Max on 19 October 2026, a video model it post-trained on Black Forest Labs' FLUX 3. The companies say it renders a 10-second clip in about 12 seconds, roughly 22 times faster than Seedance 2.5, while ranking level with the best models for image-to-video. It is available now on fal, at a launch discount until 7 November.",
+ "card": {
+  "headline": "FLUX 3 Max: *10-second AI video* in ~12 seconds",
+  "points": [
+   "Launched 19 Oct by fal and Black Forest Labs",
+   "Claimed 22x faster than Seedance 2.5",
+   "Tied for #1 in image-to-video rankings"
+  ],
+  "source": "fal / Black Forest Labs"
+ },
+ "tldr": [
+  "fal launched FLUX 3 Max on 19 October 2026, built on Black Forest Labs' FLUX 3 video model.",
+  "The companies say a 10-second clip renders in about 11 to 12 seconds, around 22 times faster than Seedance 2.5.",
+  "On the Artificial Analysis leaderboard it sits level with the top image-to-video models.",
+  "It makes clips of 5 to 20 seconds from text or from an image, through fal's platform.",
+  "A 75% launch discount runs until 7 November; the listed standard rate for 1080p is about $0.29 per second."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "fal, the platform that hosts many of the best-known image and video models, launched FLUX 3 Max on 19 October 2026. It is a faster, tuned version of FLUX 3, the video model Black Forest Labs released earlier this year. Black Forest Labs built the base model; fal's research team did the extra training and the work to make it run quickly.",
+    "The pitch is speed without a drop in quality. Both companies say a 10-second video now takes about 12 seconds to generate, close to real time, where many top models take several minutes for the same clip."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Speed:</strong> about 11 to 12 seconds to render a 10-second clip, by fal's own timing. In fal's comparison, Seedance 2.5 took nearly 278 seconds for the same length.",
+    "<strong>Quality:</strong> on the Artificial Analysis image-to-video leaderboard it scores around 1,138 to 1,139, level with Seedance 2.5 and just behind MiniMax H3. The ranking is marked preliminary.",
+    "<strong>What it makes:</strong> clips of 5 to 20 seconds, from a text prompt or from a starting image.",
+    "<strong>Where:</strong> available now through fal's platform and API.",
+    "<strong>Price:</strong> Black Forest Labs announced 75% off for two weeks, until 7 November. Reported standard rates are about $0.29 per second at 1080p and $0.17 at 720p.",
+    "<strong>Still early:</strong> fal calls this the first version of FLUX 3 Max and says it will keep training it."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Black Forest Labs is best known for the FLUX image models, and moved into video with FLUX 3. It designed FLUX 3 as a base that partners can customise, and FLUX 3 Max is the first big example of that from fal.",
+    "The last few weeks have been busy for AI video: Kling 4.0 pushed clip length to 30 seconds (see <a href=\"/ai-news/kling-4-launch-30-second-ai-video\">our Kling 4.0 story</a>), while Vidu and MiniMax competed on realism. FLUX 3 Max competes on a different thing: how quickly you get a usable result.",
+    "Reactions focused on the speed claim. Independent coverage noted that the speed figures come from fal and Black Forest Labs, and that the quality scores of the top models overlap, so FLUX 3 Max is best described as level with the leaders rather than clearly ahead."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Speed changes how video gets made. When a 10-second shot comes back in seconds instead of minutes, a team can try many more versions of an idea, a product angle or an opening shot in the same session, and pick the best. For paid social, where you test several hooks before spending, that means more options for the same budget.",
+    "Faster drafts do not replace taste. The winning ad is still the one with a clear idea, a product that looks right in every frame and a first second that stops the scroll. We use fast models like this to explore and slower, higher-detail models to finish, and pick per shot in our <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "What is FLUX 3 Max?",
+   "a": "It is an AI video model launched by fal on 19 October 2026, built by further training Black Forest Labs' FLUX 3 for speed and quality."
+  },
+  {
+   "q": "How fast is FLUX 3 Max?",
+   "a": "fal and Black Forest Labs say it renders a 10-second clip in about 11 to 12 seconds, roughly 22 times faster than Seedance 2.5 in their comparison. These are the companies' own figures."
+  },
+  {
+   "q": "How much does FLUX 3 Max cost?",
+   "a": "There is a 75% launch discount until 7 November. Reported standard rates on fal are about $0.29 per second at 1080p and $0.17 per second at 720p."
+  },
+  {
+   "q": "How does FLUX 3 Max compare to Seedance 2.5 and MiniMax H3?",
+   "a": "On the Artificial Analysis image-to-video leaderboard it scores level with Seedance 2.5 and just behind MiniMax H3, but it generates video far faster."
+  }
+ ],
+ "sources": [
+  {
+   "name": "fal (PR Newswire): fal launches FLUX 3 Max",
+   "url": "https://www.prnewswire.com/news-releases/fal-launches-flux-3-max-delivering-1-tier-image-to-video-quality-at-industry-leading-speeds-302913033.html"
+  },
+  {
+   "name": "Black Forest Labs on X: Introducing FLUX 3 Max",
+   "url": "https://x.com/bfl_ai/status/2112255353677328415"
+  },
+  {
+   "name": "VentureBeat: fal launches FLUX 3 Max, claiming 22x faster AI video generation",
+   "url": "https://venturebeat.com/technology/fal-launches-flux-3-max-claiming-22-faster-ai-video-generation-than-seedance-2-5"
+  },
+  {
+   "name": "Unite.AI: fal debuts FLUX 3 Max video model",
+   "url": "https://www.unite.ai/fal-debuts-flux-3-max-video-model-post-trained-with-black-forest-labs/"
+  },
+  {
+   "name": "AlphaSignal: FLUX 3 Max pricing and speed",
+   "url": "https://alphasignal.ai/news/black-forest-labs-flux-3-max-generates-10-second-videos-22x-faster"
+  },
+  {
+   "name": "FourWeekMBA: FLUX 3 Max pricing compared",
+   "url": "https://fourweekmba.com/ai-flux-3-max-launches-79-below-googles-veo-3-1-video-price/"
+  }
+ ],
+ "tags": ["FLUX", "Black Forest Labs", "fal", "AI video", "AI video ads"]
+}
