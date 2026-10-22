@@ -1,0 +1,101 @@
+{
+ "date": "2026-10-22",
+ "slug": "meta-ai-ad-tools-10-million-advertisers-creator-ads",
+ "title": "Meta: 10 million advertisers now use its AI ad tools, and creator ads hit a $15 billion run rate",
+ "headline_html": "Meta: <span class=\"accent\">10 million advertisers</span> now use its AI ad tools",
+ "seo_title": "Meta AI Ad Tools: 10M Advertisers, Creator Ads $15B",
+ "description": "Meta says nearly 10 million advertisers used its AI creative tools last quarter and creator ads passed a $15B run rate. What it means for your ads.",
+ "dek": "In its third-quarter results on 21 October 2026, Meta said nearly 10 million advertisers used at least one of its generative AI creative tools, use of its AI video features grew 25% in a quarter, and ads made with creators passed a $15 billion yearly run rate, almost double a year ago.",
+ "card": {
+  "headline": "*10 million advertisers* now use Meta's AI ad tools",
+  "points": [
+   "AI video feature use up 25% in one quarter",
+   "Creator (partnership) ads pass $15B run rate, up 97%",
+   "Creator Marketing Hub now open to all advertisers"
+  ],
+  "source": "Meta Q3 2026 results"
+ },
+ "tldr": [
+  "Meta reported its third-quarter 2026 results on 21 October.",
+  "Nearly 10 million advertisers used at least one of its generative AI creative tools in the quarter.",
+  "Use of its AI video generation features, such as turning one product image into a short video, grew 25% from the previous quarter.",
+  "Partnership ads, which run creator content as ads, grew 97% year over year and passed a $15 billion yearly run rate.",
+  "Its Creator Marketing Hub is now open to all advertisers, with more than 10 million creators to choose from."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Meta, which owns Facebook and Instagram, reported its results for July to September 2026 on 21 October. Alongside the usual revenue figures, the company shared how quickly advertisers are taking up its AI tools for making ads.",
+    "The two numbers that matter most for brands: almost 10 million advertisers now use Meta's AI creative tools, and ads made with creators have become one of its fastest-growing products."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>AI creative tools:</strong> nearly 10 million advertisers used at least one generative AI tool, such as background, text or image variations, in the quarter.",
+    "<strong>AI video:</strong> advertiser use of video generation features grew 25% quarter over quarter, helped by tools that turn a single uploaded image into a short video ad.",
+    "<strong>Creator ads:</strong> partnership ads, where a brand runs a creator's post as a paid ad, grew 97% year over year and passed a $15 billion annual revenue run rate.",
+    "<strong>Finding creators:</strong> the Creator Marketing Hub is now available to all advertisers worldwide, listing more than 10 million creators, and Meta is adding its AI business assistant so brands can search for creators by chatting.",
+    "<strong>Ad business:</strong> ad revenue rose about 26% year over year, with 10% more ads shown and the average price per ad up 14%.",
+    "<strong>What Meta did not say:</strong> it gave no separate figure for revenue that comes from its AI ad tools."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Earlier this month at Advertising Week, Meta pushed its AI creative tools to more advertisers and made its static-image-to-video feature generally available (see <a href=\"/ai-news/meta-ai-video-ads-advertising-week\">our Advertising Week story</a>). These results are the first numbers showing how widely those tools are being used.",
+    "Meta has said in the past that partnership ads tend to cost less per sale and get more clicks than standard brand ads, because they look and feel like content people already follow. That is why creator-style video has become such a big part of paid social."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Two things are now clear. First, AI-made ad creative is normal: with 10 million advertisers using these tools, simply having AI variations is no longer an edge. What stands out is creative with a real idea, a consistent look and a product that looks right. Second, creator-style video is where ad money is moving fastest.",
+    "Meta's built-in tools are good for quick variations of what you already have. For new concepts, creator-style ads and launch films, brands still need someone to write the hook and direct the look. That is the gap our <a href=\"/ai-ugc-videos\">AI UGC videos</a> are made for: creator-style ads you can test at volume without booking a shoot."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "How many advertisers use Meta's AI ad tools?",
+   "a": "Meta said nearly 10 million advertisers used at least one of its generative AI creative tools in the third quarter of 2026."
+  },
+  {
+   "q": "What are Meta partnership ads?",
+   "a": "They are ads that run a creator's content, or a brand post made with a creator, as a paid ad. Meta says this product grew 97% year over year and passed a $15 billion annual run rate."
+  },
+  {
+   "q": "Can Meta turn a product image into a video ad?",
+   "a": "Yes. Meta's tools can turn a single image into a short video, and advertiser use of its video generation features grew 25% in the third quarter."
+  },
+  {
+   "q": "What is the Meta Creator Marketing Hub?",
+   "a": "It is a place inside Meta's ad tools where brands find creators, agree on content and run it as ads. It is now open to all advertisers and lists more than 10 million creators."
+  }
+ ],
+ "sources": [
+  {
+   "name": "The Motley Fool: Meta Q3 2026 earnings call transcript",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/10/21/meta-meta-q3-2026-earnings-call-transcript/"
+  },
+  {
+   "name": "PPC Land: Meta's ads with creators gain 97% to a $15bn annual run rate",
+   "url": "https://ppc.land/metas-ads-with-creators-gain-97-to-a-15bn-annual-run-rate/"
+  },
+  {
+   "name": "Exchange4media: Meta's ad revenue jumps 26% as AI boosts conversions",
+   "url": "https://www.exchange4media.com/digital-news/metas-ad-revenue-jumps-26-to-631-billion-as-ai-boosts-conversions-ad-prices-159351.html"
+  },
+  {
+   "name": "Exchange4media: Meta's creator-led ads hit $15 billion run rate",
+   "url": "https://www.exchange4media.com/digital-news/metas-creator-led-ads-hit-15-billion-run-rate-surging-97-yoy-cfo-susan-li-159359.html"
+  },
+  {
+   "name": "Investing.com: Meta Q3 2026 earnings call transcript",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-meta-beats-q3-2026-estimates-as-ai-push-lifts-shares-93CH-4964260"
+  }
+ ],
+ "tags": ["Meta", "AI ads", "Creator ads", "AI video", "Instagram"]
+}
