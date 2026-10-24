@@ -3,7 +3,7 @@
 // (built for the Hisense VIDAA browser, works in any TV browser
 // or desktop with arrow keys + Enter + Esc/Backspace).
 // ============================================================
-import { PROJECTS, CATEGORIES, thumbSrc } from '../js/projects.js?v=16';
+import { PROJECTS, CATEGORIES, thumbSrc } from '../js/projects.js?v=17';
 
 const stage = document.getElementById('stage');
 const rowsEl = document.getElementById('rows');

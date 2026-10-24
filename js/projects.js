@@ -46,11 +46,11 @@ export const PROJECTS = [
   // AI Video Ads
   { cat: 'ai', title: 'GNOCCA: The Unveiling | AI Luxury Fragrance Film', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: '2HyZ7oYIjMg' } },
   { cat: 'ai', title: '100% AI-Generated Ice Cream Ad', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'oGAJmeoQsMc' } },
-  { cat: 'ai', title: 'Saucesome Noodles: Every Bite Glows | AI Commercial', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'TMI4O6Ue3j4' } },
-  { cat: 'ai', title: 'Moovelous | AI Cheese Commercial', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'ngqz3CR3zEg' } },
+  { cat: 'ai', title: 'Saucesome Noodles: Every Bite Glows | AI Commercial', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: '4SSR9y_6AKU' } },
+  { cat: 'ai', title: 'Moovelous | AI Cheese Commercial', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'BOxMjyzOi_A' } },
   { cat: 'ai', title: 'Mystique | AI Perfume Ad', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'JkG-pEVQ-O0' } },
   { cat: 'ai', title: 'Cinematic AI Beauty Lipstick Commercial', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'Gm2HEd6EK6c' } },
-  { cat: 'ai', title: 'Dejavu Jeans | AI Fashion Ad', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'rNk6ySViTX4' } },
+  { cat: 'ai', title: 'Dejavu Jeans | AI Fashion Ad', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'iKDf_hztAPE' } },
   { cat: 'ai', title: 'Dejavu Watches: The Emblem of Power', w: 16, h: 9, frame: true, source: { type: 'youtube-video', id: 'aZxwMphu6bw' } },
 ];
 
