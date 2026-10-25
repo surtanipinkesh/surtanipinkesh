@@ -1,0 +1,97 @@
+{
+ "date": "2026-10-25",
+ "slug": "meta-ai-ad-edits-advertisers-liable-october-30",
+ "title": "From 30 October, brands carry the risk when Meta's AI changes their ads",
+ "headline_html": "From 30 October, brands carry the risk when <span class=\"accent\">Meta's AI changes their ads</span>",
+ "seo_title": "Meta AI Ad Edits: Advertisers Liable From Oct 30",
+ "description": "Meta's new terms make advertisers solely responsible for AI changes to their ads from 30 October, even features Meta turns on. What to check now.",
+ "dek": "Meta's updated commercial terms, which take effect on 30 October 2026, say advertisers are solely responsible for whatever its AI features create or change in their ads. At the same time, brands are reporting AI edits they never asked for, including an AI illustration added to a human-made ad.",
+ "card": {
+  "headline": "From 30 Oct, *brands carry the risk* of Meta's AI ad edits",
+  "points": [
+   "New terms: advertisers 'solely responsible' for AI changes",
+   "Some brands found AI edits they never switched on",
+   "Check every Advantage+ creative setting now"
+  ],
+  "source": "Adweek / PPC Land"
+ },
+ "tldr": [
+  "Meta's revised commercial terms take effect on 30 October 2026, according to Adweek and PPC Land.",
+  "They say advertisers are solely responsible for anything Meta's AI features create or change in their ads.",
+  "Bookshop.org says an account update opted it into new AI features and an AI illustration was added to its human-made ad without its knowledge.",
+  "An agency reports pulling ads to remove AI-added images, sitelinks and translated copy, some on ads where the feature was never enabled.",
+  "Meta says advertisers can turn off individual Advantage+ features in Ads Manager."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Meta has rewritten the commercial terms that every advertiser on Facebook and Instagram agrees to. Its earlier generative AI ad terms applied when an advertiser chose to use the AI tools. The new version, which starts on 30 October, folds those rules into the main terms and says the advertiser is solely responsible for whatever the AI features create or change, including features Meta turns on itself.",
+    "The timing matters because brands are already finding AI changes in live ads. Bookshop.org, the online bookseller, said on Threads that an account update opted it into Meta's new ad features and that an AI-generated illustration was added to one of its human-made ads without its knowledge. It has since switched off Meta's AI ad features."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Start date:</strong> 30 October 2026 in most reports. One outlet gives a later date, so check the terms in your own Meta account.",
+    "<strong>Who is responsible:</strong> the advertiser, for anything Meta's AI creates or edits in an ad, according to Adweek's reading of the new terms.",
+    "<strong>Meta's own warning:</strong> the terms say its AI may make mistakes and may not always produce accurate or suitable results.",
+    "<strong>What brands are seeing:</strong> an agency told Adweek it has pulled ads to remove AI-added images, carousels built from a brand's own photos, extra sitelinks and translated copy, some on ads where the feature was never enabled.",
+    "<strong>Turning it off:</strong> Meta says each Advantage+ creative feature can be switched off in Ads Manager. Guides also point to account-level creative defaults so new features are not switched on automatically.",
+    "<strong>Still unclear:</strong> Meta did not say whether advertisers are liable for features they never switched on."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Meta has been pushing AI into its ad tools fast. This week it said nearly 10 million advertisers used its AI creative tools last quarter (see <a href=\"/ai-news/meta-ai-ad-tools-10-million-advertisers-creator-ads\">our story on Meta's results</a>). Many of these features, called Advantage+ creative enhancements, are on by default and adjust images, text, music and layout to improve results.",
+    "Advertisers have complained for months that these settings switch themselves back on, sit in collapsed menus, and can change a logo, crop a product or add music the brand never chose."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Before 30 October, open every live campaign and check each Advantage+ creative enhancement one by one, plus the creative defaults in your ad account settings. Decide what Meta is allowed to change, and check again before each launch, because settings can come back on.",
+    "AI is a great tool when someone controls it. The safest way to use AI in ads is to make the creative on purpose, with your product, colours and logo exactly right, and then let the platform only test what you approved. That is how we make our <a href=\"/ai-video-ads\">AI video ads</a>: finished and approved by you before they go live, not changed by a platform afterwards."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When do Meta's new AI ad terms start?",
+   "a": "Most reports say 30 October 2026. One outlet gives a later date, so check the commercial terms shown in your own Meta account."
+  },
+  {
+   "q": "Am I responsible if Meta's AI changes my ad?",
+   "a": "Under the new terms, advertisers are solely responsible for what Meta's AI features create or change. Meta has not said how this applies to features an advertiser never switched on."
+  },
+  {
+   "q": "How do I stop Meta's AI from changing my ads?",
+   "a": "In Ads Manager, open the Advantage+ creative enhancements for each ad and switch off the ones you do not want, then check your ad account's creative defaults. Re-check before each launch."
+  },
+  {
+   "q": "What changes can Meta's AI make to an ad?",
+   "a": "Reported changes include generated or expanded images, carousels built from your photos, text and translation tweaks, added sitelinks and music."
+  }
+ ],
+ "sources": [
+  {
+   "name": "Adweek: Advertisers pull Meta ads that had unwanted AI glow-ups",
+   "url": "https://www.adweek.com/media/advertisers-pull-meta-ads-that-had-unwanted-ai-glow-ups/"
+  },
+  {
+   "name": "PPC Land: Meta makes advertisers solely responsible for its AI ad edits from Oct 30",
+   "url": "https://ppc.land/meta-makes-advertisers-solely-responsible-for-its-ai-ad-edits-from-oct-30/"
+  },
+  {
+   "name": "Relevant Audience: Meta AI Features terms, advertisers liable from 30 Oct",
+   "url": "https://www.relevantaudience.com/meta/meta-commercial-terms-ai-features-advertiser-liability-october-30/"
+  },
+  {
+   "name": "Jumpfly: Meta's Advantage+ settings, why they keep reappearing",
+   "url": "https://www.jumpfly.com/blog/metas-advantage-settings-why-they-keep-reappearing-and-how-to-stay-in-control/"
+  }
+ ],
+ "tags": ["Meta", "AI ads", "Advantage+", "Brand safety", "Meta Ads"]
+}
