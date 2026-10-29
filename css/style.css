@@ -1115,3 +1115,52 @@ a.addon-chip small{ color:var(--gold); }
 .home-news-more{ text-align:center; margin-top:28px; }
 .home-news-more a{ color:var(--gold); font-weight:600; }
 .home-news-more a:hover{ text-decoration:underline; }
+
+
+/* ============================================================
+   FIRST-SCREEN OFFER + SERVICE TILES (Oct 2026: visitors were leaving
+   the homepage within seconds without finding the offer or services)
+   ============================================================ */
+.hero-first{
+  position:absolute; left:0; right:0; bottom:96px; z-index:3;
+  display:flex; flex-direction:column; align-items:center; gap:14px; padding:0 20px; text-align:center;
+  transition:opacity .3s ease, visibility .3s;
+}
+.hero-first-line{ margin:0; font-size:15px; letter-spacing:.3px; color:var(--text); text-shadow:0 2px 12px rgba(0,0,0,.6); }
+.hero-first .btn{ min-height:54px; padding:0 30px; }
+.hero-pin .hero-first.is-hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+@media (max-width:600px){
+  .hero-first{ bottom:88px; }
+  .hero-first-line{ font-size:13px; }
+}
+
+.service-tiles{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  max-width:1240px; margin:0 auto; padding:56px 24px 64px; position:relative; z-index:2;
+}
+.service-tile{
+  position:relative; display:block; aspect-ratio:4/5; border-radius:18px; overflow:hidden;
+  border:1px solid rgba(224,175,59,.25); text-decoration:none; color:var(--text); background:#111;
+}
+.service-tile-img{
+  position:absolute; inset:-4%; background-size:cover; background-position:center;
+  animation:tileDrift 14s ease-in-out infinite alternate;
+}
+.service-tile:nth-child(3) .service-tile-img{ animation-delay:-5s; }
+.service-tile:nth-child(4) .service-tile-img{ animation-delay:-9s; }
+@keyframes tileDrift{ from{ transform:scale(1) translate(0,0); } to{ transform:scale(1.12) translate(-2%,-2%); } }
+.service-tile::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(18,16,12,.92) 0%, rgba(18,16,12,.35) 45%, transparent 75%);
+}
+.service-tile-text{ position:absolute; left:22px; right:22px; bottom:22px; z-index:1; display:flex; flex-direction:column; gap:6px; }
+.service-tile-tag{ font-size:11px; letter-spacing:2px; color:var(--gold); }
+.service-tile-title{ font-size:22px; font-weight:700; line-height:1.2; }
+.service-tile-more{ font-size:14px; color:var(--text-dimmer); transition:color .2s; }
+.service-tile:hover .service-tile-more, .service-tile:focus-visible .service-tile-more{ color:var(--gold); }
+.service-tile:hover{ border-color:var(--gold); }
+@media (max-width:900px){
+  .service-tiles{ grid-template-columns:1fr; gap:14px; padding:36px 16px 44px; }
+  .service-tile{ aspect-ratio:16/9; }
+}
+@media (prefers-reduced-motion:reduce){ .service-tile-img{ animation:none; } }
