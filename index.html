@@ -88,7 +88,7 @@
 <link rel="preconnect" href="https://i.ytimg.com">
 
 <link rel="preload" href="assets/fonts/space-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=34">
+<link rel="stylesheet" href="css/style.css?v=35">
 </head>
 <body>
 
@@ -163,6 +163,11 @@
     </div>
     <div class="hero-vignette" aria-hidden="true"></div>
 
+    <div class="hero-first">
+      <p class="hero-first-line">AI video ads, UGC &amp; social films for brands</p>
+      <a href="#contact" class="btn btn-primary js-concept"><span>Get a Free Concept Frame</span></a>
+    </div>
+
     <a href="#universe" class="hero-scroll-cue reveal" aria-label="Scroll to explore the portfolio">
       <span>SCROLL TO EXPLORE</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
@@ -182,10 +187,28 @@
       own 3D space.
     </p>
     <div class="universe-actions reveal">
-      <a href="#contact" class="btn btn-primary"><span>Start a Project</span></a>
+      <a href="#contact" class="btn btn-primary js-concept"><span>Get a Free Concept Frame</span></a>
       <a href="/portfolio" class="btn btn-outline"><span>View Portfolio</span></a>
     </div>
   </div>
+</section>
+
+<!-- ============ SERVICE TILES ============ -->
+<!-- Three big doors straight after the reel, so visitors who don't scroll far still find what we make. -->
+<section class="service-tiles" id="what-we-make" aria-labelledby="tilesTitle">
+  <h2 class="visually-hidden" id="tilesTitle">What we make</h2>
+  <a class="service-tile" href="/ai-video-ads">
+    <span class="service-tile-img" style="background-image:url('assets/work/2HyZ7oYIjMg-640.webp')" aria-hidden="true"></span>
+    <span class="service-tile-text"><span class="service-tile-tag">AI ADS &amp; TVCS</span><span class="service-tile-title">AI Video Ads &amp; TV Commercials</span><span class="service-tile-more">See the work &rarr;</span></span>
+  </a>
+  <a class="service-tile" href="/ai-ugc-videos">
+    <span class="service-tile-img" style="background-image:url('https://i.vimeocdn.com/video/2203763529-c9a1e0b5fef87a83396fa67a917d7a352b1a7aada00e8fba54a7f17875d04da4-d_640?region=us')" aria-hidden="true"></span>
+    <span class="service-tile-text"><span class="service-tile-tag">AI UGC</span><span class="service-tile-title">AI UGC Videos</span><span class="service-tile-more">See the work &rarr;</span></span>
+  </a>
+  <a class="service-tile" href="/ai-social-media-videos">
+    <span class="service-tile-img" style="background-image:url('https://i.vimeocdn.com/video/2203755776-1c3fb7d5301253e9edc1586a44dddee4dab15089789409c75090912d3a458e86-d_640?region=us')" aria-hidden="true"></span>
+    <span class="service-tile-text"><span class="service-tile-tag">SOCIAL</span><span class="service-tile-title">Social Media Videos</span><span class="service-tile-more">See the work &rarr;</span></span>
+  </a>
 </section>
 
 <!-- ============ 3D PORTFOLIO UNIVERSE ============ -->
@@ -836,6 +859,7 @@
       <div class="form-field">
         <label for="cfType">Project type</label>
         <select id="cfType" name="type">
+          <option>Free concept frame</option>
           <option>AI Video Ad</option>
           <option>AI UGC Video</option>
           <option>Social Media Videos</option>
@@ -923,7 +947,7 @@
   </div>
 </footer>
 
-<script src="js/script.js?v=13"></script>
+<script src="js/script.js?v=14"></script>
 <script type="module">
   // The 3D gallery (Three.js + scene setup) is heavy on phones and sits below
   // the hero, so fetch and start it once the visitor starts scrolling toward

@@ -23,20 +23,33 @@
       if (p && p.catch) p.catch(() => {});
     };
     heroReel.addEventListener('playing', () => heroWrap && heroWrap.classList.add('is-playing'));
-    if (document.readyState === 'complete') loadReel();
-    else window.addEventListener('load', loadReel, { once: true });
+    // start as soon as the page is parsed rather than after every image has loaded,
+    // so the reel is moving within the first seconds of a visit
+    if (document.readyState !== 'loading') loadReel();
+    else document.addEventListener('DOMContentLoaded', loadReel, { once: true });
     ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(ev =>
       window.addEventListener(ev, loadReel, { once: true, passive: true }));
   }
+
+  /* ---------- free concept frame buttons ---------- */
+  // Pick the matching project type and give the message box a helpful hint.
+  document.querySelectorAll('.js-concept').forEach(btn => btn.addEventListener('click', () => {
+    const type = document.getElementById('cfType');
+    const msg = document.getElementById('cfMessage');
+    if (type) type.value = 'Free concept frame';
+    if (msg && !msg.value) msg.placeholder = 'Your brand, the product, and a link to your website or Instagram. We\'ll send one free concept frame.';
+  }));
 
   /* ---------- header scroll state ---------- */
   const header = document.getElementById('siteHeader');
   const progressBar = document.getElementById('progressBar');
   const scrollCue = document.querySelector('.hero-scroll-cue');
+  const heroFirst = document.querySelector('.hero-first');
 
   function onScroll(){
     header.classList.toggle('scrolled', window.scrollY > 40);
     scrollCue?.classList.toggle('is-hidden', window.scrollY > 60);
+    heroFirst?.classList.toggle('is-hidden', window.scrollY > 60);
 
     const h = document.documentElement;
     const scrolled = h.scrollTop;
