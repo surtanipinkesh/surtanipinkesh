@@ -1,0 +1,101 @@
+{
+ "date": "2026-10-31",
+ "slug": "chatgpt-ads-creative-enhancements-default-opt-out",
+ "title": "ChatGPT Ads now rewrites your ads by default: what brands should check",
+ "headline_html": "ChatGPT Ads now <span class=\"accent\">rewrites your ads</span> by default",
+ "seo_title": "ChatGPT Ads Creative Enhancements: On by Default",
+ "description": "OpenAI switched on creative enhancements in ChatGPT Ads on 30 October: AI can rewrite, translate and resize your ads unless you opt out. How to check.",
+ "dek": "OpenAI has switched on creative enhancements in ChatGPT Ads by default. Unless an advertiser opts out, its AI can now rewrite headlines and descriptions, translate ad text, resize images and send clicks to a different page, without approval of each version.",
+ "card": {
+  "headline": "ChatGPT Ads now *rewrites your ads* by default",
+  "points": [
+   "AI can change headlines, text, images and landing pages",
+   "On since 30 Oct for campaigns that did not opt out",
+   "Opt out in Ads Manager, per account or per campaign"
+  ],
+  "source": "Search Engine Land / SEJ / PPC Land"
+ },
+ "tldr": [
+  "OpenAI switched on creative enhancements in ChatGPT Ads by default around 30 October 2026.",
+  "When on, its AI can rewrite headlines and descriptions, translate ad text, resize images and change the destination page on your site.",
+  "Enhanced versions can run without the advertiser reviewing or approving each one, and there is no preview of every variation.",
+  "Advertisers can opt out in Ads Manager settings, for the whole account or per campaign; earlier opt-outs stay in place.",
+  "Multi-image ads also opened to all ChatGPT advertisers this week."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "OpenAI emailed ChatGPT advertisers on 20 October to say a feature called creative enhancements would be switched on by default. It went live around 30 October for new and existing campaigns that had not opted out. Trade outlets including Search Engine Land, Search Engine Journal and PPC Land reported the change.",
+    "With the feature on, ChatGPT can adapt an ad to the conversation it appears next to: it may reword the headline and description, translate the text, resize the image or send the click to a different page of the advertiser's website. OpenAI's help page says these versions can run without the advertiser reviewing each one, and there is no preview of every variation."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>What can change:</strong> headlines, descriptions, image size and crop, ad language, and the landing page on your own site.",
+    "<strong>Start date:</strong> 30 October 2026 in OpenAI's email. OpenAI's own pages have also shown 29 and 31 October, so check your account.",
+    "<strong>Who it applies to:</strong> campaigns in the self-serve ChatGPT Ads Manager that did not opt out. Reports differ on whether campaigns bought through agency partners are included.",
+    "<strong>Approval:</strong> enhanced versions can run automatically, without approval of each version.",
+    "<strong>How to opt out:</strong> in Ads Manager, open the settings and turn creative enhancements off for the account, or for a single campaign. A campaign setting overrides the account default, and earlier opt-outs are kept.",
+    "<strong>Also new:</strong> multi-image ads, in beta since 26 October, are now open to all advertisers, according to OpenAI's advertiser email."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Ads in ChatGPT began as a pilot in February 2026. In May, OpenAI opened a self-serve Ads Manager in beta with cost-per-click bidding, and it has since opened to more US businesses. Earlier this month it also started testing visual ads next to images people generate in ChatGPT (see <a href=\"/ai-news/chatgpt-image-generation-visual-ads\">our story on ChatGPT visual ads</a>).",
+    "Automatic AI changes to ads are becoming the norm across platforms. Meta's updated terms, also starting 30 October, make advertisers responsible for whatever its AI changes in their ads (see <a href=\"/ai-news/meta-ai-ad-edits-advertisers-liable-october-30\">our Meta story</a>)."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "If you run ChatGPT ads, open Ads Manager today and decide on purpose whether ChatGPT may rewrite your ads. For regulated categories, price claims, product names that must not be translated, or a strict brand voice, switching it off and testing your own versions is the safer choice.",
+    "The bigger lesson is the same on every platform: let AI help you make more versions, but make and approve them yourself before they go live. That is how we work on <a href=\"/ai-video-ads\">AI video ads</a>: many finished variations, every one checked by the brand, instead of a platform changing your creative after launch."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "What are creative enhancements in ChatGPT Ads?",
+   "a": "An AI feature that can rewrite headlines and descriptions, translate ad text, resize images and change the landing page so an ad fits the conversation it appears in."
+  },
+  {
+   "q": "When did ChatGPT turn creative enhancements on?",
+   "a": "OpenAI's email to advertisers gave 30 October 2026. Its own pages have also shown 29 and 31 October, so check the setting in your account."
+  },
+  {
+   "q": "How do I turn off creative enhancements in ChatGPT Ads?",
+   "a": "In ChatGPT Ads Manager, open the settings and switch creative enhancements off for the account or for each campaign. A campaign setting overrides the account default."
+  },
+  {
+   "q": "Do I approve each AI-changed ad?",
+   "a": "No. OpenAI says enhanced versions can run without review of each one, and there is no preview of every variation."
+  }
+ ],
+ "sources": [
+  {
+   "name": "Search Engine Land: ChatGPT Ads to enable creative enhancements on October 30",
+   "url": "https://searchengineland.com/chatgpt-ads-to-enable-creative-enhancements-on-october-30-497608"
+  },
+  {
+   "name": "Search Engine Journal: ChatGPT Ads turns on automatic ad changes by default",
+   "url": "https://www.searchenginejournal.com/chatgpt-ads-turns-on-automatic-ad-changes-by-default/595117/"
+  },
+  {
+   "name": "PPC Land: OpenAI to rewrite ChatGPT ads by default as advertisers get days to opt out",
+   "url": "https://ppc.land/openai-to-rewrite-chatgpt-ads-by-default-as-advertisers-get-days-to-opt-out/"
+  },
+  {
+   "name": "Relevant Audience: ChatGPT Ads auto ad changes now on, multi-image ads open",
+   "url": "https://www.relevantaudience.com/ai/chatgpt-ads-creative-enhancements-live-multi-image-ads/"
+  },
+  {
+   "name": "OpenAI: New ways to buy ChatGPT ads",
+   "url": "https://openai.com/index/new-ways-to-buy-chatgpt-ads/"
+  }
+ ],
+ "tags": ["ChatGPT Ads", "OpenAI", "AI ads", "Brand safety"]
+}
