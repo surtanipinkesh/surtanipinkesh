@@ -1,0 +1,101 @@
+{
+ "date": "2026-11-06",
+ "slug": "chatgpt-images-2-6-gif-animation",
+ "title": "ChatGPT Images 2.6 makes animated GIFs: what brands can do with it",
+ "headline_html": "ChatGPT Images 2.6 now makes <span class=\"accent\">animated GIFs</span>",
+ "seo_title": "ChatGPT Images 2.6: GIFs, References, Faster API",
+ "description": "OpenAI's Images 2.6 turns a prompt or a product photo into an animated GIF, keeps reference images for reuse and adds two faster API models.",
+ "dek": "OpenAI has released Images 2.6. ChatGPT and Codex can now turn a prompt or a still image into an animated GIF, keep reference images for reuse, and two new API models generate images about 50% faster.",
+ "card": {
+  "headline": "ChatGPT Images 2.6 now makes *animated GIFs*",
+  "points": [
+   "Turn a prompt or product photo into a looping GIF",
+   "Saved reference images keep characters consistent",
+   "Two new API models, about 50% faster"
+  ],
+  "source": "OpenAI / Windows Report / TestingCatalog"
+ },
+ "tldr": [
+  "OpenAI released Images 2.6 on 4 November 2026 in ChatGPT and Codex, for all plans, on web, desktop and mobile.",
+  "It can turn a text prompt or an existing image into an animated GIF, with control over speed and individual frames.",
+  "People can save reference images of themselves, pets or characters and reuse them without uploading again.",
+  "Two new API models arrive: GPT-Image-2.6 Flare for speed and GPT-Image-2.6 Sunburst for quality.",
+  "OpenAI says the new models generate images about 50% faster than GPT-Image-2.5."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "On 4 November OpenAI launched Images 2.6, the latest version of image generation inside ChatGPT and its Codex app. The headline feature is motion: for the first time ChatGPT can turn a written prompt or an uploaded still image into an animated GIF that plays on a loop.",
+    "The update also adds saved reference images, so a face, a pet or a character can be reused in new pictures without uploading it each time, and two new models for developers in the API that OpenAI says are about 50% faster than the previous generation."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Who can use it:</strong> everyone with ChatGPT or Codex, on all plans, on web, desktop and mobile. OpenAI's help pages say GIF creation is rolling out gradually, so it may appear later for some accounts.",
+    "<strong>GIFs:</strong> start from a prompt or an image, change the playback speed, edit single frames, then save or share the loop.",
+    "<strong>Reference images:</strong> keep images of yourself, pets or characters ready to reuse, which helps keep a mascot or person looking the same across pictures.",
+    "<strong>API models:</strong> GPT-Image-2.6 Flare is the fast option, returning an image in as little as about six seconds; GPT-Image-2.6 Sunburst is the quality option, with more consistent results across edits at medium or high quality.",
+    "<strong>Speed:</strong> OpenAI says the new models are about 50% faster than GPT-Image-2.5.",
+    "<strong>Limits and price:</strong> OpenAI has not said how many GIFs each plan allows, and outlets report API pricing differently, so check OpenAI's own pricing page before you plan volume."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Image generation is one of ChatGPT's most used features, and OpenAI has been updating it every few months. Animated GIFs are a step toward moving images inside ChatGPT itself, short of full video.",
+    "OpenAI is also building an ad business inside ChatGPT. Last week ChatGPT Ads switched on AI rewriting of ads by default (see <a href=\"/ai-news/chatgpt-ads-creative-enhancements-default-opt-out\">our story on ChatGPT Ads creative enhancements</a>), so the same company now offers tools both to make visuals and to change ads after launch."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "For marketers this is a quick, cheap way to add movement: a product photo that gently loops for an email header, a mascot that waves in a story, or a moving mock-up to test an idea before spending on production. Saved references also make it easier to keep a character or product looking the same across a set of images.",
+    "A GIF is still not a finished ad. Short loops have no sound, limited length and lower quality than video, and paid social still rewards proper vertical films with a hook, a story and sound. Use Images 2.6 to sketch and test ideas fast, then turn the winners into real <a href=\"/ai-social-media-videos\">AI social media videos</a> made for each platform."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When was ChatGPT Images 2.6 released?",
+   "a": "OpenAI released Images 2.6 on 4 November 2026 in ChatGPT and Codex, with GIF creation rolling out gradually."
+  },
+  {
+   "q": "Who can use ChatGPT Images 2.6?",
+   "a": "OpenAI says it is available on all ChatGPT and Codex plans on web, desktop and mobile; developers get the GPT-Image-2.6 Flare and Sunburst models in the API."
+  },
+  {
+   "q": "Can ChatGPT make GIFs now?",
+   "a": "Yes. Images 2.6 can turn a prompt or an existing image into an animated GIF, and you can change its speed and edit individual frames."
+  },
+  {
+   "q": "What is the difference between GPT-Image-2.6 Flare and Sunburst?",
+   "a": "Flare is built for speed and can return an image in about six seconds; Sunburst is built for quality and keeps images more consistent across edits."
+  }
+ ],
+ "sources": [
+  {
+   "name": "OpenAI: Introducing Images 2.6",
+   "url": "https://openai.com/index/introducing-images-2-6/"
+  },
+  {
+   "name": "OpenAI on X: Images 2.6 announcement",
+   "url": "https://x.com/OpenAI/status/2118124944928432327"
+  },
+  {
+   "name": "Windows Report: GPT-Image-2.6 brings 50% faster generation, GIFs and better editing",
+   "url": "https://windowsreport.com/openai-gpt-image-2-6-model-brings-50-faster-image-generation-animated-gifs-and-improved-editing/"
+  },
+  {
+   "name": "TestingCatalog: OpenAI launches Images 2.6 with GIFs and image reference",
+   "url": "https://www.testingcatalog.com/openai-launches-images-2-6-with-gifs-and-image-reference/"
+  },
+  {
+   "name": "MLQ: OpenAI releases Images 2.6 with GIF creation and new API controls",
+   "url": "https://mlq.ai/news/openai-releases-images-26-with-gif-creation-and-new-api-controls/"
+  }
+ ],
+ "tags": ["ChatGPT", "OpenAI", "AI image generation", "GIF", "AI ads"]
+}
