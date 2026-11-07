@@ -1,0 +1,101 @@
+{
+ "date": "2026-11-07",
+ "slug": "gemini-omni-1-2-flash-15-second-video-price",
+ "title": "Gemini Omni 1.2 Flash: 15-second AI video at 30% lower cost",
+ "headline_html": "Google's Gemini Omni 1.2 Flash makes <span class=\"accent\">15-second</span> video for less",
+ "seo_title": "Gemini Omni 1.2 Flash: 15s Video, 30% Cheaper",
+ "description": "Google's Gemini Omni 1.2 Flash is now generally available: AI video clips up to 15 seconds, multi-turn editing and 720p at $0.07 a second, 30% less.",
+ "dek": "Google has made Gemini Omni 1.2 Flash generally available. Its AI video model now makes clips of up to 15 seconds, lets you edit a clip step by step in conversation, follows more references, and costs about 30% less than the version before.",
+ "card": {
+  "headline": "Gemini Omni 1.2 Flash makes *15-second* video",
+  "points": [
+   "Clips up to 15 seconds, up from 10",
+   "720p at $0.07 a second, about 30% less",
+   "Edit a clip step by step in conversation"
+  ],
+  "source": "Google / Google Cloud / The Decoder"
+ },
+ "tldr": [
+  "Google made Gemini Omni 1.2 Flash generally available on 5 November 2026.",
+  "Video clips can now run up to 15 seconds, up from 10 seconds in the previous version.",
+  "720p video costs $0.07 per second, which Google says is 30% less than Gemini Omni 1.1 Flash.",
+  "It adds multi-turn editing, so one change at a time can be asked for without remaking the whole clip.",
+  "It is available through the Gemini API and Google Cloud for businesses."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Google has moved Gemini Omni 1.2 Flash, the newest version of its fast AI video model, to general availability. The update makes longer clips, follows reference material more closely and lowers the price.",
+    "Google announced the release on its own blog and on the Google Cloud blog, and trade sites such as The Decoder covered the longer clips and the price cut the same week."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Length:</strong> clips of up to 15 seconds, up from a 10-second limit before.",
+    "<strong>Price:</strong> $0.07 per second of 720p video, about $1.05 for a full 15-second clip. Google says that is 30% cheaper than Omni 1.1 Flash, with similar savings at other resolutions, but has not listed every resolution's price.",
+    "<strong>Editing:</strong> multi-turn editing lets you change one thing at a time, such as the background or a camera move, while the rest of the clip stays the same.",
+    "<strong>References:</strong> Google's developer post says the model follows up to six image, video or audio references more closely, which helps keep a product or character consistent.",
+    "<strong>Camera work:</strong> smoother camera moves such as fly-throughs and zoom-outs, with fewer sudden jump cuts.",
+    "<strong>Where:</strong> the Gemini API and Google Cloud for businesses, including reserved capacity for large volumes. Video tools from other companies are also adding it."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Google first showed Gemini Omni at its I/O conference in May 2026 as a model that can turn text, images, video and sound into new video, and edit it by conversation. The Flash version is the faster, cheaper tier meant for high volumes.",
+    "Google is also pushing generative AI hard inside its ad products. In its latest quarter it said Gemini helped advertisers create more than 1.5 billion campaign assets, so cheaper and longer video from its own model is likely to feed straight into ad tools."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Fifteen seconds is a useful length: it covers most short social ads and the opening of a longer story in a single clip, so fewer awkward joins between shots. At about a dollar per 15-second clip at 720p, testing several versions of an idea is now very cheap.",
+    "Cheaper generation does not make the creative decisions for you. The brands that win still need a strong hook, a consistent look across every clip, sound design and an edit that fits each platform. That is the work we do as an AI video production studio on <a href=\"/ai-video-ads\">AI video ads</a>, using the best model for each shot rather than one tool for everything."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When was Gemini Omni 1.2 Flash released?",
+   "a": "Google made Gemini Omni 1.2 Flash generally available on 5 November 2026."
+  },
+  {
+   "q": "How long can Gemini Omni 1.2 Flash videos be?",
+   "a": "Clips can run up to 15 seconds, up from 10 seconds in the previous version."
+  },
+  {
+   "q": "How much does Gemini Omni 1.2 Flash cost?",
+   "a": "Google lists 720p video at $0.07 per second, about 30% less than Omni 1.1 Flash, so a 15-second clip costs around $1.05."
+  },
+  {
+   "q": "Where can I use Gemini Omni 1.2 Flash?",
+   "a": "It is available through the Gemini API and Google Cloud for businesses, and some third-party video tools have added it."
+  }
+ ],
+ "sources": [
+  {
+   "name": "Google: Introducing Gemini Omni 1.2 Flash",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/"
+  },
+  {
+   "name": "Google Cloud: Gemini Omni 1.2 Flash now generally available",
+   "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available"
+  },
+  {
+   "name": "The Decoder: Gemini Omni 1.2 Flash stretches clips to 15 seconds and cuts pricing by 30 percent",
+   "url": "https://the-decoder.com/googles-gemini-omni-1-2-flash-stretches-ai-video-clips-to-15-seconds-and-cuts-pricing-by-30-percent/"
+  },
+  {
+   "name": "Tech Times: Google debuts Gemini Omni 1.2 Flash",
+   "url": "https://www.techtimes.com/articles/330142/20261106/google-debuts-gemini-omni-12-flash-longer-ai-clips-better-editing-fewer-errors.htm"
+  },
+  {
+   "name": "MLQ: Google makes Gemini Omni 1.2 Flash generally available",
+   "url": "https://mlq.ai/news/google-makes-gemini-omni-12-flash-generally-available-with-15-second-video-and-lower-pricing/"
+  }
+ ],
+ "tags": ["Gemini Omni", "Google", "AI video", "AI video pricing", "AI ads"]
+}
