@@ -1,0 +1,89 @@
+{
+ "date": "2026-11-13",
+ "slug": "adobe-max-2026-premiere-firefly-ai-features",
+ "title": "Adobe MAX 2026: the new AI tools for video editors in Premiere and Firefly",
+ "headline_html": "Adobe MAX 2026 puts an <span class=\"accent\">AI assistant</span> inside Premiere",
+ "seo_title": "Adobe MAX 2026: Premiere and Firefly AI Features",
+ "description": "Adobe MAX 2026 brought an AI assistant to Premiere that edits whole sequences, plus Color Mode, generative audio and Firefly model choice. What editors get.",
+ "dek": "At Adobe MAX 2026 Adobe put its Creative Agent inside Premiere, Photoshop and Firefly. Editors get an AI assistant that can grade, track and apply effects across a whole sequence, plus new colour, audio and generative tools. Most of it is in beta.",
+ "card": {
+  "headline": "Adobe MAX 2026 puts an *AI assistant* in Premiere",
+  "points": [
+   "Edits a whole sequence at once: effects, colour, tracking",
+   "Color Mode, Enhance Audio and generative sound in Premiere",
+   "Firefly lets you pick models from Google, Kling, OpenAI"
+  ],
+  "source": "Adobe / Variety / Digital Trends"
+ },
+ "tldr": [
+  "Adobe MAX 2026 ran from 10 to 12 November and focused on AI agents across Creative Cloud.",
+  "A new AI Assistant, powered by Adobe's Creative Agent, is in public beta in Premiere, Photoshop, Illustrator, InDesign and Frame.io.",
+  "In Premiere it can apply effects to every clip in a sequence, track masked subjects and fix colour and exposure across a whole sequence in one go.",
+  "Premiere also gets Color Mode, AI audio clean-up and a tool that generates video, sound effects and music inside the timeline.",
+  "Firefly's assistant adds a Plan Mode and a model picker with partner models from Google, Kling, OpenAI, ByteDance and ElevenLabs."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Adobe used its yearly MAX conference, held from 10 to 12 November 2026, to put AI agents into the apps editors use every day. The centre of it is the Adobe Creative Agent, which now runs an AI Assistant inside Premiere, Photoshop, Illustrator, InDesign and Frame.io, all in public beta, with a private beta in After Effects.",
+    "The idea is simple: instead of doing the same fix clip by clip, you tell the assistant what you want and it does the repetitive work across the project. Adobe also added new tools for colour, audio and generative media, and showed how outside AI agents may soon work on Creative Cloud files."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>AI Assistant in Premiere (beta):</strong> applies an effect to every clip in a sequence, tracks a masked subject through the frame and corrects colour and exposure for a whole sequence in one pass.",
+    "<strong>Color Mode:</strong> a new colour grading workspace in Premiere, now generally available.",
+    "<strong>Audio:</strong> AI tools such as Enhance Audio and Separate Crosstalk clean up dialogue and split overlapping voices.",
+    "<strong>Generative Media Tool:</strong> creates video, sound effects, soundscapes and music directly in the Premiere timeline.",
+    "<strong>Generative Remove (beta):</strong> mask an object, track it through the shot and remove it.",
+    "<strong>Firefly AI Assistant (beta):</strong> a Plan Mode that shows the steps before it runs, and a Model Selector with partner models from ByteDance, Google, Kling, OpenAI and ElevenLabs.",
+    "<strong>Firefly Design and Firefly Builder:</strong> Firefly Design is in beta from 10 November; Firefly Builder, which turns prompts into interactive prototypes, is in private beta.",
+    "<strong>Outside agents:</strong> Adobe previewed MCP servers so assistants such as Claude, ChatGPT and Gemini can work on Photoshop, Illustrator, Premiere and After Effects files. Reports point to 2027, with no firm date."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "Adobe has been adding generative AI to its apps since it launched Firefly in 2023, starting with images and moving to video and audio. Earlier in 2026 it began rolling out the Creative Agent across Firefly and Creative Cloud.",
+    "The big change this year is choice and control. Firefly now sits next to models from other companies instead of only Adobe's own, and the assistant can show its plan before it touches a project. Most of the new editing features are still in beta, so they may change before they reach everyone."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "For brands this mostly means faster turnaround. Grading a whole campaign, cleaning up interview audio or adjusting a dozen cut-downs for different platforms takes far less time when an assistant does the repetitive work, which leaves more of the budget for the idea itself.",
+    "Better tools still need someone deciding what the story is, which shots to use and how each cut should feel. As an AI video production studio we mix the best generation models with careful editing, and these updates make that finishing stage quicker. See how we put it together for <a href=\"/ai-video-ads\">AI video ads</a>."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When was Adobe MAX 2026?",
+   "a": "Adobe MAX 2026 ran from 10 to 12 November 2026, with keynotes also streamed online."
+  },
+  {
+   "q": "What does the new AI Assistant do in Premiere?",
+   "a": "It can apply effects across every clip in a sequence, track masked subjects and correct colour and exposure for a whole sequence in one pass. It is in public beta."
+  },
+  {
+   "q": "Which AI models can I use in Adobe Firefly?",
+   "a": "Firefly's Model Selector includes Adobe's own models plus partner models from companies such as Google, Kling, OpenAI, ByteDance and ElevenLabs."
+  },
+  {
+   "q": "Can Claude or ChatGPT edit Premiere projects?",
+   "a": "Adobe previewed MCP servers that would let outside agents like Claude, ChatGPT and Gemini work on Creative Cloud files, but it has not set a release date; reports point to 2027."
+  }
+ ],
+ "sources": [
+  {"name": "Adobe: Adobe Powers a New Era of Creativity (MAX 2026)", "url": "https://news.adobe.com/news/2026/11/adobe-powers-new-era-of-creativity"},
+  {"name": "Variety: Adobe adds AI agent features across its product lines", "url": "https://variety.com/2026/digital/news/adobe-ai-agentic-features-max-2026-1236943958/"},
+  {"name": "Digital Trends: Adobe MAX 2026 is all about AI agents and smarter editing", "url": "https://www.digitaltrends.com/computing/adobe-max-2026-firefly-creative-cloud-ai/"},
+  {"name": "AWN: Adobe brings AI agents to After Effects and Premiere", "url": "https://www.awn.com/news/adobe-brings-ai-agents-after-effects-premiere-adobe-max-2026"},
+  {"name": "Digital Production: AI video and audio in Premiere at MAX 2026", "url": "https://digitalproduction.com/2026/11/10/adobe-max-2026-ai-video-audio-premiere-creative-agent/"},
+  {"name": "Tech Times: Adobe MAX 2026 recap", "url": "https://www.techtimes.com/articles/330572/20261112/adobe-max-2026-recap-firefly-gets-planning-mode-creative-cloud-goes-open-agentic-ai-takes-over.htm"}
+ ],
+ "tags": ["Adobe MAX", "Premiere", "Adobe Firefly", "AI video editing", "AI tools"]
+}
