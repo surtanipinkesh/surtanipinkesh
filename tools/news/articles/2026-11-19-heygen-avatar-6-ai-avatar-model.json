@@ -1,0 +1,108 @@
+{
+ "date": "2026-11-19",
+ "slug": "heygen-avatar-6-ai-avatar-model",
+ "title": "HeyGen Avatar 6: AI avatars with script-aware gestures and 2K video",
+ "headline_html": "HeyGen Avatar 6 makes AI avatars <span class=\"accent\">move with the script</span>",
+ "seo_title": "HeyGen Avatar 6: New AI Avatar Model Explained",
+ "description": "HeyGen Avatar 6 launched on 17 November with gestures that follow the script, emotion cues and 2K output. What it changes for AI spokesperson and UGC ads.",
+ "dek": "HeyGen has released Avatar 6, its new AI avatar model. Instead of repeating the same hand movements, avatars now gesture to match what they are saying, take emotion cues and render in 2K. It is live in HeyGen and through its API, and existing personal avatars upgrade without new recordings.",
+ "card": {
+  "headline": "HeyGen Avatar 6 makes avatars *move with the script*",
+  "points": [
+   "Gestures follow the meaning of the script, not a loop",
+   "Emotion and gesture cues you can type into the script",
+   "2K rendering; existing avatars upgrade automatically"
+  ],
+  "source": "HeyGen / Unite.AI / Tech Buzz Ireland"
+ },
+ "tldr": [
+  "HeyGen released Avatar 6 on 17 November 2026, on its platform and through its API.",
+  "Avatars now pick gestures that fit what the script says, instead of cycling the same movements.",
+  "You can tag an emotion or describe a gesture in the script, such as a laugh or a fist pump.",
+  "HeyGen says videos render in 2K; the API offers Avatar 6 and a faster Avatar 6 Turbo, with 1080p as the default.",
+  "Existing personal avatars move to Avatar 6 without recording new footage."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "HeyGen, one of the best-known AI avatar platforms, launched Avatar 6 on 17 November 2026. It is the model behind the talking presenters people use for explainer videos, training, product demos and spokesperson-style ads.",
+    "The main change is how the avatar moves. Older avatar models tended to repeat the same set of gestures whatever the script said, which is one of the clearest signs that a video is AI-made. Avatar 6 reads the meaning of the script and chooses movements to match, so a surprised line gets a surprised reaction."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Script-aware gestures:</strong> movements are driven by the audio and the meaning of the script rather than a fixed loop.",
+    "<strong>Emotion and gesture cues:</strong> you can tag an emotion or describe a specific gesture, such as a yawn, a laugh or a fist pump.",
+    "<strong>Inputs:</strong> an avatar can be built from a photo plus up to 30 seconds of video.",
+    "<strong>Quality:</strong> HeyGen says frames render natively in 2K; on the API, Avatar 6 and a lower-latency Avatar 6 Turbo default to 1080p.",
+    "<strong>Upgrade:</strong> existing personal avatars switch to Avatar 6 without new footage.",
+    "<strong>Consent:</strong> realistic videos of real people stay inside HeyGen's own platform, where explicit consent is required; outside platforms can use photo-based and virtual avatars.",
+    "<strong>HeyGen's claims:</strong> it says 84% of people in its own tests rated Avatar 6 as realistic as the real person, and that it topped New Measure's Avatar Arena blind test. Both are company figures."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "AI avatars have improved fast, but stiff, repetitive body language has stayed a giveaway, especially in longer videos. HeyGen's previous models, Avatar IV and Avatar V, focused on lip sync and facial realism; Avatar 6 moves the focus to the whole body and to timing.",
+    "Reports suggest HeyGen has also reshaped its plans around the new model, but it has not published a separate per-minute price for Avatar 6, so costs should be checked on its pricing page. Early reviewers also note the blind tests used short clips, so long videos are the real test."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "For brands, more natural body language makes AI presenters usable in more places: product explainers, FAQ videos, onboarding and UGC-style ads where a stiff avatar used to break the spell. Being able to write an emotion or gesture into the script also gives a director real control over the performance.",
+    "A believable avatar still needs a good script, honest product claims and clear disclosure that it is AI. As an AI video production studio we treat avatars as one tool in the edit, next to real product shots and motion design. See how we build <a href=\"/ai-ugc-videos\">AI UGC videos</a> for brands."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When was HeyGen Avatar 6 released?",
+   "a": "HeyGen released Avatar 6 on 17 November 2026, on its platform and through its API."
+  },
+  {
+   "q": "What is new in HeyGen Avatar 6?",
+   "a": "Gestures now follow the meaning of the script, you can add emotion or gesture cues, and HeyGen says it renders in 2K. Existing personal avatars upgrade automatically."
+  },
+  {
+   "q": "How much does HeyGen Avatar 6 cost?",
+   "a": "HeyGen has not published a separate per-minute price for Avatar 6; it runs on HeyGen's credit-based plans, so check the pricing page for current rates."
+  },
+  {
+   "q": "Can I use Avatar 6 through an API?",
+   "a": "Yes. The API offers Avatar 6 and a faster Avatar 6 Turbo, with 1080p as the default resolution."
+  }
+ ],
+ "sources": [
+  {
+   "name": "HeyGen press release: Avatar 6, an audio-driven, context-aware AI model (PR Newswire)",
+   "url": "https://www.prnewswire.com/news-releases/heygen-introduces-avatar-6-an-audio-driven-context-aware-ai-model-that-alleviates-repetitive-or-unnatural-motion-in-ai-generated-video-302942527.html"
+  },
+  {
+   "name": "HeyGen: Avatar 6 model page",
+   "url": "https://www.heygen.com/models/heygen-avatar-6"
+  },
+  {
+   "name": "Unite.AI: HeyGen launches Avatar 6 with script-aware gestures and 2K video",
+   "url": "https://www.unite.ai/heygen-launches-avatar-6-with-script-aware-gestures-and-2k-video/"
+  },
+  {
+   "name": "Tech Buzz Ireland: HeyGen launches Avatar 6",
+   "url": "https://techbuzzireland.com/2026/11/17/heygen-launches-avatar-6/"
+  },
+  {
+   "name": "OpenRouter: HeyGen Avatar 6 API listing",
+   "url": "https://openrouter.ai/heygen/heygen-avatar-6"
+  }
+ ],
+ "tags": [
+  "HeyGen",
+  "AI avatars",
+  "AI UGC",
+  "AI video",
+  "AI advertising"
+ ]
+}
