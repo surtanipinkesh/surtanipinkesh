@@ -1,0 +1,88 @@
+{
+ "date": "2026-11-26",
+ "slug": "magi-2-ai-video-model-price",
+ "title": "MAGI-2: 30-second 1080p AI video with sound for $0.08 a second",
+ "headline_html": "MAGI-2 brings 30-second AI video with sound for <span class=\"accent\">8 cents a second</span>",
+ "seo_title": "MAGI-2 AI Video Model: Price, Length and Features",
+ "description": "Sand.ai's MAGI-2 makes up to 30 seconds of 1080p video with sound for $0.08 a second, live on Higgsfield. What it costs and what it means for brand ads.",
+ "dek": "Sand.ai has launched MAGI-2, a new AI video model that makes clips of up to 30 seconds in 1080p with sound in one go. It costs $0.08 per second of video, so a full 30-second clip is about $2.40, a fraction of what most top models charge. It launched first on Higgsfield.",
+ "card": {
+  "headline": "MAGI-2: 30-second AI video for *8 cents a second*",
+  "points": [
+   "Up to 30 seconds of 1080p video, sound made in the same pass",
+   "$0.08 per second, about $2.40 for a full 30-second clip",
+   "Shot cuts and up to 20 references; live first on Higgsfield"
+  ],
+  "source": "Sand.ai / Higgsfield / Sulat / i10x"
+ },
+ "tldr": [
+  "Sand.ai released MAGI-2 on 24 November 2026; it went live on Higgsfield as its launch partner.",
+  "It makes clips from 4 to 30 seconds long, in 1080p at 25 frames per second, with sound.",
+  "The price is $0.08 per second with audio included, so a 30-second clip is about $2.40.",
+  "It supports shot cuts on a timeline, edits to existing video and up to 20 reference images or clips.",
+  "Sand.ai says it will open-source MAGI-2 later; for now only the smaller MAGI-2 Preview is open."
+ ],
+ "sections": [
+  {
+   "heading": "What happened",
+   "paragraphs": [
+    "Sand.ai, the team behind the earlier MAGI video models, launched MAGI-2 on 24 November 2026. It is a large new model that turns text, images, video and audio into finished clips of up to 30 seconds in 1080p, with dialogue, sound effects and music made at the same time as the picture.",
+    "The headline is the price. MAGI-2 costs $0.08 for every second of video, with sound included, so a full 30-second clip comes to about $2.40. Most top video models charge several times that, and many still stop at 10 or 15 seconds per clip."
+   ]
+  },
+  {
+   "heading": "The key details",
+   "list": [
+    "<strong>Length:</strong> clips from 4 to 30 seconds in one generation.",
+    "<strong>Quality:</strong> 1080p at 25 frames per second.",
+    "<strong>Sound:</strong> lip-synced dialogue, sound effects, ambience and music made in the same pass as the video.",
+    "<strong>Control:</strong> shot cuts on a timeline, edits to existing video and up to 20 references in one request.",
+    "<strong>Price:</strong> $0.08 per second with audio, about $0.40 for 5 seconds and $2.40 for 30 seconds. Retries are charged as new generations.",
+    "<strong>Where to use it:</strong> it launched on Higgsfield, its launch partner, through the app and API; some API resellers also list it at the same rate.",
+    "<strong>Open weights:</strong> Sand.ai says the full model will be open-sourced with a technical report, with no date or licence yet. The smaller MAGI-2 Preview from August is already open under Apache 2.0."
+   ]
+  },
+  {
+   "heading": "The background",
+   "paragraphs": [
+    "AI video prices have been falling fast this year, but the best-looking models have stayed expensive per second, and most cap clips at around 10 to 15 seconds, so longer ads have to be stitched together from several shots. For comparison, one review lists Seedance 2.5, a leading model, at about 23 cents a second.",
+    "MAGI-2 is not proven yet. Sand.ai describes it as a 480-billion-parameter model, while Higgsfield's launch post says 400 billion, and the early ranking that puts it just behind Seedance 2.5 comes from an arena run by Higgsfield itself, so it is not an independent test. Early creator comparisons are mixed, so it is worth testing on real briefs."
+   ]
+  },
+  {
+   "heading": "What it means for brands",
+   "label": "Papad Pixels view",
+   "paragraphs": [
+    "Thirty seconds with sound in one go is the length of a full social ad, and at about $2.40 a clip, testing many versions of an idea becomes cheap. That makes it easier to try different hooks, products and endings before choosing what to finish and run.",
+    "Cheap generations do not make a good ad on their own: the brief, the product accuracy, the edit and the final polish still decide whether it sells. As an AI video production studio we will test MAGI-2 next to the models we already use and pick per shot. See how we make <a href=\"/ai-video-ads\">AI video ads</a> for brands."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "When was MAGI-2 released?",
+   "a": "Sand.ai released MAGI-2 on 24 November 2026, and it went live on Higgsfield as the launch partner."
+  },
+  {
+   "q": "How much does MAGI-2 cost?",
+   "a": "It costs $0.08 per second of 1080p video with sound included, so a 5-second clip is about $0.40 and a 30-second clip about $2.40."
+  },
+  {
+   "q": "How long can MAGI-2 videos be?",
+   "a": "Each generation can be from 4 to 30 seconds long, in 1080p at 25 frames per second."
+  },
+  {
+   "q": "Is MAGI-2 open source?",
+   "a": "Not yet. Sand.ai says it will open-source the full model later; only the smaller MAGI-2 Preview is open under Apache 2.0 today."
+  }
+ ],
+ "sources": [
+  {"name": "Higgsfield: Best ways to access MAGI-2", "url": "https://higgsfield.ai/blog/best-ways-to-access-magi-2"},
+  {"name": "Sulat AI & Tech News: Higgsfield launches MAGI-2, 30-second 1080p video at $0.08/s", "url": "https://news.sulat.com/2026/11/26/higgsfield-magi-2/"},
+  {"name": "i10x: MAGI-2 video model, 30-second 1080p clips at a fraction of Seedance's price", "url": "https://i10x.ai/news/magi-2-sand-ai-480b-video-model-price-per-second"},
+  {"name": "Maverick Frame: MAGI-2 by Sand.ai, price, limits and open weights", "url": "https://maverickframe.com/blog/sand-ai-magi-latest-version/"},
+  {"name": "Apiyi: How MAGI-2 is priced, 30-second 1080p for $2.40", "url": "https://help.apiyi.com/en/magi-2-pricing-30s-1080p-cost-retry-en.html"},
+  {"name": "MindStudio: Seedance 2.5 review and pricing", "url": "https://www.mindstudio.ai/blog/seedance-2-5-review-pricing"}
+ ],
+ "tags": ["MAGI-2", "Sand.ai", "Higgsfield", "AI video", "AI advertising"]
+}
